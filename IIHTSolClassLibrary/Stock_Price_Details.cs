@@ -13,10 +13,12 @@ namespace IIHTSolClassLibrary
 4. Date – Date of the Stock Price
 5. Time – Stock Price at this Specific time
         */
-        public int CompanyCode { get; set; }
-        public int StockExchangePrice { get; set; }
+        public Company_Related_Data CompanyCode { get; set; } //1 Company : N StockPrice
+        public Stock_Exchange_DataFields StockExchangePrice { get; set; } // 1 StockExchange : N StockPrice
         public int StockCurrentPrice { get; set; }
-        public DateTime Date { get; set; }
-        public DateTime Time { get; set; }
+        public string Date { get; set; }
+        public string Time { get; set; }
+
+        
     }
 }

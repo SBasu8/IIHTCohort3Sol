@@ -17,9 +17,13 @@
         public string Turnover { get; set; } //Dont know exactly what it is
         public string CEO { get; set; }
         public string[] Board_Directores { get; set; }
-        public bool IsListed_StockExchange { get; set; }
+        public Stock_Exchange_DataFields[] StockExchange { get; set; } //M StockExchanges : N Companies
         public string Sector { get; set; }
         public string BriefAbout { get; set; }
-        public int StockCode { get; set; }
+        public int[] StockCode { get; set; }
+
+        //No IPO Deatils!!??
+
+        // No StockPriceDetails!!??
     }
 }

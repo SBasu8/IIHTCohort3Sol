@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IIHTSolClassLibrary
 {
-    class Stock_Exchange_DataFields
+    public class Stock_Exchange_DataFields
     {
         /*
 1. Id
@@ -14,9 +14,11 @@ namespace IIHTSolClassLibrary
 5. Remarks
          */
         public int Id { get; set; }
-        public int StockExchangePrice { get; set; }
+        public Stock_Price_Details[] StockExchangePrice { get; set; } // 1 StockExchange : N StockPrice
         public string Brief { get; set; } // Is it Brief About ??
         public string ContactAddress { get; set; }
         public string Remarks { get; set; }
+
+        // No Detail About Companies!!??
     }
 }

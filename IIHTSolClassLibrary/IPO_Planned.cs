@@ -17,8 +17,8 @@ namespace IIHTSolClassLibrary
          */
 
         public int Id { get; set; }
-        public string CompanyName { get; set; }
-        public int StockExchange { get; set; }
+        public Company_Related_Data CompanyName { get; set; } // M IPODetail	: 1 Company
+        public Stock_Exchange_DataFields StockExchange { get; set; } // IPO 1:1 StockExchange 
         public int PricePerShare { get; set; }
         public int TotalNo_Shares { get; set; }
         public DateTime DateTimeDetail { get; set; }
