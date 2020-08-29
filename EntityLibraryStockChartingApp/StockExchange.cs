@@ -16,7 +16,7 @@ namespace EntityLibraryStockChartingApp
 
         //Value properties
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
         [Required]
         public string ExchangeName { get; set; }
         [Required]
@@ -26,7 +26,7 @@ namespace EntityLibraryStockChartingApp
         public string Remarks { get; set; }
 
         //Navigation collection properties
-        public ICollection<Company> Companies { get; set; }
+        public ICollection<JoinCompanyStockExchange> JoinCompanyExchanges { get; set; }
         public ICollection<StockPrice> CurrentPrices { get; set; }
         public ICollection<IPODetails> Ipos { get; set; }
     }
