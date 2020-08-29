@@ -1,16 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityLibraryStockChartingApp;
+using StockChartingApp.CompanyMS.Models;
 
 namespace StockChartingApp.CompanyMS.Repositories
 {
     public class CompanyRepository : IRepository<Company>
     {
+        private CompanyMSContext context;
+
+        public CompanyRepository(CompanyMSContext context)
+        {
+            this.context = context;
+        }
+
         public bool Add(Company entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                bool conn = context.Database.CanConnect();
+
+                context.Companies.Add(entity);
+                int updates = context.SaveChanges();
+                if (updates > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public bool Delete(Company entity)
@@ -25,7 +49,8 @@ namespace StockChartingApp.CompanyMS.Repositories
 
         public Company Get(object key)
         {
-            throw new NotImplementedException();
+            var company = context.Companies.Find(key);
+            return company;
         }
 
         public bool Update(Company entity)
