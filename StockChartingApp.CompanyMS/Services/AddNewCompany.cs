@@ -16,9 +16,18 @@ namespace StockChartingApp.CompanyMS.Services
             this.repository = repository;                
         }
 
-        public bool InsertNewCompany()
+        public bool InsertNewCompany(Company company)
         {
-            throw new NotImplementedException();
+            company.JoinCompanyBod = new List<JoinCompanyBoardMember>();
+            company.JoinCompanyExchanges = new List<JoinCompanyStockExchange>();
+            company.Ipos = new List<IPODetails>();
+            company.CurrentPrices = new List<StockPrice>();
+            return repository.Add(company);
+        }
+
+        public Company GetExistingCompany(int key)
+        {
+            return repository.Get(key);
         }
     }
 }
