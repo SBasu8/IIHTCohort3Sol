@@ -11,5 +11,7 @@ namespace StockChartingApp.StockExchangeMS.Repositories
         IEnumerable<T> GetAll();
         T Get(object key);
 
+        bool Add(T entity);
+
     }
 }

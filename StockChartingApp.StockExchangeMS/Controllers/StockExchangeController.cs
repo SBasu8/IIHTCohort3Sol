@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Dataflow;
 using EntityLibraryStockChartingApp;
 using Microsoft.AspNetCore.Mvc;
 using StockChartingApp.StockExchangeMS.Repositories;
@@ -31,15 +32,21 @@ namespace StockChartingApp.StockExchangeMS.Controllers
 
         // GET api/<StockExchangeController>/5
         [HttpGet("{id}")]
-        public StockExchange Get(int id)
+        public StockExchange Get(string id)
         {
             return repository.Get(id);
         }
 
         // POST api/<StockExchangeController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromForm] StockExchange stockExchange)
         {
+            if (ModelState.IsValid)
+            {
+                var isAdded = repository.Add(stockExchange);
+                if (isAdded) return Created("StockExchange", stockExchange);
+            }
+            return BadRequest(ModelState);
         }
 
         // PUT api/<StockExchangeController>/5

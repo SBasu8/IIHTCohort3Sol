@@ -18,7 +18,12 @@ namespace StockChartingApp.StockExchangeMS.Models
         protected StockExchangeContext()
         {
         }
-
+        //Important for many many
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<JoinCompanyBoardMember>().HasKey(jcb => new { jcb.CompanyId, jcb.BoardMemberId });
+            modelBuilder.Entity<JoinCompanyStockExchange>().HasKey(jcs => new { jcs.CompanyId, jcs.StockExchangeId });
+        }
         public virtual DbSet<StockExchange> StockExchange { get; set; }
     }
 }
