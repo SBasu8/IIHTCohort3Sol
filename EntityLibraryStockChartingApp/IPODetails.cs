@@ -19,6 +19,8 @@ namespace EntityLibraryStockChartingApp
         [Key]
         public int Id { get; set; }
         [Required]
+        public double PricePerShare { get; set; }
+        [Required]
         public int TotalShares { get; set; }
         [Required]
         public DateTime OfferingDateTime { get; set; }
@@ -27,6 +29,5 @@ namespace EntityLibraryStockChartingApp
         //Navigation reference properties
         public Company RegisteredCompany { get; set; }
         public StockExchange RegisteredStockExchange { get; set; }
-        public StockPrice InitialPrice { get; set; }
     }
 }

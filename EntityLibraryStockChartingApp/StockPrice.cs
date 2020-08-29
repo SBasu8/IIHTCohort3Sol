@@ -23,7 +23,7 @@ namespace EntityLibraryStockChartingApp
         [Required]
         public int CompanyId { get; set; }
         [Required]
-        public string ExchangeId { get; set; }
+        public string StockExchangeId { get; set; }
 
         //Navigation reference properties
         public Company RegisteredCompany { get; set; }

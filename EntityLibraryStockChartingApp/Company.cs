@@ -24,7 +24,6 @@ namespace EntityLibraryStockChartingApp
         public double Turnover { get; set; }
         [Required]
         public string Ceo { get; set; }
-        public List<string> Bod { get; set; }
         [Required]
         public string About { get; set; }
 
@@ -32,7 +31,8 @@ namespace EntityLibraryStockChartingApp
         public Sector BusinessSector { get; set; }
 
         //Navigation collection properties
-        public ICollection<StockExchange> Exchanges { get; set; }
+        public ICollection<JoinCompanyBoardMember> JoinCompanyBod { get; set; }
+        public ICollection<JoinCompanyStockExchange> JoinCompanyExchanges { get; set; }
         public ICollection<StockPrice> CurrentPrices { get; set; }
         public ICollection<IPODetails> Ipos { get; set; }
     }
