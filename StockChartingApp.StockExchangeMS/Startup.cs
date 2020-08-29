@@ -2,14 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EntityLibraryStockChartingApp;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using StockChartingApp.StockExchangeMS.Models;
+using StockChartingApp.StockExchangeMS.Repositories;
 
 namespace StockChartingApp.StockExchangeMS
 {
@@ -25,7 +29,9 @@ namespace StockChartingApp.StockExchangeMS
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<StockExchangeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlConnectionString")));
             services.AddControllers();
+            services.AddScoped<IRepository<StockExchange>, StockExchangeRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

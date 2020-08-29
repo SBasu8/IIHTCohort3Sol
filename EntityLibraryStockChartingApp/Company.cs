@@ -24,7 +24,7 @@ namespace EntityLibraryStockChartingApp
         public double Turnover { get; set; }
         [Required]
         public string Ceo { get; set; }
-        public List<string> Bod { get; set; }
+        public ICollection<string> Bod { get; set; }
         [Required]
         public string About { get; set; }
 
