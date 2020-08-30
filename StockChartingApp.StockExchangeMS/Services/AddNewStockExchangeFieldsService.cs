@@ -20,21 +20,43 @@ namespace StockChartingApp.StockExchangeMS.Services
         public bool Add(StockExchange entity)
         {
             //throw new NotImplementedException();
-            /* 
-             * Not yet Still working on this
-             * --------
-            JoinCompanyStockExchange j = new JoinCompanyStockExchange()
-            {
-                Company = new Company(),
-                CompanyId = 1,
-                StockExchange = entity,
-                StockExchangeId = Convert.ToInt32(entity.Id)   // this is for the time being as discr
-            };
-            entity.JoinCompanyExchanges = new List<JoinCompanyStockExchange>();
-            entity.Ipos = new List<IPODetails>();
-            entity.CurrentPrices = new List<StockPrice>();
-            -----------
-            */
+            List<JoinCompanyStockExchange> jpar = new List<JoinCompanyStockExchange>();
+            //JoinCompanyStockExchange j = new JoinCompanyStockExchange()
+            //{
+            //    Company = new Company(),
+            //    CompanyId = 1,
+            //    StockExchange = entity,
+            //    StockExchangeId = entity.Id   
+            //};
+            //jpar.Add(j);
+
+            List<IPODetails> ipopar = new List<IPODetails>();
+            //IPODetails ipo = new IPODetails()
+            //{
+            //    Id = 1, PricePerShare = 0.9, TotalShares = 1000, OfferingDateTime = new DateTime(),
+            //    Remarks = "Amazing", RegisteredCompany = j.Company,RegisteredStockExchange = entity
+
+            //};
+            //ipopar.Add(ipo);
+
+            List<StockPrice> sppar = new List<StockPrice>();
+            //StockPrice sp = new StockPrice()
+            //{
+            //    Id=1,
+            //    CompanyId=1, 
+            //    Price = 0.98, 
+            //    Date ="10/10/2010", 
+            //    Time = "0930",
+            //    StockExchangeId=entity.Id,
+            //    RegisteredCompany = j.Company, 
+            //    RegisteredStockExchange = entity
+            //};
+            //sppar.Add(sp);
+
+            entity.JoinCompanyExchanges = jpar;
+            entity.Ipos = ipopar;
+            entity.CurrentPrices = sppar;
+           
             return repository.Add(entity);
 
         }
