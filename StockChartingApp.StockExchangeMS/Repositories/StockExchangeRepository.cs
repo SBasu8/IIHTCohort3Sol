@@ -20,7 +20,7 @@ namespace StockChartingApp.StockExchangeMS.Repositories
             //throw new NotImplementedException();
             try
             {
-                bool check = context.Database.CanConnect();
+                //bool check = context.Database.CanConnect();
                 context.StockExchange.Add(entity);
                 int u = context.SaveChanges();
                 if ( u > 0) return true;

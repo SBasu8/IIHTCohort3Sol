@@ -6,6 +6,7 @@ using System.Threading.Tasks.Dataflow;
 using EntityLibraryStockChartingApp;
 using Microsoft.AspNetCore.Mvc;
 using StockChartingApp.StockExchangeMS.Repositories;
+using StockChartingApp.StockExchangeMS.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,18 +16,21 @@ namespace StockChartingApp.StockExchangeMS.Controllers
     [ApiController]
     public class StockExchangeController : ControllerBase
     {
-        private IRepository<StockExchange> repository;
+        private AddNewStockExchangeFieldsService service;
 
-        public StockExchangeController(IRepository<StockExchange> repository)
+        //private IRepository<StockExchange> repository;
+
+        public StockExchangeController(AddNewStockExchangeFieldsService service)
         {
-            this.repository = repository;
+            //this.repository = repository;
+            this.service = service;
         }
 
         // GET: api/<StockExchangeController>
         [HttpGet]
         public IEnumerable<StockExchange> Get()
         {
-            return repository.GetAll();
+            return service.GetAll();
             //return new string[] { "value1", "value2" };
         }
 
@@ -34,7 +38,7 @@ namespace StockChartingApp.StockExchangeMS.Controllers
         [HttpGet("{id}")]
         public StockExchange Get(string id)
         {
-            return repository.Get(id);
+            return service.Get(id);
         }
 
         // POST api/<StockExchangeController>
@@ -43,7 +47,7 @@ namespace StockChartingApp.StockExchangeMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                var isAdded = repository.Add(stockExchange);
+                var isAdded = service.Add(stockExchange);
                 if (isAdded) return Created("StockExchange", stockExchange);
             }
             return BadRequest(ModelState);

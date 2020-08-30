@@ -8,7 +8,7 @@ namespace EntityLibraryStockChartingApp
     {
         public int CompanyId { get; set; }
         public Company Company { get; set; }
-        public int StockExchangeId { get; set; }
+        public string StockExchangeId { get; set; }
         public StockExchange StockExchange { get; set; }
     }
 }

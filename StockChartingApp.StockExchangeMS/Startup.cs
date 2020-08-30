@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using StockChartingApp.StockExchangeMS.Models;
 using StockChartingApp.StockExchangeMS.Repositories;
+using StockChartingApp.StockExchangeMS.Services;
 
 namespace StockChartingApp.StockExchangeMS
 {
@@ -32,6 +33,7 @@ namespace StockChartingApp.StockExchangeMS
             services.AddDbContext<StockExchangeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlConnectionString")));
             services.AddControllers();
             services.AddScoped<IRepository<StockExchange>, StockExchangeRepository>();
+            services.AddScoped<AddNewStockExchangeFieldsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

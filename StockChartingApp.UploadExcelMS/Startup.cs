@@ -6,10 +6,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using StockChartingApp.UploadExcelMS.Models;
+using StockChartingApp.UploadExcelMS.Repositories;
 
 namespace StockChartingApp.UploadExcelMS
 {
@@ -25,7 +28,9 @@ namespace StockChartingApp.UploadExcelMS
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlConnectionString")));
             services.AddControllers();
+            services.AddScoped<IUploadExcelRepository<AppDBContext>, UploadExcelRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
