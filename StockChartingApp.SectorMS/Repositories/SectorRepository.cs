@@ -55,7 +55,7 @@ namespace StockChartingApp.SectorMS.Repositories
             //throw new NotImplementedException();
         }
        
-        public string UpdateCompanyList(int CompId,int SecId)
+        public bool UpdateCompanyList(int CompId,int SecId)
         {
             
             var compi_ = context.Company.Where(s => s.Id == SecId).FirstOrDefault();
@@ -66,7 +66,7 @@ namespace StockChartingApp.SectorMS.Repositories
             sec_.Companies.Add(compi_);
             
             context.SaveChanges();
-            return sec_.About;
+            return true;
         }
         public IEnumerable<Sector> GetAll()
         {

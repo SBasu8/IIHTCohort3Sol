@@ -59,7 +59,7 @@ namespace StockChartingApp.SectorMS.Controllers
 
         // PUT api/<SectorController>/5
         [HttpPut("{id}")]
-        public string UpdateSectorCompanyList(int CompId, int SecId)
+        public bool UpdateSectorCompanyList(int CompId, int SecId)
         {
             return repository.UpdateCompanyList(CompId, SecId);
         }

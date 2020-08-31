@@ -12,7 +12,7 @@ namespace StockChartingApp.SectorMS.Repositories
        
         IEnumerable<T> GetAll();
         List<string> GetComp(int id);
-        public string UpdateCompanyList(int compid, int secid);
+        public bool UpdateCompanyList(int compid, int secid);
         
     }
 }
