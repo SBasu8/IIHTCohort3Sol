@@ -15,7 +15,7 @@ namespace StockChartingApp.StockExchangeMS.Models
         {
         }
 
-        protected StockExchangeContext()
+        public StockExchangeContext()
         {
         }
         //Important for many many
@@ -25,5 +25,9 @@ namespace StockChartingApp.StockExchangeMS.Models
             modelBuilder.Entity<JoinCompanyStockExchange>().HasKey(jcs => new { jcs.CompanyId, jcs.StockExchangeId });
         }
         public virtual DbSet<StockExchange> StockExchange { get; set; }
+        public virtual DbSet<Company> Companies { get; set; }
+        public virtual DbSet<JoinCompanyStockExchange> CompanyStockExchangePair { get; set; } //changed this name to match DB Name, need to check why Company have companies & JoinCompanyStockExchange have the same Name
+        public virtual DbSet<IPODetails> IPODetails { get; set; }
+        public virtual DbSet<StockPrice> StockPrice { get; set; }
     }
 }

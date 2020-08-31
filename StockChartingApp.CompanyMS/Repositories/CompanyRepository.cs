@@ -8,7 +8,7 @@ using StockChartingApp.CompanyMS.Models;
 
 namespace StockChartingApp.CompanyMS.Repositories
 {
-    public class CompanyRepository : IRepository<Company>
+    public class CompanyRepository : repository<Company>
     {
         private CompanyMSContext context;
 

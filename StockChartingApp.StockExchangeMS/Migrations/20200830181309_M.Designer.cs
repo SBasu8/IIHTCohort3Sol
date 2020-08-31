@@ -10,8 +10,8 @@ using StockChartingApp.StockExchangeMS.Models;
 namespace StockChartingApp.StockExchangeMS.Migrations
 {
     [DbContext(typeof(StockExchangeContext))]
-    [Migration("20200829113401_M1")]
-    partial class M1
+    [Migration("20200830181309_M")]
+    partial class M
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -66,7 +66,7 @@ namespace StockChartingApp.StockExchangeMS.Migrations
 
                     b.HasIndex("BusinessSectorId");
 
-                    b.ToTable("Company");
+                    b.ToTable("Companies");
                 });
 
             modelBuilder.Entity("EntityLibraryStockChartingApp.IPODetails", b =>
@@ -123,17 +123,14 @@ namespace StockChartingApp.StockExchangeMS.Migrations
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
-                    b.Property<int>("StockExchangeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("StockExchangeId1")
+                    b.Property<string>("StockExchangeId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("CompanyId", "StockExchangeId");
 
-                    b.HasIndex("StockExchangeId1");
+                    b.HasIndex("StockExchangeId");
 
-                    b.ToTable("JoinCompanyStockExchange");
+                    b.ToTable("CompanyStockExchangePair");
                 });
 
             modelBuilder.Entity("EntityLibraryStockChartingApp.Sector", b =>
@@ -256,7 +253,9 @@ namespace StockChartingApp.StockExchangeMS.Migrations
 
                     b.HasOne("EntityLibraryStockChartingApp.StockExchange", "StockExchange")
                         .WithMany("JoinCompanyExchanges")
-                        .HasForeignKey("StockExchangeId1");
+                        .HasForeignKey("StockExchangeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("EntityLibraryStockChartingApp.StockPrice", b =>

@@ -75,7 +75,7 @@ namespace StockChartingApp.UploadExcelMS.Repositories
                                 });
                         }
 
-                        context.StockPrices.AddRange(list);  //insert list of rows to table
+                        context.StockPrice.AddRange(list);  //insert list of rows to table
                         context.SaveChanges();
                     }
                 }

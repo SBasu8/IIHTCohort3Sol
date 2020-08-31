@@ -33,15 +33,11 @@ namespace StockChartingApp.StockExchangeMS.Repositories
         public StockExchange Get(object key)
         {
             return context.StockExchange.Find(key);
-            //throw new NotImplementedException();
         }
 
         public IEnumerable<StockExchange> GetAll()
         {
             return context.StockExchange;
-            //throw new NotImplementedException();
         }
-
-
     }
 }

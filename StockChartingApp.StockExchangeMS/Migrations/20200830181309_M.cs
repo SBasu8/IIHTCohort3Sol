@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StockChartingApp.StockExchangeMS.Migrations
 {
-    public partial class M1 : Migration
+    public partial class M : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -50,7 +50,7 @@ namespace StockChartingApp.StockExchangeMS.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Company",
+                name: "Companies",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -63,13 +63,37 @@ namespace StockChartingApp.StockExchangeMS.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Company", x => x.Id);
+                    table.PrimaryKey("PK_Companies", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Company_Sector_BusinessSectorId",
+                        name: "FK_Companies_Sector_BusinessSectorId",
                         column: x => x.BusinessSectorId,
                         principalTable: "Sector",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CompanyStockExchangePair",
+                columns: table => new
+                {
+                    CompanyId = table.Column<int>(nullable: false),
+                    StockExchangeId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CompanyStockExchangePair", x => new { x.CompanyId, x.StockExchangeId });
+                    table.ForeignKey(
+                        name: "FK_CompanyStockExchangePair_Companies_CompanyId",
+                        column: x => x.CompanyId,
+                        principalTable: "Companies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CompanyStockExchangePair_StockExchange_StockExchangeId",
+                        column: x => x.StockExchangeId,
+                        principalTable: "StockExchange",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -89,9 +113,9 @@ namespace StockChartingApp.StockExchangeMS.Migrations
                 {
                     table.PrimaryKey("PK_IPODetails", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_IPODetails_Company_RegisteredCompanyId",
+                        name: "FK_IPODetails_Companies_RegisteredCompanyId",
                         column: x => x.RegisteredCompanyId,
-                        principalTable: "Company",
+                        principalTable: "Companies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -119,36 +143,11 @@ namespace StockChartingApp.StockExchangeMS.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_JoinCompanyBoardMember_Company_CompanyId",
+                        name: "FK_JoinCompanyBoardMember_Companies_CompanyId",
                         column: x => x.CompanyId,
-                        principalTable: "Company",
+                        principalTable: "Companies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "JoinCompanyStockExchange",
-                columns: table => new
-                {
-                    CompanyId = table.Column<int>(nullable: false),
-                    StockExchangeId = table.Column<int>(nullable: false),
-                    StockExchangeId1 = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_JoinCompanyStockExchange", x => new { x.CompanyId, x.StockExchangeId });
-                    table.ForeignKey(
-                        name: "FK_JoinCompanyStockExchange_Company_CompanyId",
-                        column: x => x.CompanyId,
-                        principalTable: "Company",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_JoinCompanyStockExchange_StockExchange_StockExchangeId1",
-                        column: x => x.StockExchangeId1,
-                        principalTable: "StockExchange",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -167,9 +166,9 @@ namespace StockChartingApp.StockExchangeMS.Migrations
                 {
                     table.PrimaryKey("PK_StockPrice", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_StockPrice_Company_CompanyId",
+                        name: "FK_StockPrice_Companies_CompanyId",
                         column: x => x.CompanyId,
-                        principalTable: "Company",
+                        principalTable: "Companies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -181,9 +180,14 @@ namespace StockChartingApp.StockExchangeMS.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Company_BusinessSectorId",
-                table: "Company",
+                name: "IX_Companies_BusinessSectorId",
+                table: "Companies",
                 column: "BusinessSectorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CompanyStockExchangePair_StockExchangeId",
+                table: "CompanyStockExchangePair",
+                column: "StockExchangeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_IPODetails_RegisteredCompanyId",
@@ -201,11 +205,6 @@ namespace StockChartingApp.StockExchangeMS.Migrations
                 column: "BoardMemberId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_JoinCompanyStockExchange_StockExchangeId1",
-                table: "JoinCompanyStockExchange",
-                column: "StockExchangeId1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_StockPrice_CompanyId",
                 table: "StockPrice",
                 column: "CompanyId");
@@ -219,13 +218,13 @@ namespace StockChartingApp.StockExchangeMS.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "CompanyStockExchangePair");
+
+            migrationBuilder.DropTable(
                 name: "IPODetails");
 
             migrationBuilder.DropTable(
                 name: "JoinCompanyBoardMember");
-
-            migrationBuilder.DropTable(
-                name: "JoinCompanyStockExchange");
 
             migrationBuilder.DropTable(
                 name: "StockPrice");
@@ -234,7 +233,7 @@ namespace StockChartingApp.StockExchangeMS.Migrations
                 name: "BoardMember");
 
             migrationBuilder.DropTable(
-                name: "Company");
+                name: "Companies");
 
             migrationBuilder.DropTable(
                 name: "StockExchange");

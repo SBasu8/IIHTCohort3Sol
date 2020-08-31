@@ -17,13 +17,15 @@ namespace StockChartingApp.StockExchangeMS.Controllers
     public class StockExchangeController : ControllerBase
     {
         private AddNewStockExchangeFieldsService service;
+        private GetAllCompanyListService gservice;
 
         //private IRepository<StockExchange> repository;
 
-        public StockExchangeController(AddNewStockExchangeFieldsService service)
+        public StockExchangeController(AddNewStockExchangeFieldsService service, GetAllCompanyListService gservice)
         {
             //this.repository = repository;
             this.service = service;
+            this.gservice = gservice;
         }
 
         // GET: api/<StockExchangeController>
@@ -63,6 +65,12 @@ namespace StockChartingApp.StockExchangeMS.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        [HttpGet("api/GetCompany/{id}")]
+        public  IEnumerable<Company> GetCompanies(string id)
+        {
+            return gservice.GetAllCompaniesList(id);
         }
     }
 }

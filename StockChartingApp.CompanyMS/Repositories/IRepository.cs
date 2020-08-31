@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace StockChartingApp.CompanyMS.Repositories
 {
-    public interface IRepository<T>
+    public interface repository<T>
     {
         bool Add(T entity);
         bool Update(T entity);
