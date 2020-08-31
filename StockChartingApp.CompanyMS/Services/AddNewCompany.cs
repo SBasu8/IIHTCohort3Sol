@@ -9,9 +9,9 @@ namespace StockChartingApp.CompanyMS.Services
 {
     public class AddNewCompany
     {
-        private repository<Company> repository;
+        private IRepository<Company> repository;
 
-        public AddNewCompany(repository<Company> repository)
+        public AddNewCompany(IRepository<Company> repository)
         {
             this.repository = repository;                
         }

@@ -20,5 +20,11 @@ namespace StockChartingApp.StockExchangeMS.Services
         {
             return repository.Get(key);
         }
+
+        public bool Add(StockPrice stockPrice)
+        {
+            stockPrice.
+            return repository.Add(stockPrice);
+        }
     }
 }

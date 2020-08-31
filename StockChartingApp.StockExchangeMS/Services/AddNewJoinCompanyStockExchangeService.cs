@@ -10,17 +10,31 @@ namespace StockChartingApp.StockExchangeMS.Services
 {
     public class AddNewJoinCompanyStockExchangeService
     {
-        private IRepository<JoinCompanyStockExchange> repository;
+        private IJoinRepository<JoinCompanyStockExchange> repository;
 
-        public AddNewJoinCompanyStockExchangeService(IRepository<JoinCompanyStockExchange> repository)
+        public AddNewJoinCompanyStockExchangeService(IJoinRepository<JoinCompanyStockExchange> repository)
         {
             this.repository = repository;
         }
-
+        //---------------------------------------------------------
         public JoinCompanyStockExchange Get(int key1, string key2)
         {
-            List<string> k = new List<string>(); k.Add(Convert.ToString(key1));k.Add(key2);
-            return repository.Get(k);
+            return repository.Get(key1,key2);
         }
+
+        public Tuple<bool, JoinCompanyStockExchange> Add(int c_id, string se_id)
+        {
+            JoinCompanyStockExchange j_c_se = new JoinCompanyStockExchange() { CompanyId = c_id, StockExchangeId = se_id };
+            Tuple<bool, JoinCompanyStockExchange> t;
+            t = new Tuple<bool, JoinCompanyStockExchange>(repository.Add(j_c_se), repository.Get(c_id, se_id));
+            return t;
+            
+        }
+
+        public bool Delete(JoinCompanyStockExchange jcse)
+        {
+            return repository.Delete(jcse);
+        }
+
     }
 }

@@ -15,8 +15,13 @@ namespace StockChartingApp.StockExchangeMS.Repositories
         {
             this.context = context;
         }
-
+        //----------------------------------------------------------
         public bool Add(IPODetails entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Delete(IPODetails entity)
         {
             throw new NotImplementedException();
         }
@@ -27,6 +32,11 @@ namespace StockChartingApp.StockExchangeMS.Repositories
         }
 
         public IEnumerable<IPODetails> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Update(IPODetails entity)
         {
             throw new NotImplementedException();
         }

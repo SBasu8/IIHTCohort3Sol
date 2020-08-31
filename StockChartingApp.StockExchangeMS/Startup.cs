@@ -38,12 +38,12 @@ namespace StockChartingApp.StockExchangeMS
 );
             services.AddScoped<IRepository<StockExchange>, StockExchangeRepository>();
             services.AddScoped<IRepository<Company>, CompanyRepository>();
-            services.AddScoped<IRepository<JoinCompanyStockExchange>, JoinCompanyStockExchangeRepository>();
+            services.AddScoped<IJoinRepository<JoinCompanyStockExchange>, JoinCompanyStockExchangeRepository>();
             services.AddScoped<IRepository<StockPrice>, StockPriceRepository>();
             services.AddScoped<IRepository<IPODetails>, IPORepository>();
 
             //Services
-            services.AddScoped<AddNewStockExchangeFieldsService>();
+            services.AddScoped<AddNewStockExchangeService>();
             services.AddScoped<AddNewCompanyService>();
             services.AddScoped<GetAllCompanyListService>();
             services.AddScoped<AddNewIPOService>();
