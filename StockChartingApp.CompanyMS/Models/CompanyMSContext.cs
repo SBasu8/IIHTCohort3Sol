@@ -23,8 +23,15 @@ namespace StockChartingApp.CompanyMS.Models
         {
             modelBuilder.Entity<JoinCompanyBoardMember>().HasKey(jcb => new { jcb.CompanyId, jcb.BoardMemberId });
             modelBuilder.Entity<JoinCompanyStockExchange>().HasKey(jcs => new { jcs.CompanyId, jcs.StockExchangeId });
+            modelBuilder.Entity<IPODetails>()
+            .HasKey(ipo => new { ipo.RegisteredCompanyId, ipo.RegisteredStockExchangeId });
         }
 
-        public DbSet<Company> Companies { get; set; }
+        public DbSet<Company> Company { get; set; }
+        public DbSet<IPODetails> IPODetails { get; set; }
+        public DbSet<JoinCompanyStockExchange> JoinCompanyStockExchange { get; set; }
+        public DbSet<JoinCompanyBoardMember> JoinCompanyBoardMember { get; set; }
+        public DbSet<StockExchange> StockExchange { get; set; }
+        public DbSet<BoardMember> BoardMember { get; set; }
     }
 }
