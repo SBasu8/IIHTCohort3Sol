@@ -4,11 +4,12 @@ using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 using EntityLibraryStockChartingApp;
+using Microsoft.EntityFrameworkCore;
 using StockChartingApp.CompanyMS.Models;
 
 namespace StockChartingApp.CompanyMS.Repositories
 {
-    public class CompanyRepository : IRepository<Company>
+    public class CompanyRepository
     {
         private CompanyMSContext context;
 
@@ -21,9 +22,7 @@ namespace StockChartingApp.CompanyMS.Repositories
         {
             try
             {
-                bool conn = context.Database.CanConnect();
-
-                context.Companies.Add(entity);
+                context.Company.Add(entity);
                 int updates = context.SaveChanges();
                 if (updates > 0)
                 {
@@ -39,23 +38,65 @@ namespace StockChartingApp.CompanyMS.Repositories
 
         public bool Delete(Company entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                context.Company.Remove(entity);
+                var updates = context.SaveChanges();
+                if (updates > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
-        public IEnumerable<Company> Get()
+        public Company GetSingle(object key)
+        {
+            try
+            {
+                var company = context.Company.Find(key);
+                return company;
+            }
+            catch(Exception)
+            {
+                return null;
+            }
+        }
+
+        public IEnumerable<Company> GetMultiple()
         {
             throw new NotImplementedException();
         }
 
-        public Company Get(object key)
+        public IEnumerable<string> MatchingCompanies(string partial)
         {
-            var company = context.Companies.Find(key);
-            return company;
+            var name_list = context.Company
+                .Where(c => c.CompanyName.Contains(partial))
+                .Select(c => c.CompanyName);
+            return name_list;
         }
 
         public bool Update(Company entity)
         {
-            throw new NotImplementedException();
-        }
+            try
+            {
+                //context.Entry(entity).State = EntityState.Modified;
+                var updates = context.SaveChanges();
+                if (updates > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }      
     }
 }

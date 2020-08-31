@@ -64,15 +64,16 @@ namespace StockChartingApp.CompanyMS.Migrations
 
                     b.HasIndex("BusinessSectorId");
 
-                    b.ToTable("Companies");
+                    b.ToTable("Company");
                 });
 
             modelBuilder.Entity("EntityLibraryStockChartingApp.IPODetails", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("RegisteredCompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RegisteredStockExchangeId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("OfferingDateTime")
                         .HasColumnType("datetime2");
@@ -80,21 +81,13 @@ namespace StockChartingApp.CompanyMS.Migrations
                     b.Property<double>("PricePerShare")
                         .HasColumnType("float");
 
-                    b.Property<int?>("RegisteredCompanyId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("RegisteredStockExchangeId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Remarks")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TotalShares")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("RegisteredCompanyId");
+                    b.HasKey("RegisteredCompanyId", "RegisteredStockExchangeId");
 
                     b.HasIndex("RegisteredStockExchangeId");
 
@@ -121,15 +114,12 @@ namespace StockChartingApp.CompanyMS.Migrations
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
-                    b.Property<int>("StockExchangeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("StockExchangeId1")
+                    b.Property<string>("StockExchangeId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("CompanyId", "StockExchangeId");
 
-                    b.HasIndex("StockExchangeId1");
+                    b.HasIndex("StockExchangeId");
 
                     b.ToTable("JoinCompanyStockExchange");
                 });
@@ -222,11 +212,15 @@ namespace StockChartingApp.CompanyMS.Migrations
                 {
                     b.HasOne("EntityLibraryStockChartingApp.Company", "RegisteredCompany")
                         .WithMany("Ipos")
-                        .HasForeignKey("RegisteredCompanyId");
+                        .HasForeignKey("RegisteredCompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("EntityLibraryStockChartingApp.StockExchange", "RegisteredStockExchange")
                         .WithMany("Ipos")
-                        .HasForeignKey("RegisteredStockExchangeId");
+                        .HasForeignKey("RegisteredStockExchangeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("EntityLibraryStockChartingApp.JoinCompanyBoardMember", b =>
@@ -254,7 +248,9 @@ namespace StockChartingApp.CompanyMS.Migrations
 
                     b.HasOne("EntityLibraryStockChartingApp.StockExchange", "StockExchange")
                         .WithMany("JoinCompanyExchanges")
-                        .HasForeignKey("StockExchangeId1");
+                        .HasForeignKey("StockExchangeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("EntityLibraryStockChartingApp.StockPrice", b =>

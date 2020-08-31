@@ -10,7 +10,7 @@ namespace StockChartingApp.CompanyMS.Repositories
         bool Add(T entity);
         bool Update(T entity);
         bool Delete(T entity);
-        IEnumerable<T> Get();
-        T Get(object key);
+        T GetSingle(object key);
+        IEnumerable<T> GetMultiple();
     }
 }

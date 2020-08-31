@@ -16,8 +16,6 @@ namespace EntityLibraryStockChartingApp
         */
 
         //Value properties
-        [Key]
-        public int Id { get; set; }
         [Required]
         public double PricePerShare { get; set; }
         [Required]
@@ -27,7 +25,9 @@ namespace EntityLibraryStockChartingApp
         public string Remarks { get; set; }
 
         //Navigation reference properties
+        public int RegisteredCompanyId { get; set; }
         public Company RegisteredCompany { get; set; }
+        public string RegisteredStockExchangeId { get; set; }
         public StockExchange RegisteredStockExchange { get; set; }
     }
 }

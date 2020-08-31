@@ -33,9 +33,17 @@ namespace StockChartingApp.CompanyMS
             services.AddDbContext<CompanyMSContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("SqlConnectionString")));
             services.AddControllers();
-            services.AddScoped<IRepository<Company>, CompanyRepository>();
-            services.AddScoped<IRepository<IPODetails>, IPODetailsRepository>();
-            services.AddScoped<AddNewCompany>();
+            services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            
+            services.AddScoped<CompanyRepository>();
+            services.AddScoped<IPODetailsRepository>();
+            services.AddScoped<StockExchangeRepository>();
+            services.AddScoped<BoardMemberRepository>();
+
+            services.AddScoped<CompanyService>();
+            services.AddScoped<StockExchangeService>();
+            services.AddScoped<IPODetailsService>();
+            services.AddScoped<BoardMemberService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
