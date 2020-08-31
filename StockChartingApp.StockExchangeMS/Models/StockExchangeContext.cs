@@ -23,10 +23,12 @@ namespace StockChartingApp.StockExchangeMS.Models
         {
             modelBuilder.Entity<JoinCompanyBoardMember>().HasKey(jcb => new { jcb.CompanyId, jcb.BoardMemberId });
             modelBuilder.Entity<JoinCompanyStockExchange>().HasKey(jcs => new { jcs.CompanyId, jcs.StockExchangeId });
+            modelBuilder.Entity<IPODetails>()
+           .HasKey(ipo => new { ipo.RegisteredCompanyId, ipo.RegisteredStockExchangeId });
         }
         public virtual DbSet<StockExchange> StockExchange { get; set; }
-        public virtual DbSet<Company> Companies { get; set; }
-        public virtual DbSet<JoinCompanyStockExchange> CompanyStockExchangePair { get; set; } //changed this name to match DB Name, need to check why Company have companies & JoinCompanyStockExchange have the same Name
+        public virtual DbSet<Company> Company { get; set; }
+        public virtual DbSet<JoinCompanyStockExchange> JoinCompanyStockExchange { get; set; } 
         public virtual DbSet<IPODetails> IPODetails { get; set; }
         public virtual DbSet<StockPrice> StockPrice { get; set; }
     }

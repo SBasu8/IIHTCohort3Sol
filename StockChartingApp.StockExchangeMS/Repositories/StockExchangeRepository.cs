@@ -14,7 +14,7 @@ namespace StockChartingApp.StockExchangeMS.Repositories
         {
             this.context = context;
         }
-
+        //-----------------------------------------------------------
         public bool Add(StockExchange entity)
         {
             //throw new NotImplementedException();
@@ -30,6 +30,11 @@ namespace StockChartingApp.StockExchangeMS.Repositories
 
         }
 
+        public bool Delete(StockExchange entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public StockExchange Get(object key)
         {
             return context.StockExchange.Find(key);
@@ -38,6 +43,11 @@ namespace StockChartingApp.StockExchangeMS.Repositories
         public IEnumerable<StockExchange> GetAll()
         {
             return context.StockExchange;
+        }
+
+        public bool Update(StockExchange entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }

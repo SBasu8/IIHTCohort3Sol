@@ -64,7 +64,7 @@ namespace StockChartingApp.StockExchangeMS.Migrations
 
                     b.HasIndex("BusinessSectorId");
 
-                    b.ToTable("Companies");
+                    b.ToTable("Company");
                 });
 
             modelBuilder.Entity("EntityLibraryStockChartingApp.IPODetails", b =>
@@ -128,7 +128,7 @@ namespace StockChartingApp.StockExchangeMS.Migrations
 
                     b.HasIndex("StockExchangeId");
 
-                    b.ToTable("CompanyStockExchangePair");
+                    b.ToTable("JoinCompanyStockExchange");
                 });
 
             modelBuilder.Entity("EntityLibraryStockChartingApp.Sector", b =>

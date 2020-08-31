@@ -9,10 +9,10 @@ namespace StockChartingApp.StockExchangeMS.Services
 {
     public class GetAllCompanyListService
     {
-        private IRepository<JoinCompanyStockExchange> repository;
+        private IJoinRepository<JoinCompanyStockExchange> repository;
         private IRepository<Company> crepository;
 
-        public GetAllCompanyListService(IRepository<JoinCompanyStockExchange> repository, IRepository<Company> crepository)
+        public GetAllCompanyListService(IJoinRepository<JoinCompanyStockExchange> repository, IRepository<Company> crepository)
         {
             this.repository = repository;
             this.crepository = crepository;

@@ -78,7 +78,7 @@ namespace StockChartingApp.CompanyMS.Controllers
                     }
                 }
             }
-            return BadRequest();
+            return BadRequest(ModelState);
         }
 
         [HttpDelete("removecompany/{id}")]
@@ -120,7 +120,7 @@ namespace StockChartingApp.CompanyMS.Controllers
                 }
                 return StatusCode(500, "Internal server error");
             }
-            return BadRequest();
+            return BadRequest(ModelState);
         }
 
         [HttpGet("getcompanyipo/{id}/{se_id}")]
@@ -146,7 +146,7 @@ namespace StockChartingApp.CompanyMS.Controllers
                     return Created("Added new member",member);
                 }
             }
-            return BadRequest();
+            return BadRequest(ModelState);
         }
 
         [HttpPut("addcompanybm/{bm_id}/{id}")]

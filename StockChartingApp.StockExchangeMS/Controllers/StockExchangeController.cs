@@ -16,16 +16,20 @@ namespace StockChartingApp.StockExchangeMS.Controllers
     [ApiController]
     public class StockExchangeController : ControllerBase
     {
-        private AddNewStockExchangeFieldsService service;
-        private GetAllCompanyListService gservice;
+        private StockExchangeService service;
+        private GetAllCompanyListService g_service;
+        private JoinCompanyStockExchangeService aj_c_seService;
+        private StockPriceService a_spService;
 
         //private IRepository<StockExchange> repository;
 
-        public StockExchangeController(AddNewStockExchangeFieldsService service, GetAllCompanyListService gservice)
+        public StockExchangeController(StockExchangeService service, GetAllCompanyListService g_service, JoinCompanyStockExchangeService aj_c_seService, StockPriceService a_spService)
         {
             //this.repository = repository;
             this.service = service;
-            this.gservice = gservice;
+            this.g_service = g_service;
+            this.aj_c_seService = aj_c_seService;
+            this.a_spService = a_spService;
         }
 
         // GET: api/<StockExchangeController>
@@ -33,7 +37,6 @@ namespace StockChartingApp.StockExchangeMS.Controllers
         public IEnumerable<StockExchange> Get()
         {
             return service.GetAll();
-            //return new string[] { "value1", "value2" };
         }
 
         // GET api/<StockExchangeController>/5
@@ -67,10 +70,51 @@ namespace StockChartingApp.StockExchangeMS.Controllers
         {
         }
 
+        //------------------Get List of Companies-----------------------------------
         [HttpGet("api/GetCompany/{id}")]
         public  IEnumerable<Company> GetCompanies(string id)
         {
-            return gservice.GetAllCompaniesList(id);
+            return g_service.GetAllCompaniesList(id);
         }
+
+
+        //----------------CRUD Company-StockExchange Relationship----------------------------------
+
+        [HttpPost("relate_C_SE/{c_id}/{se_id}")]
+        public IActionResult AddNewJoinCompanyStockExchangeRelationship(int c_id, string se_id)
+        {
+            var isAdded = aj_c_seService.Add(c_id, se_id);
+            if (isAdded.Item1) return Created("JoinCompanyStockExchangeRelationship",isAdded.Item2);
+
+            return BadRequest();
+        }
+
+        [HttpDelete("delete_C_SE/{c_id}/{se_id}")]
+        public IActionResult DeleteJoinCompanyStockExchangeRelationship(int c_id, string se_id)
+        {
+            var jcse = aj_c_seService.Get(c_id, se_id);
+            if (jcse == null) return NotFound();
+
+            var isDeleted = aj_c_seService.Delete(jcse);
+            if (isDeleted) return Ok("Company-StockExchange Relationship Deleted Succesfully");
+
+            return StatusCode(500, "Internal Server Error");
+        }
+
+        //----------------------CRUD Stock Price-------------------------------
+        
+        [HttpPost("StockPrice")]
+        public IActionResult Post([FromForm] StockPrice stockprice)
+        {
+            if (ModelState.IsValid)
+            {
+                var isAdded = a_spService.Add(stockprice);
+                if (isAdded) return Created("StockExchange", stockprice);
+            }
+            return BadRequest(ModelState);
+        }
+
+
+
     }
 }

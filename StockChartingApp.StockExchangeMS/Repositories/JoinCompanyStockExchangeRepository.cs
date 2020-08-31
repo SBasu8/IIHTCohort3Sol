@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StockChartingApp.StockExchangeMS.Repositories
 {
-    public class JoinCompanyStockExchangeRepository : IRepository<JoinCompanyStockExchange>
+    public class JoinCompanyStockExchangeRepository : IJoinRepository<JoinCompanyStockExchange>
     {
         private StockExchangeContext context;
 
@@ -15,23 +15,39 @@ namespace StockChartingApp.StockExchangeMS.Repositories
         {
             this.context = context;
         }
-
+        //--------------------------------------------------------------------
         public bool Add(JoinCompanyStockExchange entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                context.JoinCompanyStockExchange.Add(entity);
+                int u = context.SaveChanges();
+                if (u > 0) return true;   else return false;
+            }
+            catch (Exception) { return false; }
         }
 
-        public JoinCompanyStockExchange Get(object key)
+        public bool Delete(JoinCompanyStockExchange entity)
         {
-            List<string> kl = new List<string>();
-            foreach (var k in (dynamic)key) { kl.Add(k); }
-            return context.CompanyStockExchangePair.Find(Convert.ToInt32(kl[0]),kl[1]);
+            try {
+                context.JoinCompanyStockExchange.Remove(entity);
+                var u = context.SaveChanges();
+                if (u > 0) return true; else return false;
+            }
+            catch (Exception){ return false; }
+        }
+
+
+        public JoinCompanyStockExchange Get(object key1, object key2)
+        {
+
+            return context.JoinCompanyStockExchange.Find(Convert.ToInt32(key1), key2);
+
         }
 
         public IEnumerable<JoinCompanyStockExchange> GetAll()
         {
-            return context.CompanyStockExchangePair;
-           
+            return context.JoinCompanyStockExchange;
         }
     }
 }

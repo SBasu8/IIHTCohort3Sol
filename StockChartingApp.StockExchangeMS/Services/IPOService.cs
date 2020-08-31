@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace StockChartingApp.StockExchangeMS.Services
 {
-    public class AddNewCompanyService
+    public class IPOService
     {
-        private IRepository<Company> repository;
+        private IRepository<IPODetails> repository;
 
-        public AddNewCompanyService(IRepository<Company> repository)
+        public IPOService(IRepository<IPODetails> repository)
         {
             this.repository = repository;
         }
 
-        public Company Get(int Id)
+        public IPODetails Get(object key)
         {
-            return repository.Get(Id);
+            return repository.Get(key);
         }
     }
 }

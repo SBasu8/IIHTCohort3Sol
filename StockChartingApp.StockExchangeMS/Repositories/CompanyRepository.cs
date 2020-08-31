@@ -15,19 +15,28 @@ namespace StockChartingApp.StockExchangeMS.Repositories
         {
             this.context = context;
         }
-
+        //---------------------------------------------------------
         public bool Add(Company entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Delete(Company entity)
         {
             throw new NotImplementedException();
         }
 
         public Company Get(object key)
         {
-            //throw new NotImplementedException();
-            return context.Companies.FirstOrDefault(c => c.Id == Convert.ToInt32(key));
+            return context.Company.FirstOrDefault(c => c.Id == Convert.ToInt32(key));
         }
 
         public IEnumerable<Company> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Update(Company entity)
         {
             throw new NotImplementedException();
         }

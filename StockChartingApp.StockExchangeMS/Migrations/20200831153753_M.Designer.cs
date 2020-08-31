@@ -10,7 +10,7 @@ using StockChartingApp.StockExchangeMS.Models;
 namespace StockChartingApp.StockExchangeMS.Migrations
 {
     [DbContext(typeof(StockExchangeContext))]
-    [Migration("20200830181309_M")]
+    [Migration("20200831153753_M")]
     partial class M
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -66,7 +66,7 @@ namespace StockChartingApp.StockExchangeMS.Migrations
 
                     b.HasIndex("BusinessSectorId");
 
-                    b.ToTable("Companies");
+                    b.ToTable("Company");
                 });
 
             modelBuilder.Entity("EntityLibraryStockChartingApp.IPODetails", b =>
@@ -130,7 +130,7 @@ namespace StockChartingApp.StockExchangeMS.Migrations
 
                     b.HasIndex("StockExchangeId");
 
-                    b.ToTable("CompanyStockExchangePair");
+                    b.ToTable("JoinCompanyStockExchange");
                 });
 
             modelBuilder.Entity("EntityLibraryStockChartingApp.Sector", b =>
