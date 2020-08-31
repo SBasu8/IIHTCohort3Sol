@@ -33,8 +33,8 @@ namespace StockChartingApp.CompanyMS
             services.AddDbContext<CompanyMSContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("SqlConnectionString")));
             services.AddControllers();
-            services.AddScoped<repository<Company>, CompanyRepository>();
-            services.AddScoped<repository<IPODetails>, IPODetailsRepository>();
+            services.AddScoped<IRepository<Company>, CompanyRepository>();
+            services.AddScoped<IRepository<IPODetails>, IPODetailsRepository>();
             services.AddScoped<AddNewCompany>();
         }
 

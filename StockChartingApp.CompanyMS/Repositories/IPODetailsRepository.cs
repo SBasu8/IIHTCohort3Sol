@@ -6,7 +6,7 @@ using EntityLibraryStockChartingApp;
 
 namespace StockChartingApp.CompanyMS.Repositories
 {
-    public class IPODetailsRepository : repository<IPODetails>
+    public class IPODetailsRepository : IRepository<IPODetails>
     {
         public bool Add(IPODetails entity)
         {
