@@ -75,17 +75,17 @@ namespace StockChartingApp.CompanyMS.Repositories
 
         public IEnumerable<string> MatchingCompanies(string partial)
         {
-            var name_list = context.Company
+            var name_list = context.Company.AsNoTracking()
                 .Where(c => c.CompanyName.Contains(partial))
                 .Select(c => c.CompanyName);
             return name_list;
         }
 
-        public bool Update(Company entity)
+        public bool Update(Company existing,Company entity)
         {
             try
             {
-                //context.Entry(entity).State = EntityState.Modified;
+                context.Entry(existing).CurrentValues.SetValues(entity);
                 var updates = context.SaveChanges();
                 if (updates > 0)
                 {

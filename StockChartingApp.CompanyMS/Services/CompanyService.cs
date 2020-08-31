@@ -38,7 +38,7 @@ namespace StockChartingApp.CompanyMS.Services
                 return (false,1);
             }
 
-            var updated = repository.Update(company);
+            var updated = repository.Update(existing, company);
             if(updated)
             {
                 return (true,1);
