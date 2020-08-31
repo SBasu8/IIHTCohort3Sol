@@ -23,48 +23,47 @@ namespace StockChartingApp.SectorMS.Controllers
 
         // GET: api/<SectorController>
         [HttpGet]
-        public IEnumerable<Sector> Get()
+        public IEnumerable<Sector> GetAllSector()
         {
+
             return repository.GetAll();
-            //return new string[] { "value1", "value2" };
+
         }
 
         // GET api/<SectorController>/5
         [HttpGet("{id}")]
-        public string Get(string sectorname)
+        public List<string> GetSectorCompanyList(int id)
         {
 
-            return repository.Get(sectorname);
-            //return null;
+            return repository.GetComp(id);
+
 
         }
 
         // POST api/<SectorController>
         [HttpPost]
-        public IActionResult Post([FromForm] Sector sector)
+        public IActionResult AddSector([FromForm] Sector sector)
         {
-             if(ModelState.IsValid)
-             {
-                 var isAdded = repository.Add(sector);
-                 if (isAdded)
-                 {
-                     return Created("Sector", sector);
-                 }
-             }
+            if (ModelState.IsValid)
+            {
+                var isAdded = repository.Add(sector);
+                if (isAdded)
+                {
+                    return Created("Sector", sector);
+                }
+            }
             return BadRequest(ModelState);
-           
+
         }
 
-        private IActionResult Created(string v)
-        {
-            throw new NotImplementedException();
-        }
 
         // PUT api/<SectorController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public string UpdateSectorCompanyList(int CompId, int SecId)
         {
+            return repository.UpdateCompanyList(CompId, SecId);
         }
+
 
         // DELETE api/<SectorController>/5
         [HttpDelete("{id}")]

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using EntityLibraryStockChartingApp;
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.DependencyInjection;
 
 
 namespace StockChartingApp.SectorMS.Models
@@ -25,14 +26,13 @@ namespace StockChartingApp.SectorMS.Models
         {
             modelBuilder.Entity<JoinCompanyBoardMember>().HasKey(jcb => new { jcb.CompanyId, jcb.BoardMemberId });
             modelBuilder.Entity<JoinCompanyStockExchange>().HasKey(jcs => new { jcs.CompanyId, jcs.StockExchangeId });
-            /*modelBuilder.Entity<Sector>()
-                    .HasMany<Company>(g => g.Companies)
-                    .WithOne(s => s.BusinessSector)
-                    .HasForeignKey(s => s.BusinessSector);*/
+            modelBuilder.Entity<IPODetails>()
+           .HasKey(ipo => new { ipo.RegisteredCompanyId, ipo.RegisteredStockExchangeId });
 
         }
        
 
         public virtual DbSet<Sector> Sector { get; set; }
+        public virtual DbSet<Company> Company { get; set; }
     }
 }
