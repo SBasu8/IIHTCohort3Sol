@@ -43,12 +43,12 @@ namespace StockChartingApp.StockExchangeMS
             services.AddScoped<IRepository<IPODetails>, IPORepository>();
 
             //Services
-            services.AddScoped<AddNewStockExchangeService>();
-            services.AddScoped<AddNewCompanyService>();
+            services.AddScoped<StockExchangeService>();
+            services.AddScoped<CompanyService>();
             services.AddScoped<GetAllCompanyListService>();
-            services.AddScoped<AddNewIPOService>();
-            services.AddScoped<AddNewJoinCompanyStockExchangeService>();
-            services.AddScoped<AddNewStockPriceService>();
+            services.AddScoped<IPOService>();
+            services.AddScoped<JoinCompanyStockExchangeService>();
+            services.AddScoped<StockPriceService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

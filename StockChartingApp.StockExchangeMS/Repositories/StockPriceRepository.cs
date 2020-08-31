@@ -18,7 +18,14 @@ namespace StockChartingApp.StockExchangeMS.Repositories
         //-----------------------------------------------
         public bool Add(StockPrice entity)
         {
-            
+            try
+            {
+                context.StockPrice.Add(entity);
+                int u = context.SaveChanges();
+                if (u > 0) return true;
+                else return false;
+            }
+            catch (Exception) { return false; }
         }
 
         public bool Delete(StockPrice entity)

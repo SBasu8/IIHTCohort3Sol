@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace StockChartingApp.StockExchangeMS.Services
 {
-    public class AddNewStockExchangeService
+    public class StockExchangeService
     {
         private IRepository<StockExchange> repository;
 
         
 
-        public AddNewStockExchangeService(IRepository<StockExchange> repository) { 
+        public StockExchangeService(IRepository<StockExchange> repository) { 
             this.repository = repository;
            
         }

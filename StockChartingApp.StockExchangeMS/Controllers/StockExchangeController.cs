@@ -16,14 +16,14 @@ namespace StockChartingApp.StockExchangeMS.Controllers
     [ApiController]
     public class StockExchangeController : ControllerBase
     {
-        private AddNewStockExchangeService service;
+        private StockExchangeService service;
         private GetAllCompanyListService g_service;
-        private AddNewJoinCompanyStockExchangeService aj_c_seService;
-        private AddNewStockPriceService a_spService;
+        private JoinCompanyStockExchangeService aj_c_seService;
+        private StockPriceService a_spService;
 
         //private IRepository<StockExchange> repository;
 
-        public StockExchangeController(AddNewStockExchangeService service, GetAllCompanyListService g_service, AddNewJoinCompanyStockExchangeService aj_c_seService, AddNewStockPriceService a_spService)
+        public StockExchangeController(StockExchangeService service, GetAllCompanyListService g_service, JoinCompanyStockExchangeService aj_c_seService, StockPriceService a_spService)
         {
             //this.repository = repository;
             this.service = service;

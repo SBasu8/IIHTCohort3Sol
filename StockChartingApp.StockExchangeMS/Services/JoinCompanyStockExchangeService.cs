@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace StockChartingApp.StockExchangeMS.Services
 {
-    public class AddNewJoinCompanyStockExchangeService
+    public class JoinCompanyStockExchangeService
     {
         private IJoinRepository<JoinCompanyStockExchange> repository;
 
-        public AddNewJoinCompanyStockExchangeService(IJoinRepository<JoinCompanyStockExchange> repository)
+        public JoinCompanyStockExchangeService(IJoinRepository<JoinCompanyStockExchange> repository)
         {
             this.repository = repository;
         }
