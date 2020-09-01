@@ -1,10 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel.DataAnnotations;
 
 namespace DtoLibraryStockChartingApp
 {
-    class IPODetailsDto
+    public class IPODetailsDto
     {
+        /*
+        1. id
+        2. Company Name
+        3. Stock Exchange
+        4. Price per share
+        5. Total number of Shares
+        6. Open Date Time
+        7. Remarks         
+        */
+
+        //Value properties
+        [Required]
+        public double PricePerShare { get; set; }
+        [Required]
+        public int TotalShares { get; set; }
+        [Required]
+        public DateTime OfferingDateTime { get; set; }
+        public string Remarks { get; set; }
+
+        //Navigation reference properties
+        public int RegisteredCompanyId { get; set; }
+        public string RegisteredStockExchangeId { get; set; }
     }
 }

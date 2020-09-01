@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DtoLibraryStockChartingApp;
 using EntityLibraryStockChartingApp;
 using Microsoft.AspNetCore.Mvc;
 using StockChartingApp.CompanyMS.Services;
@@ -99,12 +100,12 @@ namespace StockChartingApp.CompanyMS.Controllers
         }
 
         //Company IPO request handles
-        [HttpPost("addcompanyipo/{id}/{se_id}")]
-        public IActionResult PostAddCompanyIPO(int id, string se_id, [FromForm] IPODetails ipo)
+        [HttpPost("addcompanyipo")]
+        public IActionResult PostAddCompanyIPO([FromForm] IPODetailsDto ipo_dto)
         {
             if (ModelState.IsValid)
             {
-                (bool isAdded, int status) = ipo_service.InsertNewIPODetail(id, se_id, ipo);
+                (bool isAdded, int status) = ipo_service.InsertNewIPODetail(ipo_dto);
                 if (status == 1)
                 {
                     return NotFound("Company not found");
@@ -116,7 +117,7 @@ namespace StockChartingApp.CompanyMS.Controllers
 
                 if (isAdded)
                 {
-                    return Created("Added new IPO details",ipo);
+                    return Created("Added new IPO details",ipo_dto);
                 }
                 return StatusCode(500, "Internal server error");
             }

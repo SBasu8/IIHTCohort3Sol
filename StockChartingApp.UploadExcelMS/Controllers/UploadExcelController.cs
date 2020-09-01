@@ -13,7 +13,7 @@ using StockChartingApp.UploadExcelMS.Repositories;
 
 namespace StockChartingApp.UploadExcelMS.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/uploadexcel")]
     [ApiController]
     public class UploadExcelController : ControllerBase
     {

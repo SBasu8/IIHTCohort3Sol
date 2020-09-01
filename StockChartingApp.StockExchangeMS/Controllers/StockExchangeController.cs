@@ -12,7 +12,7 @@ using StockChartingApp.StockExchangeMS.Services;
 
 namespace StockChartingApp.StockExchangeMS.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/stockexchangems")]
     [ApiController]
     public class StockExchangeController : ControllerBase
     {
