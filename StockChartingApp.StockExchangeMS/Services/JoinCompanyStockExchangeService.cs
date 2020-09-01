@@ -22,12 +22,9 @@ namespace StockChartingApp.StockExchangeMS.Services
             return repository.Get(key1,key2);
         }
 
-        public Tuple<bool, JoinCompanyStockExchange> Add(int c_id, string se_id)
+        public bool Add(JoinCompanyStockExchange joinCompanyStockExchange)
         {
-            JoinCompanyStockExchange j_c_se = new JoinCompanyStockExchange() { CompanyId = c_id, StockExchangeId = se_id };
-            Tuple<bool, JoinCompanyStockExchange> t;
-            t = new Tuple<bool, JoinCompanyStockExchange>(repository.Add(j_c_se), repository.Get(c_id, se_id));
-            return t;
+            return repository.Add(joinCompanyStockExchange);
             
         }
 

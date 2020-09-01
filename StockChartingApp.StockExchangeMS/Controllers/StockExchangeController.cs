@@ -80,14 +80,7 @@ namespace StockChartingApp.StockExchangeMS.Controllers
 
         //----------------CRUD Company-StockExchange Relationship----------------------------------
 
-        [HttpPost("relate_C_SE/{c_id}/{se_id}")]
-        public IActionResult AddNewJoinCompanyStockExchangeRelationship(int c_id, string se_id)
-        {
-            var isAdded = aj_c_seService.Add(c_id, se_id);
-            if (isAdded.Item1) return Created("JoinCompanyStockExchangeRelationship",isAdded.Item2);
-
-            return BadRequest();
-        }
+        
 
         [HttpDelete("delete_C_SE/{c_id}/{se_id}")]
         public IActionResult DeleteJoinCompanyStockExchangeRelationship(int c_id, string se_id)

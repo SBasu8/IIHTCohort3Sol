@@ -23,17 +23,7 @@ namespace StockChartingApp.StockExchangeMS.Services
    
         public bool Add(StockExchange entity)
         {
-            List<JoinCompanyStockExchange> jpar = new List<JoinCompanyStockExchange>();
-            List<IPODetails> ipopar = new List<IPODetails>();
-            List<StockPrice> sppar = new List<StockPrice>();
-            
-
-            entity.JoinCompanyExchanges = jpar;
-            entity.Ipos = ipopar;
-            entity.CurrentPrices = sppar;
-
-            return repository.Add(entity);
-            
+             return repository.Add(entity);    
         }
 
         public StockExchange Get(object key)

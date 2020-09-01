@@ -18,13 +18,14 @@ namespace StockChartingApp.StockExchangeMS.Repositories
         //--------------------------------------------------------------------
         public bool Add(JoinCompanyStockExchange entity)
         {
-            try
-            {
-                context.JoinCompanyStockExchange.Add(entity);
-                int u = context.SaveChanges();
-                if (u > 0) return true;   else return false;
-            }
-            catch (Exception) { return false; }
+            //try
+            //{
+            //    context.JoinCompanyStockExchange.Add(entity);
+            //    int u = context.SaveChanges();
+            //    if (u > 0) return true;   else return false;
+            //}
+            //catch (Exception) { return false; }
+            throw new NotImplementedException();
         }
 
         public bool Delete(JoinCompanyStockExchange entity)

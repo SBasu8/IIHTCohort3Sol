@@ -21,6 +21,17 @@ namespace StockChartingApp.StockExchangeMS.Repositories
             try
             {
                 //bool check = context.Database.CanConnect();
+
+                // Mapping to be Done in Repository
+                List<JoinCompanyStockExchange> jpar = new List<JoinCompanyStockExchange>();
+                List<IPODetails> ipopar = new List<IPODetails>();
+                List<StockPrice> sppar = new List<StockPrice>();
+
+
+                entity.JoinCompanyExchanges = jpar;
+                entity.Ipos = ipopar;
+                entity.CurrentPrices = sppar;
+
                 context.StockExchange.Add(entity);
                 int u = context.SaveChanges();
                 if ( u > 0) return true;
