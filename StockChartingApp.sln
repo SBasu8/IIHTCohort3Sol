@@ -5,15 +5,21 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityLibraryStockChartingApp", "EntityLibraryStockChartingApp\EntityLibraryStockChartingApp.csproj", "{A29EFC66-E4D5-40A7-AE18-A2E94512F4AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockChartingApp.UploadExcelMS", "StockChartingApp.UploadExcelMS\StockChartingApp.UploadExcelMS.csproj", "{C6FC437B-8B95-464C-884A-47D888C20933}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockChartingApp.UploadExcelMS", "StockChartingApp.UploadExcelMS\StockChartingApp.UploadExcelMS.csproj", "{C6FC437B-8B95-464C-884A-47D888C20933}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockChartingApp.CompanyMS", "StockChartingApp.CompanyMS\StockChartingApp.CompanyMS.csproj", "{56ADE1DE-5790-49B4-8309-A22477EF2B45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockChartingApp.CompanyMS", "StockChartingApp.CompanyMS\StockChartingApp.CompanyMS.csproj", "{56ADE1DE-5790-49B4-8309-A22477EF2B45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockChartingApp.SectorMS", "StockChartingApp.SectorMS\StockChartingApp.SectorMS.csproj", "{70FBD53C-5CD7-42C6-A8A6-1D9B802CB053}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockChartingApp.SectorMS", "StockChartingApp.SectorMS\StockChartingApp.SectorMS.csproj", "{70FBD53C-5CD7-42C6-A8A6-1D9B802CB053}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockChartingApp.RoleMS", "StockChartingApp.RoleMS\StockChartingApp.RoleMS.csproj", "{C7691D5A-D2B1-4235-B096-C7DF224471FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockChartingApp.RoleMS", "StockChartingApp.RoleMS\StockChartingApp.RoleMS.csproj", "{C7691D5A-D2B1-4235-B096-C7DF224471FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockChartingApp.StockExchangeMS", "StockChartingApp.StockExchangeMS\StockChartingApp.StockExchangeMS.csproj", "{706B732E-DDDC-443A-8E6C-05DF2543556D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockChartingApp.StockExchangeMS", "StockChartingApp.StockExchangeMS\StockChartingApp.StockExchangeMS.csproj", "{706B732E-DDDC-443A-8E6C-05DF2543556D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DtoLibraryStockChartingApp", "DtoLibraryStockChartingApp\DtoLibraryStockChartingApp.csproj", "{8C103579-5A2F-4E49-AE1F-EDC50C7C75E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockChartingApp.APIGateway", "StockChartingApp.APIGateway\StockChartingApp.APIGateway.csproj", "{A1175E58-6D7F-435D-ACA2-A6787F1A030D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockChartingApp.Tests.Unit", "StockChartingApp.Tests.Unit\StockChartingApp.Tests.Unit.csproj", "{D8333276-0046-4F33-B6A3-19A6888D627F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +51,18 @@ Global
 		{706B732E-DDDC-443A-8E6C-05DF2543556D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{706B732E-DDDC-443A-8E6C-05DF2543556D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{706B732E-DDDC-443A-8E6C-05DF2543556D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C103579-5A2F-4E49-AE1F-EDC50C7C75E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C103579-5A2F-4E49-AE1F-EDC50C7C75E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C103579-5A2F-4E49-AE1F-EDC50C7C75E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C103579-5A2F-4E49-AE1F-EDC50C7C75E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1175E58-6D7F-435D-ACA2-A6787F1A030D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1175E58-6D7F-435D-ACA2-A6787F1A030D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1175E58-6D7F-435D-ACA2-A6787F1A030D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1175E58-6D7F-435D-ACA2-A6787F1A030D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8333276-0046-4F33-B6A3-19A6888D627F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8333276-0046-4F33-B6A3-19A6888D627F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8333276-0046-4F33-B6A3-19A6888D627F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8333276-0046-4F33-B6A3-19A6888D627F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
