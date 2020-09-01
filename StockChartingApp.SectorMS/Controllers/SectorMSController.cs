@@ -23,10 +23,10 @@ namespace StockChartingApp.SectorMS.Controllers
 
         // GET: api/<SectorController>
         [HttpGet]
-        public IEnumerable<Sector> GetAllSector()
+        public string GetAllSector()
         {
 
-            return repository.GetAll();
+            return "Sector Microservice for Stock Charting App";
 
         }
 
@@ -59,9 +59,19 @@ namespace StockChartingApp.SectorMS.Controllers
 
         // PUT api/<SectorController>/5
         [HttpPut("{id}")]
-        public bool UpdateSectorCompanyList(int CompId, int SecId)
+        public IActionResult UpdateSectorCompanyList(int CompId, int SecId)
         {
-            return repository.UpdateCompanyList(CompId, SecId);
+             if (ModelState.IsValid)
+             {
+                 var isUpdated = repository.UpdateCompanyList(CompId, SecId);
+                 if (isUpdated)
+                 {
+                     return Ok();
+                 }
+             }
+             return BadRequest(ModelState);
+           
+
         }
 
 

@@ -20,7 +20,7 @@ namespace StockChartingApp.SectorMS.Repositories
 
         public bool Add(Sector entity)
         {
-            //throw new NotImplementedException();
+            
             try
             {
                 bool check = context.Database.CanConnect();
@@ -36,42 +36,50 @@ namespace StockChartingApp.SectorMS.Repositories
 
         public List<string> GetComp(int id)
         {
+            try
+            {
+                var ans_ = context.Sector
+                       .Where(s => s.Id == id).Select(p => p.Companies).FirstOrDefault();
 
-            var ans_ = context.Sector
-                   .Where(s => s.Id == id).Select(p => p.Companies).FirstOrDefault();
-                   
-            List<string> strlst_ = new List<string>();
-            foreach (var c in ans_) {
-                strlst_.Add(c.CompanyName);
+                List<string> strlst_ = new List<string>();
+                foreach (var c in ans_)
+                {
+                    strlst_.Add(c.CompanyName);
+                }
+                return strlst_;
             }
-            return strlst_;
-
-            /*var ans = context.Sector
-                   .Where(s => s.Id == id)
-                   .FirstOrDefault();
-
-            return ans.About ;*/
-            //return context.Sector.Find(key);
-            //throw new NotImplementedException();
+            catch (Exception)
+            {
+                return null;
+            }
+         
         }
        
         public bool UpdateCompanyList(int CompId,int SecId)
         {
-            
-            var compi_ = context.Company.Where(s => s.Id == SecId).FirstOrDefault();
-            var sec_ = context.Sector.Where(s => s.Id == SecId).FirstOrDefault();
-            if (sec_.Companies == null) {
-                sec_.Companies = new List<Company>();
+            try
+            {
+                var compi_ = context.Company.Where(s => s.Id == CompId).FirstOrDefault();
+                var sec_ = context.Sector.Where(s => s.Id == SecId).FirstOrDefault();
+                if (sec_.Companies == null)
+                {
+                    sec_.Companies = new List<Company>();
+                }
+                sec_.Companies.Add(compi_);
+
+                context.SaveChanges();
+                return true;
             }
-            sec_.Companies.Add(compi_);
+            catch (Exception)
+            { 
+                return false; 
+            }
             
-            context.SaveChanges();
-            return true;
         }
         public IEnumerable<Sector> GetAll()
         {
             return context.Sector;
-            //throw new NotImplementedException();
+            
         }
     }
 }
