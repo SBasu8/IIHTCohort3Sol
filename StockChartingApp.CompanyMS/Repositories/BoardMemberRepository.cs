@@ -35,7 +35,6 @@ namespace StockChartingApp.CompanyMS.Repositories
 
         public bool AddMultiple(IEnumerable<BoardMember> bms)
         {
-
             try
             {
                 foreach(BoardMember bm in bms)
