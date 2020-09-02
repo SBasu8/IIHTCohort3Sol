@@ -11,7 +11,7 @@ using StockChartingApp.RoleMS.Repositories;
 
 namespace StockChartingApp.RoleMS.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/rolems")]
     [ApiController]
     public class AuthController : ControllerBase
     {
