@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EntityLibraryStockChartingApp
@@ -18,8 +19,7 @@ namespace EntityLibraryStockChartingApp
         public int Id { get; set; }
         [Required]
         public double Price { get; set; }
-        public string Date { get; set; }
-        public string Time { get; set; }
+        public DateTime DateTime { get; set; }
         [Required]
         public int CompanyId { get; set; }
         [Required]

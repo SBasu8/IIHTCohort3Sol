@@ -39,11 +39,13 @@ namespace StockChartingApp.CompanyMS
             services.AddScoped<IPODetailsRepository>();
             services.AddScoped<StockExchangeRepository>();
             services.AddScoped<BoardMemberRepository>();
+            services.AddScoped<StockPriceRepository>();
 
             services.AddScoped<CompanyService>();
             services.AddScoped<StockExchangeService>();
             services.AddScoped<IPODetailsService>();
             services.AddScoped<BoardMemberService>();
+            services.AddScoped<StockPriceService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

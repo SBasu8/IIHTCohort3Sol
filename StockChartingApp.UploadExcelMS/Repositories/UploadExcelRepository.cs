@@ -70,8 +70,7 @@ namespace StockChartingApp.UploadExcelMS.Repositories
                                     CompanyId = int.Parse(r[0].ToString().Trim()),
                                     StockExchangeId = r[1].ToString().Trim(),   //some areas Id is string; some are int
                                     Price = Convert.ToDouble(r[2].ToString().Trim()),
-                                    Date = r[3].ToString().Trim(),
-                                    Time = r[4].ToString().Trim()
+                                    DateTime = Convert.ToDateTime(r[3].ToString().Trim() + " " + r[4].ToString().Trim())
                                 });
                         }
 

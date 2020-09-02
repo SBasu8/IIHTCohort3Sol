@@ -33,5 +33,6 @@ namespace StockChartingApp.CompanyMS.Models
         public DbSet<JoinCompanyBoardMember> JoinCompanyBoardMember { get; set; }
         public DbSet<StockExchange> StockExchange { get; set; }
         public DbSet<BoardMember> BoardMember { get; set; }
+        public DbSet<StockPrice> StockPrice { get; set; }
     }
 }

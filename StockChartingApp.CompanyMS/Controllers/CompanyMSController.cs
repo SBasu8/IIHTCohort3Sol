@@ -18,12 +18,14 @@ namespace StockChartingApp.CompanyMS.Controllers
         private CompanyService company_service;
         private IPODetailsService ipo_service;
         private BoardMemberService bm_service;
+        private StockPriceService sp_service;
 
-        public CompanyMSController(CompanyService company_service, IPODetailsService ipo_service, BoardMemberService bm_service)
+        public CompanyMSController(CompanyService company_service, IPODetailsService ipo_service, BoardMemberService bm_service, StockPriceService sp_service)
         {
             this.company_service = company_service;
             this.ipo_service = ipo_service;
             this.bm_service = bm_service;
+            this.sp_service = sp_service;
         }
 
         [HttpGet]
@@ -186,6 +188,16 @@ namespace StockChartingApp.CompanyMS.Controllers
         public IActionResult GetMatchingCompanies(string partial_name)
         {
             return Ok(company_service.FetchMatchingCompanies(partial_name));
+        }
+
+        [HttpGet("companystockprices")]
+        public IActionResult GetComapnyStockPrices([FromForm] StockPriceRequestDto spq)
+        {
+            if (ModelState.IsValid)
+            {
+                return Ok(sp_service.FetchComapnyStockPrices(spq));
+            }
+            return BadRequest(ModelState);
         }
     }
 }

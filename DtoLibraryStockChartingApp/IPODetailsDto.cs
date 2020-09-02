@@ -21,7 +21,9 @@ namespace DtoLibraryStockChartingApp
         [Required]
         public int TotalShares { get; set; }
         [Required]
-        public DateTime OfferingDateTime { get; set; }
+        public string OfferingDate { get; set; }
+        [Required]
+        public string OfferingTime { get; set; }
         public string Remarks { get; set; }
 
         //Navigation reference properties

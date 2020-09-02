@@ -39,7 +39,7 @@ namespace StockChartingApp.CompanyMS.Services
             {
                 PricePerShare = ipo_dto.PricePerShare,
                 TotalShares = ipo_dto.TotalShares,
-                OfferingDateTime = ipo_dto.OfferingDateTime,
+                OfferingDateTime = Convert.ToDateTime(ipo_dto.OfferingDate + " " + ipo_dto.OfferingTime),
                 Remarks = ipo_dto.Remarks,
                 RegisteredCompany = existing_company,
                 RegisteredStockExchange = existing_stockexchange
