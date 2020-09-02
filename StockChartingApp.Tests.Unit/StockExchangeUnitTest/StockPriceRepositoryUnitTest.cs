@@ -10,6 +10,7 @@ using System.Text;
 
 namespace StockChartingApp.Tests.Unit.StockExchangeUnitTest
 {
+    [TestFixture]
     class StockPriceRepositoryUnitTest
     {
         DbContextOptions<StockExchangeContext> options = new DbContextOptionsBuilder<StockExchangeContext>()
