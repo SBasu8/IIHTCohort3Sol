@@ -35,8 +35,7 @@ namespace StockChartingApp.Tests.Unit.StockExchangeUnitTest
                 new StockPrice(){
                     Id = 1,
                     CompanyId =1,
-                    Date = "01/09/2020",
-                    Time = "18:20",
+                    DateTime = new DateTime(),
                     StockExchangeId="NYSE",
                     Price = 1.03
                 }
