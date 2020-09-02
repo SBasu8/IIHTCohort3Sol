@@ -20,9 +20,7 @@ namespace StockChartingApp.StockExchangeMS.Repositories
             //throw new NotImplementedException();
             try
             {
-                //bool check = context.Database.CanConnect();
-
-                // Mapping to be Done in Repository
+                
                 List<JoinCompanyStockExchange> jpar = new List<JoinCompanyStockExchange>();
                 List<IPODetails> ipopar = new List<IPODetails>();
                 List<StockPrice> sppar = new List<StockPrice>();

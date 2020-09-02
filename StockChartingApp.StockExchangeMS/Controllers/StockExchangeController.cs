@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using EntityLibraryStockChartingApp;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StockChartingApp.StockExchangeMS.Repositories;
 using StockChartingApp.StockExchangeMS.Services;
@@ -12,8 +13,10 @@ using StockChartingApp.StockExchangeMS.Services;
 
 namespace StockChartingApp.StockExchangeMS.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize(Roles = "ADMIN")]
     public class StockExchangeController : ControllerBase
     {
         private StockExchangeService service;
@@ -33,6 +36,7 @@ namespace StockChartingApp.StockExchangeMS.Controllers
         }
 
         // GET: api/<StockExchangeController>
+        
         [HttpGet]
         public IEnumerable<StockExchange> Get()
         {

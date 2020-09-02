@@ -40,7 +40,7 @@ namespace StockChartingApp.StockExchangeMS.Repositories
 
         public IEnumerable<StockPrice> GetAll()
         {
-            throw new NotImplementedException();
+            return context.StockPrice;
         }
 
         public bool Update(StockPrice entity)

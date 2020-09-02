@@ -33,7 +33,7 @@ namespace StockChartingApp.StockExchangeMS.Repositories
 
         public IEnumerable<Company> GetAll()
         {
-            throw new NotImplementedException();
+            return context.Company;
         }
 
         public bool Update(Company entity)
