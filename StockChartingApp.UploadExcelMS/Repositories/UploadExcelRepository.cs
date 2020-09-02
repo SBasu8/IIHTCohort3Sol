@@ -64,14 +64,18 @@ namespace StockChartingApp.UploadExcelMS.Repositories
                         excelOledbConnection.Close();
                         foreach (DataRow r in dt.Rows)
                         {
+                            string dtToParse = r[3].ToString().Split(' ')[0] + " " + r[4].ToString().Trim();
+                            if (dtToParse == " ") break;
                             list.Add(
                                 new StockPrice()
                                 {
                                     CompanyId = int.Parse(r[0].ToString().Trim()),
                                     StockExchangeId = r[1].ToString().Trim(),   //some areas Id is string; some are int
                                     Price = Convert.ToDouble(r[2].ToString().Trim()),
-                                    DateTime = Convert.ToDateTime(r[3].ToString().Trim() + " " + r[4].ToString().Trim())
-                                });
+                                    DateTime = DateTime.ParseExact(dtToParse, "dd-MM-yyyy HH:mm:ss", null)
+                                }
+                            );
+                            
                         }
 
                         context.StockPrice.AddRange(list);  //insert list of rows to table

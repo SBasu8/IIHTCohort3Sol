@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using StockChartingApp.StockExchangeMS.Models;
+using StockChartingApp.UploadExcelMS.Models;
 
-namespace StockChartingApp.StockExchangeMS.Migrations
+namespace StockChartingApp.UploadExcelMS.Migrations
 {
-    [DbContext(typeof(StockExchangeContext))]
-    partial class StockExchangeContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(AppDBContext))]
+    partial class AppDBContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -64,15 +64,16 @@ namespace StockChartingApp.StockExchangeMS.Migrations
 
                     b.HasIndex("BusinessSectorId");
 
-                    b.ToTable("Company");
+                    b.ToTable("Companies");
                 });
 
             modelBuilder.Entity("EntityLibraryStockChartingApp.IPODetails", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("RegisteredCompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RegisteredStockExchangeId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("OfferingDateTime")
                         .HasColumnType("datetime2");
@@ -80,21 +81,13 @@ namespace StockChartingApp.StockExchangeMS.Migrations
                     b.Property<double>("PricePerShare")
                         .HasColumnType("float");
 
-                    b.Property<int?>("RegisteredCompanyId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("RegisteredStockExchangeId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Remarks")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TotalShares")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("RegisteredCompanyId");
+                    b.HasKey("RegisteredCompanyId", "RegisteredStockExchangeId");
 
                     b.HasIndex("RegisteredStockExchangeId");
 
@@ -173,7 +166,7 @@ namespace StockChartingApp.StockExchangeMS.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("StockExchange");
+                    b.ToTable("StockExchanges");
                 });
 
             modelBuilder.Entity("EntityLibraryStockChartingApp.StockPrice", b =>
@@ -186,8 +179,8 @@ namespace StockChartingApp.StockExchangeMS.Migrations
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Date")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
@@ -195,9 +188,6 @@ namespace StockChartingApp.StockExchangeMS.Migrations
                     b.Property<string>("StockExchangeId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Time")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -219,11 +209,15 @@ namespace StockChartingApp.StockExchangeMS.Migrations
                 {
                     b.HasOne("EntityLibraryStockChartingApp.Company", "RegisteredCompany")
                         .WithMany("Ipos")
-                        .HasForeignKey("RegisteredCompanyId");
+                        .HasForeignKey("RegisteredCompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("EntityLibraryStockChartingApp.StockExchange", "RegisteredStockExchange")
                         .WithMany("Ipos")
-                        .HasForeignKey("RegisteredStockExchangeId");
+                        .HasForeignKey("RegisteredStockExchangeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("EntityLibraryStockChartingApp.JoinCompanyBoardMember", b =>

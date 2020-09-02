@@ -21,6 +21,7 @@ namespace StockChartingApp.UploadExcelMS.Models
         {
             modelBuilder.Entity<JoinCompanyBoardMember>().HasKey(jcb => new { jcb.CompanyId, jcb.BoardMemberId });
             modelBuilder.Entity<JoinCompanyStockExchange>().HasKey(jcs => new { jcs.CompanyId, jcs.StockExchangeId });
+            modelBuilder.Entity<IPODetails>().HasKey(ipo => new { ipo.RegisteredCompanyId, ipo.RegisteredStockExchangeId });
         }
         public virtual DbSet<StockPrice> StockPrice { get; set; }
         public virtual DbSet<Company> Companies { get; set; }
