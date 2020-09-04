@@ -30,6 +30,11 @@ namespace StockChartingApp.CompanyMS.Services
             return repository.GetSingle(key);
         }
 
+        public IEnumerable<Company> GetAllCompanies()
+        {
+            return repository.GetMultiple();
+        }
+
         public (bool,int) UpdateCompanyDetails(Company company)
         {
             var existing = repository.GetSingle(company.Id);

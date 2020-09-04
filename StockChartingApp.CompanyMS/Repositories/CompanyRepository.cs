@@ -70,7 +70,7 @@ namespace StockChartingApp.CompanyMS.Repositories
 
         public IEnumerable<Company> GetMultiple()
         {
-            throw new NotImplementedException();
+            return context.Company;
         }
 
         public IEnumerable<string> MatchingCompanies(string partial)

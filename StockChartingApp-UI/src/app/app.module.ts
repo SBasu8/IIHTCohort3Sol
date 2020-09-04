@@ -16,12 +16,14 @@ import { AdminloginComponent } from './Components/Admin/adminlogin/adminlogin.co
 import { UserloginComponent } from './Components/User/userlogin/userlogin.component';
 import { ChartingComponent } from './Components/User/charting/charting.component';
 import { ComparepriceComponent } from './Components/User/compareprice/compareprice.component';
+import { HomepageComponent } from './Components/Common/homepage/homepage.component';
 
 import { AccountService } from "./Services/AccountService/account.service";
 import { CompanyService } from "./Services/CompanyService/company.service";
 import { SectorService } from "./Services/SectorService/sector.service";
 import { StockExchangeService } from "./Services/StockExchangeService/stock-exchange.service";
 import { UploadExcelService } from "./Services/UploadExcelService/upload-excel.service";
+import { IpodetailsComponent } from './Components/User/ipodetails/ipodetails.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { UploadExcelService } from "./Services/UploadExcelService/upload-excel.s
     AdminloginComponent,
     UserloginComponent,
     ChartingComponent,
-    ComparepriceComponent
+    ComparepriceComponent,
+    HomepageComponent,
+    IpodetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -46,6 +46,12 @@ namespace StockChartingApp.CompanyMS.Controllers
             return NotFound("Company not found");
         }
 
+        [HttpGet("getallcompanies")]
+        public IActionResult GetAllCompaniesDetails()
+        {
+            return Ok(company_service.GetAllCompanies());
+        }
+
         [HttpPost("addnewcompany")]
         public IActionResult PostAddNewCompany([FromForm] Company company)
         {

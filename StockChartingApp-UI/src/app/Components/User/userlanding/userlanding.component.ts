@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-userlanding',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserlandingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
+  }
+
+  public IPOs()
+  {
+    this.router.navigateByUrl("userlanding/ipodetails");
+  }
+
+  public CompareCompanies()
+  {
+    this.router.navigateByUrl("userlanding/compareprice");
+  }
+
+  public LogOut()
+  {
+    localStorage.clear();
+    this.router.navigateByUrl("")
   }
 
 }

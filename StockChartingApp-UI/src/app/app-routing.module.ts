@@ -12,19 +12,25 @@ import { AdminloginComponent } from './Components/Admin/adminlogin/adminlogin.co
 import { UserloginComponent } from './Components/User/userlogin/userlogin.component';
 import { ChartingComponent } from './Components/User/charting/charting.component';
 import { ComparepriceComponent } from './Components/User/compareprice/compareprice.component';
+import { HomepageComponent } from './Components/Common/homepage/homepage.component';
+import { IpodetailsComponent } from './Components/User/ipodetails/ipodetails.component';
 
 const routes: Routes = [
+  {path:"",component:HomepageComponent},
   {path:"signup", component:SignupComponent},
-  {path:"adminlanding", component:AdminlandingComponent},
-  {path:"userlanding", component:UserlandingComponent},
-  {path:"uploadexcel", component:UploadexcelComponent},
-  {path:"manageexchange", component:ManageexchangeComponent},
-  {path:"managecompany", component:ManagecompanyComponent},
-  {path:"manageipodetails", component:ManageipodetailsComponent},
+  {path:"userlogin", component:UserloginComponent},
   {path:"adminlogin", component:AdminloginComponent},
-  {path:"userlogin", component:UserloginComponent}, 
-  {path:"charting", component:ChartingComponent},
-  {path:"compareprice", component:ComparepriceComponent}
+  {path:"adminlanding", component:AdminlandingComponent, children:[
+    {path:"uploadexcel", component:UploadexcelComponent},
+    {path:"manageexchange", component:ManageexchangeComponent},
+    {path:"managecompany", component:ManagecompanyComponent},
+    {path:"manageipodetails", component:ManageipodetailsComponent}    
+  ]},
+  {path:"userlanding", component:UserlandingComponent, children:[
+    {path:"charting", component:ChartingComponent},
+    {path:"compareprice", component:ComparepriceComponent},
+    {path:"ipodetails", component:IpodetailsComponent}
+  ]}
 ];
 
 @NgModule({
