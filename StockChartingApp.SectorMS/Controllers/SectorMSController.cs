@@ -23,10 +23,10 @@ namespace StockChartingApp.SectorMS.Controllers
 
         // GET: api/<SectorController>
         [HttpGet]
-        public string GetAllSector()
+        public IEnumerable<Sector> GetAllSector()
         {
 
-            return "Sector Microservice for Stock Charting App";
+            return repository.GetAll();
 
         }
 
