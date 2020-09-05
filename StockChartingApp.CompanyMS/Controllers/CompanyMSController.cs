@@ -53,7 +53,7 @@ namespace StockChartingApp.CompanyMS.Controllers
         }
 
         [HttpPost("addnewcompany")]
-        public IActionResult PostAddNewCompany([FromForm] Company company)
+        public IActionResult PostAddNewCompany(Company company)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +67,7 @@ namespace StockChartingApp.CompanyMS.Controllers
         }
 
         [HttpPut("updatecompany/{id}")]
-        public IActionResult PutUpdateCompanyDetails(int id, [FromForm] Company company)
+        public IActionResult PutUpdateCompanyDetails(int id, Company company)
         {
             if(ModelState.IsValid)
             {
@@ -109,7 +109,7 @@ namespace StockChartingApp.CompanyMS.Controllers
 
         //Company IPO request handles
         [HttpPost("addcompanyipo")]
-        public IActionResult PostAddCompanyIPO([FromForm] IPODetailsDto ipo_dto)
+        public IActionResult PostAddCompanyIPO(IPODetailsDto ipo_dto)
         {
             if (ModelState.IsValid)
             {
@@ -145,7 +145,7 @@ namespace StockChartingApp.CompanyMS.Controllers
 
         //Board Member relationship
         [HttpPost("addnewboardmember")]
-        public IActionResult PostAddNewBoardMamber([FromForm] BoardMember member)
+        public IActionResult PostAddNewBoardMamber(BoardMember member)
         {
             if(ModelState.IsValid)
             {
@@ -197,7 +197,7 @@ namespace StockChartingApp.CompanyMS.Controllers
         }
 
         [HttpGet("companystockprices")]
-        public IActionResult GetComapnyStockPrices([FromForm] StockPriceRequestDto spq)
+        public IActionResult GetComapnyStockPrices(StockPriceRequestDto spq)
         {
             if (ModelState.IsValid)
             {

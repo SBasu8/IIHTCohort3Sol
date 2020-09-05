@@ -1,36 +1,143 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            
+
+        <div class="col-md-4 col-md-offset-5" *ngIf="origin_form_state">
+            <button type="submit" class="btn btn-primary" (click)="AddCompanyForm()"
+            style="font-size: medium; width: 60%;">Add New Company</button> <br><br>
+            <button type="submit" class="btn btn-primary" (click)="UpdateCompanyForm()"
+            style="font-size: medium; width: 60%;">Update Existing Company</button> <br><br>
+            <button type="submit" class="btn btn-primary" (click)="DeleteCompanyForm()"
+            style="font-size: medium; width: 60%;">Delete Company</button>
+        </div>
+
+        <div class="col-md-4 col-md-offset-4" *ngIf="comp_form_state">            
             <form>
                 <legend style="font-size: 30px;">Add New Company</legend>
             
                 <div class="form-group FormField">
                     <label for="">Company Name:</label>
-                    <input type="text" class="form-control" style="font-size: medium;" id="" placeholder="Enter company name">                
+                    <input type="text" [(ngModel)]="new_company.companyName" name="company name field" 
+                    class="form-control" style="font-size: medium;" id="" placeholder="Enter company name">                
                 </div>
                 <div class="form-group FormField">
                     <label for="">Turnover:</label>
-                    <input type="text" class="form-control" style="font-size: medium;" id="" placeholder="Enter annual turnover">                
+                    <input type="text" [(ngModel)]="new_company.turnover" name="turnover field"
+                    class="form-control" style="font-size: medium;" id="" placeholder="Enter annual turnover">                
                 </div>
                 <div class="form-group FormField">
                     <label for="">CEO:</label>
-                    <input type="text" class="form-control" style="font-size: medium;" id="" placeholder="Enter company CEO name">                
+                    <input type="text" class="form-control" [(ngModel)]="new_company.ceo" name="ceo field"
+                    style="font-size: medium;" id="" placeholder="Enter company CEO name">                
                 </div>                
                 <div class="form-group FormField">
                     <label for="">About:</label>
-                    <input type="text" class="form-control" style="font-size: medium;" id="" placeholder="Enter company brieffing">                
+                    <input type="text" class="form-control" [(ngModel)]="new_company.about" name="about field"
+                    style="font-size: medium;" id="" placeholder="Enter company brief">                
                 </div>          
-
-                <button type="submit" class="btn btn-primary" style="font-size: medium; float: right;">Submit</button>
-            </form>
-            
+                <button type="submit" class="btn btn-primary" (click)="Origin()"
+                style="font-size: medium; float: left;">Back</button>
+                <button type="submit" class="btn btn-primary" (click)="AddIPOForm()"
+                style="font-size: medium; float: right;">Next</button>
+            </form> 
         </div>
+
+        <div class="col-md-4 col-md-offset-4" *ngIf="ipo_form_state">
+            <form>
+                <legend style="font-size: 30px;">Add IPO details</legend>
+            
+                <div class="form-group FormField">
+                    <label for="">Price Per Share:</label>
+                    <input type="text" [(ngModel)]="new_ipo.pricePerShare" name="pricePerShare field" 
+                    class="form-control" style="font-size: medium;" id="" placeholder="Price of each share">                
+                </div>
+                <div class="form-group FormField">
+                    <label for="">Total Shares:</label>
+                    <input type="text" [(ngModel)]="new_ipo.totalShares" name="totalShares field"
+                    class="form-control" style="font-size: medium;" id="" placeholder="Total opening shares">                
+                </div>
+                <div class="form-group FormField">
+                    <label for="">Offering Date:</label>
+                    <input type="date" class="form-control" [(ngModel)]="new_ipo.offeringDate" name="offeringDate field"
+                    style="font-size: medium;" id="" placeholder="Date of offering">                
+                </div>                
+                <div class="form-group FormField">
+                    <label for="">Offering Time:</label>
+                    <input type="time" class="form-control" [(ngModel)]="new_ipo.offeringTime" name="offeringTime field"
+                    style="font-size: medium;" id="" placeholder="Time of offering">                
+                </div>
+                <div class="form-group FormField">
+                    <label for="">Remarks:</label>
+                    <input type="text" class="form-control" [(ngModel)]="new_ipo.remarks" name="remarks field"
+                    style="font-size: medium;" id="" placeholder="Remarks on the offer">                
+                </div>
+                <div class="form-group FormField">
+                    <label for="">Stock Exchange: &nbsp;</label>
+                    <select style="color: black;" [(ngModel)]="new_ipo.registeredStockExchangeId" name="registeredStockExchangeId field">
+                        <option *ngFor="let item of existing_ses">{{item.id}}</option>
+                    </select>                             
+                </div>    
+                <button type="submit" class="btn btn-primary" (click)="AddCompanyForm()"
+                style="font-size: medium; float: left;">Back</button>
+                <button type="submit" class="btn btn-primary" (click)="AddNewCompany()"
+                style="font-size: medium; float: right;">Submit</button>
+            </form>
+        </div>
+
+        <div class="col-md-4 col-md-offset-4" *ngIf="update_form_state">            
+            <form>
+                <legend style="font-size: 30px;">Update Existing Company</legend>
+
+                <div class="form-group FormField">
+                    <label for="">Company ID:*</label>
+                    <input type="text" [(ngModel)]="new_company.id" name="company name field" 
+                    class="form-control" style="font-size: medium;" required="true" id="" placeholder="Enter ID">                
+                </div>
+                <div class="form-group FormField">
+                    <label for="">Company Name:</label>
+                    <input type="text" [(ngModel)]="new_company.companyName" name="company name field" 
+                    class="form-control" style="font-size: medium;" id="" placeholder="Enter company name">                
+                </div>
+                <div class="form-group FormField">
+                    <label for="">Turnover:</label>
+                    <input type="text" [(ngModel)]="new_company.turnover" name="turnover field"
+                    class="form-control" style="font-size: medium;" id="" placeholder="Enter annual turnover">                
+                </div>
+                <div class="form-group FormField">
+                    <label for="">CEO:</label>
+                    <input type="text" class="form-control" [(ngModel)]="new_company.ceo" name="ceo field"
+                    style="font-size: medium;" id="" placeholder="Enter company CEO name">                
+                </div>                
+                <div class="form-group FormField">
+                    <label for="">About:</label>
+                    <input type="text" class="form-control" [(ngModel)]="new_company.about" name="about field"
+                    style="font-size: medium;" id="" placeholder="Enter company brief">                
+                </div>          
+                <button type="submit" class="btn btn-primary" (click)="Origin()"
+                style="font-size: medium; float: left;">Back</button>
+                <button type="submit" class="btn btn-primary" (click)="UpdateExistingCompany()"
+                style="font-size: medium; float: right;">Update</button>
+            </form> 
+        </div>
+
+        <div class="col-md-4 col-md-offset-4" *ngIf="delete_form_state">            
+            <form>
+                <legend style="font-size: 30px;">Delete Existing Company</legend>
+
+                <div class="form-group FormField">
+                    <label for="">Company ID:*</label>
+                    <input type="text" [(ngModel)]="new_company.id" name="company name field" 
+                    class="form-control" style="font-size: medium;" required="true" id="" placeholder="Enter ID">                
+                </div>
+                <button type="submit" class="btn btn-primary" (click)="Origin()"
+                style="font-size: medium; float: left;">Back</button>
+                <button type="submit" class="btn btn-primary" (click)="DeleteCompany()"
+                style="font-size: medium; float: right;">Delete</button>
+            </form> 
+        </div>
+
     </div>
 
-    <br>
-
-    <br>
+    <br><br>
 
     <div>
         <table class="table table-bordered table-hover">
@@ -42,13 +149,13 @@
             </thead>
             <tbody *ngFor="let item of comp_list">
               <tr style="font-size: 15px;">
-                <td>{{item["id"]}}</td>
-                <td>{{item["companyName"]}}</td>
-                <td>{{item["turnover"]}}</td>
-                <td>{{item["ceo"]}}</td>
-                <td>{{item["about"]}}</td>
-                <td>{{item["stockExchangeNames"]}}</td>
-                <td>{{item["sector"]}}</td>
+                <td>{{item.id}}</td>
+                <td>{{item.companyName}}</td>
+                <td>{{item.turnover}}</td>
+                <td>{{item.ceo}}</td>
+                <td>{{item.about}}</td>
+                <td>{{item.stockExchangeNames}}</td>
+                <td>{{item.sector}}</td>
               </tr>
             </tbody>
           </table>

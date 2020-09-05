@@ -16,7 +16,7 @@ namespace StockChartingApp.StockExchangeMS.Controllers
 
     [Route("api/stockexchangems")]
     [ApiController]
-    [Authorize(Roles = "ADMIN")]
+    //[Authorize(Roles = "ADMIN")]
     public class StockExchangeController : ControllerBase
     {
         private StockExchangeService service;
