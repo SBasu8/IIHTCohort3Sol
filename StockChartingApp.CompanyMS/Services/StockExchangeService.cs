@@ -25,5 +25,10 @@ namespace StockChartingApp.CompanyMS.Services
         {
             return repository.AddCompanyRelatioship(join_cse);
         }
+
+        public IEnumerable<string> GetStockExchangesRegisteredWithCompany(int comp_id)
+        {
+            return repository.GetStockExchangesOfCompany(comp_id);
+        }
     }
 }

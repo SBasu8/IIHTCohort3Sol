@@ -62,6 +62,14 @@ namespace StockChartingApp.CompanyMS.Repositories
             }
         }
 
+        public IEnumerable<string> GetStockExchangesOfCompany(int comp_id)
+        {
+            var ses = context.JoinCompanyStockExchange.Where(jcse =>
+            jcse.CompanyId == comp_id).Select( jcse => jcse.StockExchangeId);
+
+            return ses;
+        }
+
         public bool Update(StockExchange entity)
         {
             throw new NotImplementedException();

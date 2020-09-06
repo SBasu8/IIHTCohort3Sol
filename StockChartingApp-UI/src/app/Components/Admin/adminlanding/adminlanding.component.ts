@@ -28,6 +28,11 @@ export class AdminlandingComponent implements OnInit {
     this.router.navigateByUrl("adminlanding/managecompany");
   }
 
+  public ManageSector()
+  {
+    this.router.navigateByUrl("adminlanding/managesectors");
+  }
+
   public ManageIPODetails()
   {
     this.router.navigateByUrl("adminlanding/manageipodetails");

@@ -57,9 +57,39 @@ namespace StockChartingApp.CompanyMS.Services
             return (added, 0);
         }
 
-        public IPODetails GetExistingIPO(int comp_key, string se_key)
+        public IPODetailsDto GetExistingIPO(int comp_key, string se_key)
         {
-            return repository.GetSingle(comp_key, se_key);
+            IPODetails ipo = repository.GetSingle(comp_key, se_key);
+            return new IPODetailsDto
+            {
+                PricePerShare = ipo.PricePerShare,
+                TotalShares = ipo.TotalShares,
+                OfferingDate = ipo.OfferingDateTime.ToShortDateString(),
+                OfferingTime = ipo.OfferingDateTime.ToShortTimeString(),
+                Remarks = ipo.Remarks,
+                RegisteredCompanyId = ipo.RegisteredCompanyId,
+                RegisteredStockExchangeId = ipo.RegisteredStockExchangeId
+            };
+        }
+
+        public IEnumerable<IPODetailsDto> GetAllExistingIPOs()
+        {
+            List<IPODetailsDto> ipo_dto_list = new List<IPODetailsDto>();
+
+            foreach(IPODetails ipo in repository.GetMultiple())
+            {
+                ipo_dto_list.Add(new IPODetailsDto
+                {
+                    PricePerShare = ipo.PricePerShare,
+                    TotalShares = ipo.TotalShares,
+                    OfferingDate = ipo.OfferingDateTime.ToShortDateString(),
+                    OfferingTime = ipo.OfferingDateTime.ToShortTimeString(),
+                    Remarks = ipo.Remarks,
+                    RegisteredCompanyId = ipo.RegisteredCompanyId,
+                    RegisteredStockExchangeId = ipo.RegisteredStockExchangeId
+                });
+            }
+            return ipo_dto_list;
         }
     }
 }

@@ -45,7 +45,7 @@ namespace StockChartingApp.CompanyMS.Repositories
 
         public IEnumerable<IPODetails> GetMultiple()
         {
-            throw new NotImplementedException();
+            return context.IPODetails;
         }
 
         public IPODetails GetSingle(int comp_key, string se_key)

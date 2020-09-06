@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace EntityLibraryStockChartingApp
+namespace DtoLibraryStockChartingApp
 {
-    public class Company
+    public class CompanyDto
     {
         /*
         1. Company Name
@@ -27,14 +27,10 @@ namespace EntityLibraryStockChartingApp
         [Required]
         public string About { get; set; }
 
+        public List<string> StockExchangeNames { get; set; }
+
         //Navigation reference properties
         public int SectorId { get; set; }
-        public Sector BusinessSector { get; set; }
-
-        //Navigation collection properties
-        public ICollection<JoinCompanyBoardMember> JoinCompanyBod { get; set; }
-        public ICollection<JoinCompanyStockExchange> JoinCompanyExchanges { get; set; }
-        public ICollection<StockPrice> CurrentPrices { get; set; }
-        public ICollection<IPODetails> Ipos { get; set; }
     }
 }
+

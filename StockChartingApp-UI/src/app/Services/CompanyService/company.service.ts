@@ -23,6 +23,11 @@ export class CompanyService
     return this.client.get<Company[]>(this.base_url+"/companyservice/getallcompanies");
   }
 
+  public GetAllIPOs():Observable<Ipodto[]>
+  {
+    return this.client.get<Ipodto[]>(this.base_url+"/companyservice/getallipos");
+  }
+
   public AddNewCompany(comp:Company):Observable<Company>
   {
     return this.client.post<Company>(this.base_url+"/companyservice/addnewcompany",comp);

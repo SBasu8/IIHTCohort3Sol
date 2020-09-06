@@ -143,6 +143,12 @@ namespace StockChartingApp.CompanyMS.Controllers
             return Ok(ipo);
         }
 
+        [HttpGet("getallipos")]
+        public IActionResult GetAllIPOs()
+        {
+            return Ok(ipo_service.GetAllExistingIPOs());
+        }
+
         //Board Member relationship
         [HttpPost("addnewboardmember")]
         public IActionResult PostAddNewBoardMamber(BoardMember member)

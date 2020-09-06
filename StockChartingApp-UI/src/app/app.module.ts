@@ -24,6 +24,7 @@ import { SectorService } from "./Services/SectorService/sector.service";
 import { StockExchangeService } from "./Services/StockExchangeService/stock-exchange.service";
 import { UploadExcelService } from "./Services/UploadExcelService/upload-excel.service";
 import { IpodetailsComponent } from './Components/User/ipodetails/ipodetails.component';
+import { ManagesectorsComponent } from './Components/Admin/managesectors/managesectors.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { IpodetailsComponent } from './Components/User/ipodetails/ipodetails.com
     ChartingComponent,
     ComparepriceComponent,
     HomepageComponent,
-    IpodetailsComponent
+    IpodetailsComponent,
+    ManagesectorsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,77 @@
-<p>manageipodetails works!</p>
+
+<div class="container">
+    <div class="row">
+
+    <div class="col-md-4 col-md-offset-4">
+        <form>
+            <legend style="font-size: 30px;">Update IPO details</legend>
+
+            <div class="form-group FormField">
+                <label for="">Company ID*:</label>
+                <input type="text" [(ngModel)]="new_ipo.registeredCompanyId" name="registeredCompanyId field" 
+                class="form-control" style="font-size: medium;" id="" placeholder="Company ID">                
+            </div>
+            <div class="form-group FormField">
+                <label for="">Price Per Share:</label>
+                <input type="text" [(ngModel)]="new_ipo.pricePerShare" name="pricePerShare field" 
+                class="form-control" style="font-size: medium;" id="" placeholder="Price of each share">                
+            </div>
+            <div class="form-group FormField">
+                <label for="">Total Shares:</label>
+                <input type="text" [(ngModel)]="new_ipo.totalShares" name="totalShares field"
+                class="form-control" style="font-size: medium;" id="" placeholder="Total opening shares">                
+            </div>
+            <div class="form-group FormField">
+                <label for="">Offering Date:</label>
+                <input type="date" class="form-control" [(ngModel)]="new_ipo.offeringDate" name="offeringDate field"
+                style="font-size: medium;" id="" placeholder="Date of offering">                
+            </div>                
+            <div class="form-group FormField">
+                <label for="">Offering Time:</label>
+                <input type="time" class="form-control" [(ngModel)]="new_ipo.offeringTime" name="offeringTime field"
+                style="font-size: medium;" id="" placeholder="Time of offering">                
+            </div>
+            <div class="form-group FormField">
+                <label for="">Remarks:</label>
+                <input type="text" class="form-control" [(ngModel)]="new_ipo.remarks" name="remarks field"
+                style="font-size: medium;" id="" placeholder="Remarks on the offer">                
+            </div>
+            <div class="form-group FormField">
+                <label for="">Stock Exchange: &nbsp;</label>
+                <select style="color: black;" [(ngModel)]="new_ipo.registeredStockExchangeId" name="registeredStockExchangeId field">
+                    <option selected>None</option>
+                    <option *ngFor="let item of existing_ses">{{item.id}}</option>
+                </select>                             
+            </div>    
+
+            <button type="submit" class="btn btn-primary" (click)="AddNewIPO()"
+            style="font-size: medium; float: right;">Submit</button>
+        </form>
+    </div>
+
+</div>
+<br><br>
+
+    <div>
+        <table class="table table-bordered table-hover">
+            <thead style="font-size: 15px;">
+              <tr>
+                <th>Company ID</th><th>Stock Exchange ID</th><th>Price Per Share</th><th>Total Shares
+                </th><th>Offering Date</th><th>Offering Time</th><th>Remarks</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let item of existing_ipos">
+              <tr style="font-size: 15px;">
+                <td>{{item.registeredCompanyId}}</td>
+                <td>{{item.registeredStockExchangeId}}</td>
+                <td>{{item.pricePerShare}}</td>
+                <td>{{item.totalShares}}</td>
+                <td>{{item.offeringDate}}</td>
+                <td>{{item.offeringTime}}</td>
+                <td>{{item.remarks}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>
+

@@ -28,7 +28,14 @@
                     <label for="">CEO:</label>
                     <input type="text" class="form-control" [(ngModel)]="new_company.ceo" name="ceo field"
                     style="font-size: medium;" id="" placeholder="Enter company CEO name">                
-                </div>                
+                </div>
+                <div class="form-group FormField">
+                    <label for="">Business Sector: &nbsp;</label>
+                    <select style="color: black;" [(ngModel)]="new_company.sectorId" name="sectorId field">
+                        <option selected>None</option>
+                        <option *ngFor="let item of existing_sectors" [ngValue]="item.id">{{item.sectorName}}</option>
+                    </select>                             
+                </div>             
                 <div class="form-group FormField">
                     <label for="">About:</label>
                     <input type="text" class="form-control" [(ngModel)]="new_company.about" name="about field"
@@ -73,10 +80,11 @@
                 <div class="form-group FormField">
                     <label for="">Stock Exchange: &nbsp;</label>
                     <select style="color: black;" [(ngModel)]="new_ipo.registeredStockExchangeId" name="registeredStockExchangeId field">
+                        <option selected>None</option>
                         <option *ngFor="let item of existing_ses">{{item.id}}</option>
                     </select>                             
                 </div>    
-                <button type="submit" class="btn btn-primary" (click)="AddCompanyForm()"
+                <button type="submit" class="btn btn-primary" (click)="AddCompanyForm(false)"
                 style="font-size: medium; float: left;">Back</button>
                 <button type="submit" class="btn btn-primary" (click)="AddNewCompany()"
                 style="font-size: medium; float: right;">Submit</button>
@@ -155,7 +163,7 @@
                 <td>{{item.ceo}}</td>
                 <td>{{item.about}}</td>
                 <td>{{item.stockExchangeNames}}</td>
-                <td>{{item.sector}}</td>
+                <td>{{existing_sector_map.get(item.sectorId)}}</td>
               </tr>
             </tbody>
           </table>

@@ -6,5 +6,5 @@ export class Company
     ceo:string;
     about:string;
     stockExchangeNames:string[];
-    sector:number;
+    sectorId:number;
 }

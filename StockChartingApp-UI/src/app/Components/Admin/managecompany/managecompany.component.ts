@@ -19,6 +19,7 @@ export class ManagecompanyComponent implements OnInit
   new_ipo = new Ipodto();
   existing_ses:Stockexchangedto[];
   existing_sectors:Sectordto[];
+  existing_sector_map = new Map();
 
   comp_form_state = false;
   ipo_form_state = false;
@@ -50,6 +51,10 @@ export class ManagecompanyComponent implements OnInit
       {
         console.log(res);
         this.existing_sectors = res;
+        res.forEach(element => 
+        {
+          this.existing_sector_map.set(element.id, element.sectorName);
+        });
       }, (err)=>
       {
         console.log(err);
@@ -70,13 +75,13 @@ export class ManagecompanyComponent implements OnInit
           console.log(ipo_res);
         }, (err) => 
         {
-          console.log(err);
+          console.log(err); alert(err["error"])
         });
         window.location.reload();
         alert("Company Added Successfully")
     }, (err) => 
     {
-      console.log(err);
+      console.log(err); alert(err["error"])
     });
   }
 
@@ -89,7 +94,7 @@ export class ManagecompanyComponent implements OnInit
         alert("Company Updated Successfully");
       }, (err) => 
       {
-        console.log(err);
+        console.log(err); alert(err["error"])
       });
   }
 
@@ -102,7 +107,7 @@ export class ManagecompanyComponent implements OnInit
         alert("Company Deleted Successfully");
       }, (err) => 
       {
-        console.log(err);
+        console.log(err); alert(err["error"])
       });
   }
 
@@ -116,14 +121,14 @@ export class ManagecompanyComponent implements OnInit
     this.new_ipo = new Ipodto();
   }
 
-  public AddCompanyForm()
+  public AddCompanyForm(flag:boolean = true)
   {
     this.comp_form_state = true;
     this.ipo_form_state = false;
     this.delete_form_state = false;
     this.update_form_state = false;
     this.origin_form_state = false;
-    this.new_company = new Company();
+    if(flag) {this.new_company = new Company();}
   }
 
   public Origin()

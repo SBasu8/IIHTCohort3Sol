@@ -1,4 +1,5 @@
-﻿using EntityLibraryStockChartingApp;
+﻿using DtoLibraryStockChartingApp;
+using EntityLibraryStockChartingApp;
 using StockChartingApp.CompanyMS.Repositories;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,12 @@ namespace StockChartingApp.CompanyMS.Services
     public class CompanyService
     {
         private CompanyRepository repository;
+        private StockExchangeService se_service;
 
-        public CompanyService(CompanyRepository repository)
+        public CompanyService(CompanyRepository repository, StockExchangeService se_service)
         {
-            this.repository = repository;                
+            this.repository = repository;
+            this.se_service = se_service;
         }
 
         public bool InsertNewCompany(Company company)
@@ -30,9 +33,27 @@ namespace StockChartingApp.CompanyMS.Services
             return repository.GetSingle(key);
         }
 
-        public IEnumerable<Company> GetAllCompanies()
+        public IEnumerable<CompanyDto> GetAllCompanies()
         {
-            return repository.GetMultiple();
+            List<CompanyDto> AllCompanyList = new List<CompanyDto>();
+            foreach(Company comp in repository.GetMultiple())
+            {
+                AllCompanyList.Add(
+                    new CompanyDto
+                    {
+                        Id = comp.Id,
+                        CompanyName = comp.CompanyName,
+                        Turnover = comp.Turnover,
+                        Ceo = comp.Ceo,
+                        About = comp.About,
+                        StockExchangeNames = 
+                        se_service.GetStockExchangesRegisteredWithCompany(comp.Id).ToList(),
+                        SectorId = comp.SectorId
+                    }
+                    );
+            }
+
+            return AllCompanyList;
         }
 
         public (bool,int) UpdateCompanyDetails(Company company)
