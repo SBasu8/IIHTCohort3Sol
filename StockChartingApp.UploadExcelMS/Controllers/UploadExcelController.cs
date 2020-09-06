@@ -57,7 +57,7 @@ namespace StockChartingApp.UploadExcelMS.Controllers
         }
 
         [HttpPost("upload")]
-        public IActionResult Upload([FromForm] IFormFile file1)
+        public IActionResult Upload(IFormFile file1)
         {
             if (file1 == null)
             {
@@ -78,7 +78,7 @@ namespace StockChartingApp.UploadExcelMS.Controllers
                         file.CopyTo(stream);
                     }
                     repository.UploadExcel(fullPath);
-                    return Ok("Upload successful");
+                    return Ok();
                 }
                 else
                 {

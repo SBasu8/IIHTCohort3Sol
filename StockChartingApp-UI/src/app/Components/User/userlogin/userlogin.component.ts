@@ -1,3 +1,7 @@
+
+import { Router } from '@angular/router';
+import { InputDetails } from './../../../Models/AuthService/input-details';
+import { AccountService } from './../../../Services/AccountService/account.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +11,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserloginComponent implements OnInit {
 
-  constructor() { }
+  inputDetails: InputDetails;
+  errMssg: string;
+  constructor(private service: AccountService, private router: Router) 
+  { this.inputDetails = new InputDetails();}
 
   ngOnInit(): void {
   }
+
+  Login()
+  { 
+    this.service.Login(this.inputDetails).subscribe(res=>{
+      console.log(res);
+      if(res.token=="" || res.token==null) {this.errMssg="Invalid Creds";}
+      else if(res.roleType!=2) {this.errMssg="You are not a User";}
+      else{
+        localStorage.setItem("token",res.token);
+        console.log(res);
+        this.router.navigateByUrl("userlanding");
+      }
+    })
+  }
+
+  Signup()
+  {
+    this.router.navigateByUrl("signup");
+  }
+
 
 }

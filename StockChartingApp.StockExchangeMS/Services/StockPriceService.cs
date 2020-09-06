@@ -27,11 +27,17 @@ namespace StockChartingApp.StockExchangeMS.Services
             return repository.Get(key);
         }
 
+        public IEnumerable<StockPrice> GetAllStockPrice()
+        {
+            return repository.GetAll();
+        }
+
         public bool Add(StockPrice stockPrice)
         {
             if (c_repository.Get(stockPrice.CompanyId)!=null && se_repository.Get(stockPrice.StockExchangeId)!=null && c_se_repository.Get(stockPrice.CompanyId, stockPrice.StockExchangeId)!=null)
                 return repository.Add(stockPrice);
             else return false;
         }
+
     }
 }

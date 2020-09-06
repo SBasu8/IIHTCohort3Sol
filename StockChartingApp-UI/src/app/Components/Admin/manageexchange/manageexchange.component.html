@@ -1,1 +1,83 @@
 <p>manageexchange works!</p>
+<div class="container">
+        <div class="row">
+    
+            <div class="col-md-4 col-md-offset-5" *ngIf="origin_form_state">
+                <button type="submit" class="btn btn-primary" (click)="AddStockExchangeForm()"
+                style="font-size: medium; width: 60%;">Add New Company</button> <br><br>
+            </div>
+    
+            <div class="col-md-4 col-md-offset-4" *ngIf="se_form_state">            
+                <form>
+                    <legend style="font-size: 30px;">Add New Stock Exchange</legend>
+                
+                    <div class="form-group FormField">
+                        <label for="">Stock Exchange Id:</label>
+                        <input type="text" [(ngModel)]="new_se.id" name="Stock Exchange Id field" 
+                        class="form-control" style="font-size: medium;" id="" placeholder="Enter Stock Exchange id/code">                
+                    </div>
+                    <div class="form-group FormField">
+                        <label for="">Stock Exchange Name:</label>
+                        <input type="text" [(ngModel)]="new_se.exchangeName" name="Stock Exchange Name field"
+                        class="form-control" style="font-size: medium;" id="" placeholder="Enter Stock Exchange name">                
+                    </div>
+                    <div class="form-group FormField">
+                        <label for="">About:</label>
+                        <input type="text" class="form-control" [(ngModel)]="new_se.about" name="about field"
+                        style="font-size: medium;" id="" placeholder="Enter About Stock Exchange">                
+                    </div>                
+                    <div class="form-group FormField">
+                        <label for="">Address:</label>
+                        <input type="text" class="form-control" [(ngModel)]="new_se.address" name="address field"
+                        style="font-size: medium;" id="" placeholder="Enter Stock Exchange Address">                
+                    </div>                
+                    <div class="form-group FormField">
+                        <label for="">Remarks:</label>
+                        <input type="text" class="form-control" [(ngModel)]="new_se.remarks" name="remarks field"
+                        style="font-size: medium;" id="" placeholder="Enter Remarks for Stock Exchange">                
+                    </div>          
+                    <button type="submit" class="btn btn-primary" (click)="Origin()"
+                    style="font-size: medium; float: left;">Back</button>
+                    <button type="submit" class="btn btn-primary" (click)="Submit()"
+                    style="font-size: medium; float: right;">Submit</button>
+                </form> 
+            </div>
+    
+            <div>
+                    <table class="table table-bordered table-hover col-md-offset-3" *ngIf="se_table_display_state">
+                        <thead style="font-size: 20px;">
+                          <tr>
+                            <th>Stock Exchange ID</th><th>Stock Exchange Name</th><th>About</th><th>Address</th><th>Remarks</th>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let se_item of se_list">
+                          <tr style="font-size: 15px;">
+                            <td>{{se_item.id}}</td>
+                            <td>{{se_item.exchangeName}}</td>
+                            <td>{{se_item.about}}</td>
+                            <td>{{se_item.address}}</td>
+                            <td>{{se_item.remarks}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+
+                    
+            <div>
+                <table class="table table-bordered table-hover col-md-offset-3" *ngIf="sp_table_display_state">
+                    <thead style="font-size: 20px;">
+                      <tr>
+                        <th>Stock Price ID</th><th>Price</th><th>Date Time</th><th>Company Id</th><th>Stock Exchange Id</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let sp_item of sp_list">
+                      <tr style="font-size: 15px;">
+                        <td>{{sp_item.id}}</td>
+                        <td>{{sp_item.price}}</td>
+                        <td>{{sp_item.dateTime}}</td>
+                        <td>{{sp_item.companyId}}</td>
+                        <td>{{sp_item.stockExchangeId}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>

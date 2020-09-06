@@ -30,18 +30,18 @@ namespace StockChartingApp.RoleMS.Controllers
         }
 
         // GET api/<AuthController>/5
-        [HttpGet("Login")]
-        public IActionResult Get(string uname, string pass)
+        [HttpPost("Login")]
+        public IActionResult Post( InputDetails inputDetails)
         {
 
-            if (!(string.IsNullOrEmpty(uname) || string.IsNullOrEmpty(pass)))
+            if (!(string.IsNullOrEmpty(inputDetails.Username) || string.IsNullOrEmpty(inputDetails.Password)))
             {
                 try
                 {
-                    var res = repository.Login(uname, pass);
+                    var res = repository.Login(inputDetails.Username, inputDetails.Password);
                     if (res.Item1) return Ok(res.Item2);
 
-                    return BadRequest("Invalid creds");
+                    return Ok(res.Item2);
                 }
                 catch (Exception) { return StatusCode(500, "Internal Server Error"); }
             }
@@ -51,8 +51,8 @@ namespace StockChartingApp.RoleMS.Controllers
 
 
         // POST api/<AuthController>
-        [HttpPost]
-        public IActionResult Post([FromForm] Role role)
+        [HttpPost("signup")]
+        public IActionResult Post(Role role)
         {
             if (ModelState.IsValid)
             {

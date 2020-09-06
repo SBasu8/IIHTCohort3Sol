@@ -23,17 +23,17 @@ namespace StockChartingApp.RoleMS.Repositories
             this.config = config;
         }
 
-        public Tuple<bool, string> Login(string uname, string pass)
+        public Tuple<bool, TokenDetails> Login(string uname, string pass)
         {
-            Tuple<bool, string> t;
+            Tuple<bool, TokenDetails> t;
             try
             {
                 var roleholder = context.Role.FirstOrDefault(u => u.RoleName == uname && u.Password == pass && u.Confirmed);
-                if (roleholder == null) t = new Tuple<bool, string>(false, "");
+                if (roleholder == null) t = new Tuple<bool, TokenDetails>(false, null);
                 else
                 {
                     var token = GenerateJwtToken(roleholder);
-                    t = new Tuple<bool, string>(true, token);
+                    t = new Tuple<bool, TokenDetails>(true, new TokenDetails() { Name = roleholder.RoleName, RoleType=roleholder.RoleType, Token = token});
                 }
                 return t;
             }

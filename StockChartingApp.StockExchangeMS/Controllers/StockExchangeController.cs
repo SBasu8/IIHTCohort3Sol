@@ -16,47 +16,48 @@ namespace StockChartingApp.StockExchangeMS.Controllers
 
     [Route("api/stockexchangems")]
     [ApiController]
-    //[Authorize(Roles = "ADMIN")]
+    [Authorize(Roles = "ADMIN")]
     public class StockExchangeController : ControllerBase
     {
-        private StockExchangeService service;
+        private StockExchangeService se_service;
         private GetAllCompanyListService g_service;
-        private JoinCompanyStockExchangeService aj_c_seService;
-        private StockPriceService a_spService;
+        private JoinCompanyStockExchangeService j_c_se_Service;
+        private StockPriceService sp_Service;
 
         //private IRepository<StockExchange> repository;
 
-        public StockExchangeController(StockExchangeService service, GetAllCompanyListService g_service, JoinCompanyStockExchangeService aj_c_seService, StockPriceService a_spService)
+        public StockExchangeController(StockExchangeService se_service, GetAllCompanyListService g_service, JoinCompanyStockExchangeService j_c_se_Service, StockPriceService sp_Service)
         {
             //this.repository = repository;
-            this.service = service;
+            this.se_service = se_service;
             this.g_service = g_service;
-            this.aj_c_seService = aj_c_seService;
-            this.a_spService = a_spService;
+            this.j_c_se_Service = j_c_se_Service;
+            this.sp_Service = sp_Service;
         }
 
         // GET: api/<StockExchangeController>
-        
+
         [HttpGet]
+        [AllowAnonymous]
         public IEnumerable<StockExchange> Get()
         {
-            return service.GetAll();
+            return se_service.GetAll();
         }
 
         // GET api/<StockExchangeController>/5
         [HttpGet("{id}")]
         public StockExchange Get(string id)
         {
-            return service.Get(id);
+            return se_service.Get(id);
         }
 
         // POST api/<StockExchangeController>
         [HttpPost]
-        public IActionResult Post([FromForm] StockExchange stockExchange)
+        public IActionResult Post( StockExchange stockExchange)
         {
             if (ModelState.IsValid)
             {
-                var isAdded = service.Add(stockExchange);
+                var isAdded = se_service.Add(stockExchange);
                 if (isAdded) return Created("StockExchange", stockExchange);
             }
             return BadRequest(ModelState);
@@ -75,7 +76,7 @@ namespace StockChartingApp.StockExchangeMS.Controllers
         }
 
         //------------------Get List of Companies-----------------------------------
-        [HttpGet("api/GetCompany/{id}")]
+        [HttpGet("GetCompany/{id}")]
         public  IEnumerable<Company> GetCompanies(string id)
         {
             return g_service.GetAllCompaniesList(id);
@@ -89,10 +90,10 @@ namespace StockChartingApp.StockExchangeMS.Controllers
         [HttpDelete("delete_C_SE/{c_id}/{se_id}")]
         public IActionResult DeleteJoinCompanyStockExchangeRelationship(int c_id, string se_id)
         {
-            var jcse = aj_c_seService.Get(c_id, se_id);
+            var jcse = j_c_se_Service.Get(c_id, se_id);
             if (jcse == null) return NotFound();
 
-            var isDeleted = aj_c_seService.Delete(jcse);
+            var isDeleted = j_c_se_Service.Delete(jcse);
             if (isDeleted) return Ok("Company-StockExchange Relationship Deleted Succesfully");
 
             return StatusCode(500, "Internal Server Error");
@@ -101,17 +102,22 @@ namespace StockChartingApp.StockExchangeMS.Controllers
         //----------------------CRUD Stock Price-------------------------------
         
         [HttpPost("StockPrice")]
-        public IActionResult Post([FromForm] StockPrice stockprice)
+        public IActionResult Post( StockPrice stockprice)
         {
             if (ModelState.IsValid)
             {
-                var isAdded = a_spService.Add(stockprice);
+                var isAdded = sp_Service.Add(stockprice);
                 if (isAdded) return Created("StockExchange", stockprice);
             }
             return BadRequest(ModelState);
         }
 
-
+        [HttpGet("GetStockPrices")]
+        [AllowAnonymous]
+        public IEnumerable<StockPrice> GetStockPrices()
+        {
+            return sp_Service.GetAllStockPrice();
+        }
 
     }
 }
