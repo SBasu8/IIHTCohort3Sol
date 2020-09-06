@@ -13,19 +13,14 @@ export class ManageexchangeComponent implements OnInit {
   se_form_state: boolean = false;
   origin_form_state: boolean = true;
   se_table_display_state: boolean = true;
-  sp_table_display_state: boolean = true;
   
   new_se: Stockexchange = new Stockexchange();
   
   se_list: Stockexchange[];
-  sp_list: Stockprice[];
+
 
   constructor(private se_service : StockExchangeService) 
   { 
-    se_service.GetAllStockPrice().subscribe(res=>{
-      console.log(res);
-      this.sp_list = res;
-    },(err)=>{console.log(err);});
     se_service.GetAllStockExchange().subscribe(res=>{
       console.log(res);
       this.se_list = res;
