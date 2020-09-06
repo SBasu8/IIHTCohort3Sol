@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using DtoLibraryStockChartingApp;
 using EntityLibraryStockChartingApp;
 using Microsoft.AspNetCore.Mvc;
 using StockChartingApp.RoleMS.Repositories;

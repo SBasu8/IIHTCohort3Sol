@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DtoLibraryStockChartingApp\DtoLibraryStockChartingApp.csproj" />
     <ProjectReference Include="..\EntityLibraryStockChartingApp\EntityLibraryStockChartingApp.csproj" />
   </ItemGroup>
 

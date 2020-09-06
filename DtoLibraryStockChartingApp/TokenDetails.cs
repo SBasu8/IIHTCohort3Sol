@@ -1,8 +1,9 @@
-﻿using System;
+﻿using EntityLibraryStockChartingApp;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EntityLibraryStockChartingApp
+namespace DtoLibraryStockChartingApp
 {
     public class TokenDetails
     {

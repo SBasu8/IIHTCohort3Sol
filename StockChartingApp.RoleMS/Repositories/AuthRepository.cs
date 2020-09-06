@@ -1,4 +1,5 @@
-﻿using EntityLibraryStockChartingApp;
+﻿using DtoLibraryStockChartingApp;
+using EntityLibraryStockChartingApp;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using StockChartingApp.RoleMS.Models;

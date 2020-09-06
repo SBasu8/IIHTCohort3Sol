@@ -1,4 +1,5 @@
-﻿using EntityLibraryStockChartingApp;
+﻿using DtoLibraryStockChartingApp;
+using EntityLibraryStockChartingApp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
