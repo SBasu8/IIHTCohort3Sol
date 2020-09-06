@@ -1,4 +1,3 @@
-<p>signup works!</p>
 
 <div class="container">
     <div class="row">
@@ -17,7 +16,7 @@
                 </div>
                 <div class="form-group FormField">
                     <label for="">RoleType:</label>
-                    <select class="form-control" style="font-size: medium;" id=""  name="roleType" [(ngModel)]="item.roleType">   
+                    <select class="form-control" [selected]=1 id=""  name="roleType" [(ngModel)]="item.roleType">   
                         <option value=1>Admin</option>    
                         <option value=2>User</option>
                     </select>             
@@ -43,10 +42,3 @@
         </div>
     </div>
 </div>
-
-{{item.roleName}}
-{{item.password}}
-{{item.roleType}}
-{{item.email}}
-{{item.mobile}}
-{{item.confirmed}}

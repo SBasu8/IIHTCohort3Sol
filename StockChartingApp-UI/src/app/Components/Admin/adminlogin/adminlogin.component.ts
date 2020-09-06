@@ -21,7 +21,7 @@ export class AdminloginComponent implements OnInit {
 
   Login()
   { console.log(this.inputDetails);
-    this.service.Login(this.inputDetails).subscribe(res=>{
+    this.service.AdminLogin(this.inputDetails).subscribe(res=>{
       if(res.token=="" || res.token==null) {this.errMssg="Invalid Creds";}
       else if(res.roleType!=1) {this.errMssg="You are not an Admin";}
       else

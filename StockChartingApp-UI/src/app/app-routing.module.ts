@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { SignupComponent } from './Components/User/signup/signup.component';
+import { SignupComponent } from './Components/Common/signup/signup.component';
 import { AdminlandingComponent } from './Components/Admin/adminlanding/adminlanding.component';
 import { UserlandingComponent } from './Components/User/userlanding/userlanding.component';
 import { UploadexcelComponent } from './Components/Admin/uploadexcel/uploadexcel.component';

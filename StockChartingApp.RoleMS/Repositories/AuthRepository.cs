@@ -24,12 +24,12 @@ namespace StockChartingApp.RoleMS.Repositories
             this.config = config;
         }
 
-        public Tuple<bool, TokenDetails> Login(string uname, string pass)
+        public Tuple<bool, TokenDetails> AdminLogin(string uname, string pass)
         {
             Tuple<bool, TokenDetails> t;
             try
             {
-                var roleholder = context.Role.FirstOrDefault(u => u.RoleName == uname && u.Password == pass && u.Confirmed);
+                var roleholder = context.Role.FirstOrDefault(u => u.RoleName == uname && u.Password == pass && u.Confirmed && u.RoleType == RoleTypes.ADMIN);
                 if (roleholder == null) t = new Tuple<bool, TokenDetails>(false, null);
                 else
                 {
@@ -41,7 +41,23 @@ namespace StockChartingApp.RoleMS.Repositories
             catch (Exception ex) { throw ex; }
 
         }
+        public Tuple<bool, TokenDetails> UserLogin(string uname, string pass)
+        {
+            Tuple<bool, TokenDetails> t;
+            try
+            {
+                var roleholder = context.Role.FirstOrDefault(u => u.RoleName == uname && u.Password == pass && u.Confirmed && u.RoleType==RoleTypes.USER);
+                if (roleholder == null) t = new Tuple<bool, TokenDetails>(false, null);
+                else
+                {
+                    var token = GenerateJwtToken(roleholder);
+                    t = new Tuple<bool, TokenDetails>(true, new TokenDetails() { Name = roleholder.RoleName, RoleType = roleholder.RoleType, Token = token });
+                }
+                return t;
+            }
+            catch (Exception ex) { throw ex; }
 
+        }
         public bool Logout()
         {
             throw new NotImplementedException();

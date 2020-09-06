@@ -10,7 +10,8 @@ namespace StockChartingApp.RoleMS.Repositories
     public interface IRepository<T>
     {
         bool Signup(T entity);
-        Tuple<bool, TokenDetails> Login(string uname, string pass);
+        Tuple<bool, TokenDetails> AdminLogin(string uname, string pass);
+        Tuple<bool, TokenDetails> UserLogin(string uname, string pass);
         bool Logout();
     }
 }

@@ -23,4 +23,9 @@ export class HomepageComponent implements OnInit {
     this.router.navigateByUrl("userlogin");
   }
 
+  public Signup()
+  {
+    this.router.navigateByUrl("signup");
+  }
+
 }

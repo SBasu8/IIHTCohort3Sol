@@ -31,15 +31,15 @@ namespace StockChartingApp.RoleMS.Controllers
         }
 
         // GET api/<AuthController>/5
-        [HttpPost("Login")]
-        public IActionResult Post( InputDetails inputDetails)
+        [HttpPost("adminlogin")]
+        public IActionResult AdminPost( InputDetails inputDetails)
         {
 
             if (!(string.IsNullOrEmpty(inputDetails.Username) || string.IsNullOrEmpty(inputDetails.Password)))
             {
                 try
                 {
-                    var res = repository.Login(inputDetails.Username, inputDetails.Password);
+                    var res = repository.AdminLogin(inputDetails.Username, inputDetails.Password);
                     if (res.Item1) return Ok(res.Item2);
 
                     return Ok(res.Item2);
@@ -48,6 +48,25 @@ namespace StockChartingApp.RoleMS.Controllers
             }
             else return BadRequest("Enter Both UserName & Password");
             
+        }
+
+        [HttpPost("userlogin")]
+        public IActionResult UserPost(InputDetails inputDetails)
+        {
+
+            if (!(string.IsNullOrEmpty(inputDetails.Username) || string.IsNullOrEmpty(inputDetails.Password)))
+            {
+                try
+                {
+                    var res = repository.UserLogin(inputDetails.Username, inputDetails.Password);
+                    if (res.Item1) return Ok(res.Item2);
+
+                    return Ok(res.Item2);
+                }
+                catch (Exception) { return StatusCode(500, "Internal Server Error"); }
+            }
+            else return BadRequest("Enter Both UserName & Password");
+
         }
 
 
