@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using EntityLibraryStockChartingApp;
 using Microsoft.AspNetCore.Mvc;
 using StockChartingApp.SectorMS.Repositories;
+using DtoLibraryStockChartingApp;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860 
 namespace StockChartingApp.SectorMS.Controllers
 {
     [Route("api/sectorms")]
@@ -22,16 +22,25 @@ namespace StockChartingApp.SectorMS.Controllers
         }
 
         // GET: api/<SectorController>
-        [HttpGet]
-        public IEnumerable<Sector> GetAllSector()
+        [HttpGet("getallsectors")]
+        public List<SectorDto> GetAllSector()
         {
 
-            return repository.GetAll();
-
+            var lst = repository.GetAll();
+            List<SectorDto> secdto = new List<SectorDto>();
+            foreach (Sector sec_ in lst)
+            {
+                SectorDto secd = new SectorDto();
+                secd.Id = sec_.Id;
+                secd.SectorName = sec_.SectorName;
+                secd.About = sec_.About;
+                secdto.Add(secd);
+            }
+            return secdto;
         }
 
-        // GET api/<SectorController>/5
-        [HttpGet("{id}")]
+        // GET api/<SectorController>
+        [HttpGet("getcompanylist/{id}")]
         public List<string> GetSectorCompanyList(int id)
         {
 
@@ -41,8 +50,8 @@ namespace StockChartingApp.SectorMS.Controllers
         }
 
         // POST api/<SectorController>
-        [HttpPost]
-        public IActionResult AddSector([FromForm] Sector sector)
+        [HttpPost("addnewsector")]
+        public IActionResult AddSector(SectorDto sector)
         {
             if (ModelState.IsValid)
             {
@@ -58,8 +67,8 @@ namespace StockChartingApp.SectorMS.Controllers
 
 
         // PUT api/<SectorController>/5
-        [HttpPut("{id}")]
-        public IActionResult UpdateSectorCompanyList(int CompId, int SecId)
+        [HttpPut("updatecompany/{CompId}/{SecId}")]
+        public IActionResult UpdateSectorCompanyList(int CompId,int SecId)
         {
              if (ModelState.IsValid)
              {

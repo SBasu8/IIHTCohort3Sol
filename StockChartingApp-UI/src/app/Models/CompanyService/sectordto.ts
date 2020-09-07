@@ -1,5 +1,6 @@
-export class Sectordto 
+export class Sectordto 
 {
-    id:number;
-    sectorName:string;
+    id:number;
+    sectorName:string;
+    about:string;
 }

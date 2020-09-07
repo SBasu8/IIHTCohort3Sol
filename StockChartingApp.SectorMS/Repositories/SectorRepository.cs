@@ -6,6 +6,7 @@ using EntityLibraryStockChartingApp;
 using Microsoft.EntityFrameworkCore;
 using StockChartingApp.SectorMS.Models;
 using Microsoft.Extensions.DependencyInjection;
+using DtoLibraryStockChartingApp;
 
 namespace StockChartingApp.SectorMS.Repositories
 {
@@ -18,14 +19,18 @@ namespace StockChartingApp.SectorMS.Repositories
             
         }
 
-        public bool Add(Sector entity)
+        public bool Add(SectorDto entity)
         {
             
             try
             {
                 bool check = context.Database.CanConnect();
-                entity.Companies = new List<Company>();
-                context.Sector.Add(entity);
+                Sector sec = new Sector();
+                sec.Id = entity.Id;
+                sec.SectorName = entity.SectorName;
+                sec.About = entity.About;
+                sec.Companies = new List<Company>();
+                context.Sector.Add(sec);
                 int u = context.SaveChanges();
                 if (u > 0) return true;
                 else return false;

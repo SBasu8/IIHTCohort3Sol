@@ -1,1 +1,50 @@
-<p>compareprice works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <form>
+                <legend style="font-size: 30px;">Compare Price </legend>
+                    <div class="form-group FormField">
+                        <label for="">RoleType:</label>
+                            <select class="form-control" id=""  name="roleType" [(ngModel)]="this.type">
+                                <option>None</option>   
+                                <option value=1>Sector</option>    
+                                <option value=2>Company</option>
+                            </select>             
+                    </div>
+                    <div class="form-group FormField">
+                        <label for="">Select Stock Exchange:</label>
+                        <input type="text" [(ngModel)]="this.stock_exchange" name="company name field" class="form-control" style="font-size: medium;" id="" placeholder="BSE/NSE">                
+                    </div>
+                    <div class="form-group FormField">
+                        <label for="">Company Name:</label>
+                        <input type="text" [(ngModel)]="this.company_name" name="company name field" class="form-control" style="font-size: medium;" id="" placeholder="Enter company name">                
+                    </div>                
+                    <div class="form-group FormField">
+                        <label for="">From Period:</label>
+                        <input type="date" [(ngModel)]="this.from_period" name="company name field" class="form-control" style="font-size: medium;" id="" placeholder="Enter start date"> 
+                    </div>        
+                    <div class="form-group FormField">       
+                        <label for="">End Period:</label>
+                        <input type="date" [(ngModel)]="this.to_period" name="company name field" class="form-control" style="font-size: medium;" id="" placeholder="Enter end date"> 
+                    </div> 
+                    <div class="form-group FormField">
+                        <label for="">Specify Periodicity:</label>
+                        <input type="time" [(ngModel)]="this.periodicity" name="company name field" class="form-control" style="font-size: medium;" id="" placeholder="Enter periodicity">                
+                    </div>         
+                    <button type="submit" class="btn btn-primary" (click)="DoNothing()" style="font-size: medium; float: right;">Generate Map</button>
+            </form>
+        </div>
+    </div>
+        
+        <div>
+            <table class="table table-bordered table-hover">
+                <thead style="font-size: 20px;">
+                  <tr>
+                    <th>{{this.stock_exchange}}</th><th>{{this.company_name}}</th><th>{{this.from_period}}</th><th>{{this.to_period}}</th><th>{{this.periodicity}}</th>
+                  </tr>
+                </thead>
+                <tbody ></tbody>
+              </table>
+        </div>
+        
+    </div>

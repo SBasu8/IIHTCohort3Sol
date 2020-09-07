@@ -3,12 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DtoLibraryStockChartingApp;
 
 namespace StockChartingApp.SectorMS.Repositories
 {
     public interface IRepository<T>
     {
-        bool Add(T entity);
+        bool Add(SectorDto entity);
        
         IEnumerable<T> GetAll();
         List<string> GetComp(int id);
