@@ -5,6 +5,8 @@ import { Stockexchangedto } from "../../Models/CompanyService/stockexchangedto";
 import { HttpClient } from "@angular/common/http";
 import { Sectordto } from 'src/app/Models/CompanyService/sectordto';
 import { Ipodto } from 'src/app/Models/CompanyService/ipodto';
+import { Stockpricerequestdto } from "src/app/Models/CompanyService/stockpricerequestdto";
+import { Stockpricedto } from "src/app/Models/CompanyService/stockpricedto";
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +48,11 @@ export class CompanyService
   public DeleteCompany(comp_id:number):Observable<any>
   {
     return this.client.delete(this.base_url+"/companyservice/removecompany/"+comp_id, {responseType: 'text'});
+  }
+
+  public GetStockPrices(stock_price_req:Stockpricerequestdto):Observable<Stockpricedto[]>
+  {
+    return this.client.post<Stockpricedto[]>(this.base_url+"/companyservice/companystockprices",stock_price_req);
   }
 
   //TODO:remove these

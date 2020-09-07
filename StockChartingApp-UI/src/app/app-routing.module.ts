@@ -14,7 +14,7 @@ import { ChartingComponent } from './Components/User/charting/charting.component
 import { ComparepriceComponent } from './Components/User/compareprice/compareprice.component';
 import { HomepageComponent } from './Components/Common/homepage/homepage.component';
 import { IpodetailsComponent } from './Components/User/ipodetails/ipodetails.component';
-import { ManagesectorsComponent } from "./Components/Admin/managesectors/managesectors.component";
+import { ManagesectorComponent } from "./Components/Admin/managesector/managesector.component";
 
 const routes: Routes = [
   {path:"",component:HomepageComponent},
@@ -26,7 +26,7 @@ const routes: Routes = [
     {path:"manageexchange", component:ManageexchangeComponent},
     {path:"managecompany", component:ManagecompanyComponent},
     {path:"manageipodetails", component:ManageipodetailsComponent},
-    {path:"managesectors", component:ManagesectorsComponent}    
+    {path:"managesectors", component:ManagesectorComponent}    
   ]},
   {path:"userlanding", component:UserlandingComponent, children:[
     {path:"charting", component:ChartingComponent},

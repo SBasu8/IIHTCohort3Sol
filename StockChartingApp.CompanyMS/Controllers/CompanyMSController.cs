@@ -202,7 +202,7 @@ namespace StockChartingApp.CompanyMS.Controllers
             return Ok(company_service.FetchMatchingCompanies(partial_name));
         }
 
-        [HttpGet("companystockprices")]
+        [HttpPost("companystockprices")]
         public IActionResult GetComapnyStockPrices(StockPriceRequestDto spq)
         {
             if (ModelState.IsValid)
