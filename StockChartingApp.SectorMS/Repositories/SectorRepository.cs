@@ -81,6 +81,42 @@ namespace StockChartingApp.SectorMS.Repositories
             }
             
         }
+        public (bool, int) UpdateSectorDetails(SectorDto sec)
+        {
+            var existing = context.Sector.Find(sec.Id);
+            if (existing == null)
+            {
+                return (false, 1);
+            }
+
+            var updated = Update(existing, sec);
+            if (updated)
+            {
+                return (true, 1);
+            }
+
+            return (false, 2);
+        }
+
+        public bool Update(Sector existing, SectorDto entity)
+        {
+            try
+            {
+                ICollection<Company> complst = existing.Companies;
+                context.Entry(existing).CurrentValues.SetValues(entity);
+                existing.Companies = complst;
+                var updates = context.SaveChanges();
+                if (updates > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public IEnumerable<Sector> GetAll()
         {
             return context.Sector;

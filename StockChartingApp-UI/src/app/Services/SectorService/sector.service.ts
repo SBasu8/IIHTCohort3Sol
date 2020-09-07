@@ -11,7 +11,7 @@ import { Sectordto } from 'src/app/Models/CompanyService/sectordto';
 export class SectorService 
 {
   base_url:string = "https://localhost:44329";
-  constructor(private client:HttpClient) 
+  constructor(private client:HttpClient)                                                                                                                                                                                                                                              
   {
   }
   public GetAllSectors():Observable<Sectordto[]>
@@ -28,6 +28,10 @@ export class SectorService 
   }
   public UpdateSector(comp:Company,sect:Sectordto):Observable<any>
   {
-    return this.client.put<Sectordto>(this.base_url+"/sectorservice/updatesector/"+comp.id,sect.id);
+    return this.client.put<Sectordto>(this.base_url+"/sectorservice/updatecompany/"+comp.id,sect.id);
+  }
+  public UpdateSectorDetails(sect:Sectordto):Observable<any>
+  {
+    return this.client.put<Sectordto>(this.base_url+"/sectorservice/updatesector/"+sect.id,sect);
   }
 }

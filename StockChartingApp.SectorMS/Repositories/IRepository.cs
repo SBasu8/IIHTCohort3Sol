@@ -14,6 +14,10 @@ namespace StockChartingApp.SectorMS.Repositories
         IEnumerable<T> GetAll();
         List<string> GetComp(int id);
         public bool UpdateCompanyList(int compid, int secid);
-        
+
+        public (bool, int) UpdateSectorDetails(SectorDto entity);
+
+        public bool Update(Sector existing, SectorDto entity);
+
     }
 }

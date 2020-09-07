@@ -16,10 +16,11 @@ export class ManagesectorComponent implements OnInit {
 
   
   sect_list:Sectordto[];
-  new_sector = new Sectordto()
+  new_sector = new Sectordto();
   existing_sectors:Sectordto[];
   sect_form_state = false;
   origin_form_state = true;
+  sect_update_state=false;
   
 
   constructor(private sector_service:SectorService) 
@@ -50,17 +51,39 @@ export class ManagesectorComponent implements OnInit {
     });
   }
 
+  public UpdateExistingSector()
+  {
+    this.sector_service.UpdateSectorDetails(this.new_sector).subscribe( sect_res =>
+    {
+        console.log(sect_res);
+        window.location.reload();
+        alert("Sector Updated Successfully")
+    }, (err) => 
+    {
+      console.log(err);
+    });
+  }
+
 
   public AddSectorForm()
   {
     this.sect_form_state = true;
     this.origin_form_state = false;
+    this.sect_update_state=false;
+    this.new_sector = new Sectordto();
+  }
+  public UpdateSectorForm()
+  {
+    this.sect_form_state = false;
+    this.origin_form_state = false;
+    this.sect_update_state=true;
     this.new_sector = new Sectordto();
   }
   public Origin()
   {
     this.sect_form_state = false;
     this.origin_form_state = true;
+    this.sect_update_state=false;
   }
 
 

@@ -1,19 +1,16 @@
-<div class="container">
+<div class="container" fxLayout="row" fxLayoutAlign="center start">
     <div class="row">
 
         <div class="col-md-4 col-md-offset-5" *ngIf="origin_form_state">
             <button type="submit" class="btn btn-primary" (click)="AddSectorForm()"
             style="font-size: medium; width: 60%;">Add New Sector</button> <br><br>
+            <button type="submit" class="btn btn-primary" (click)="UpdateSectorForm()"
+            style="font-size: medium; width: 60%;">Update Existing Sector</button> <br><br>
         </div>
 
         <div class="col-md-4 col-md-offset-4" *ngIf="sect_form_state">            
             <form>
                 <legend style="font-size: 30px;">Add New Sector</legend>
-                <div class="form-group FormField">
-                  <label for="">Sector Id:</label>
-                  <input type="number" [(ngModel)]="new_sector.id" name="sector name field" 
-                  class="form-control" style="font-size: medium;" id="" placeholder="Enter sector name">                
-                </div>
                 <div class="form-group FormField">
                     <label for="">Sector Name:</label>
                     <input type="text" [(ngModel)]="new_sector.sectorName" name="sector name field" 
@@ -30,24 +27,47 @@
                 style="font-size: medium; float: right;">Submit</button>
             </form> 
         </div>
-
-
+        <div class="col-md-4 col-md-offset-4" *ngIf="sect_update_state">            
+          <form>
+              <legend style="font-size: 30px;">Update Existing Sector</legend>
+              <div class="form-group FormField">
+                <label for="">Sector Id:</label>
+                <input type="number" [(ngModel)]="new_sector.id" name="sector name field" 
+                class="form-control" style="font-size: medium;" id="" placeholder="Enter sector name">                
+              </div>
+              <div class="form-group FormField">
+                  <label for="">Sector Name:</label>
+                  <input type="text" [(ngModel)]="new_sector.sectorName" name="sector name field" 
+                  class="form-control" style="font-size: medium;" id="" placeholder="Enter sector name">                
+              </div>
+              <div class="form-group FormField">
+                  <label for="">About:</label>
+                  <input type="text" [(ngModel)]="new_sector.about" name="turnover field"
+                  class="form-control" style="font-size: medium;" id="" placeholder="Enter sector details">                
+              </div>                          
+              <button type="submit" class="btn btn-primary" (click)="Origin()"
+              style="font-size: medium; float: left;">Back</button>
+              <button type="submit" class="btn btn-primary" (click)="UpdateExistingSector()"
+              style="font-size: medium; float: right;">Submit</button>
+          </form> 
+        </div>
+    </div> 
     <br><br>
 
-    <div>
+      <div fxLayout="row" fxLayoutAlign="center start">
         <table class="table table-bordered table-hover">
-            <thead style="font-size: 20px;">
-              <tr>
+            <thead style="font-size: 20px;" >
+              <tr fxLayout="row" fxLayoutAlign="center start">
                 <th>Sector ID</th><th>Sector Name</th><th>About</th>
               </tr>
             </thead>
             <tbody *ngFor="let item of sect_list">
               <tr style="font-size: 15px;">
-                <td>{{item.id}}</td>
-                <td>{{item.sectorName}}</td>
-                <td>{{item.about}}</td>
+                <td fxLayout="row" fxLayoutAlign="center start">{{item.id}}</td>
+                <td fxLayout="row" fxLayoutAlign="center start">{{item.sectorName}}</td>
+                <td fxLayout="row" fxLayoutAlign="center start">{{item.about}}</td>
               </tr>
             </tbody>
-          </table>
+        </table>
     </div>
 </div>

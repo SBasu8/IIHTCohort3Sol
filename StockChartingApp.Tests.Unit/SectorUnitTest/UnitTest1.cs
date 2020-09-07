@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DtoLibraryStockChartingApp;
 
 namespace StockChartingApp.Tests.Unit.SectorUnitTest
 {
@@ -19,18 +20,6 @@ namespace StockChartingApp.Tests.Unit.SectorUnitTest
 
         SectorMSContext context = null;
 
-        private IEnumerable<Sector> GetSectorList()
-        {
-            return new List<Sector>()
-            {
-                new Sector(){
-                    Id=2,
-                    SectorName = "Mining",
-                    About="Digging Mines",
-                    Companies = new List<Company>()
-                }
-            };
-        }
         private Sector GetSector()
         {
             Sector s = new Sector();
@@ -43,19 +32,13 @@ namespace StockChartingApp.Tests.Unit.SectorUnitTest
         [SetUp]
         public void Setup()
         {
-            
+
             context = new SectorMSContext(options);
-            //context.Sector.AddRange(GetSectorList());
-            
-           
 
-
-           //context.SaveChanges();
         }
 
-        
 
-        
+
         private Company GetCompany()
         {
             Company c = new Company();
@@ -76,146 +59,34 @@ namespace StockChartingApp.Tests.Unit.SectorUnitTest
         [TearDown]
         public void Teardown()
         {
-            
+
             if (context != null) context.Dispose();
         }
 
-        [Test]
-        public void Test_Add_ShouldAddSector()
+
+        public void Test_Update_ShouldUpdateSector()
         {
-            //Arrange
             IRepository<Sector> repository = new SectorRepository(context);
             context.Sector.Add(GetSector());
-            // repository.Add(GetSector());
-            //Act
+            SectorDto s1 = new SectorDto();
+            s1.Id = 3;
+            s1.SectorName = "Construction";
+            s1.About = "Construction Companies";
 
-            var sec_ = context.Sector.Find(GetSector().Id);
+            //Act
+            var sec_ = repository.UpdateSectorDetails(s1);
+            Sector s2 = context.Sector.Find(GetSector().Id);
             //Assert
-            //var actualCount = list.Count();
 
             Console.WriteLine(sec_);
-            Assert.That(sec_.Id,
-                Is.EqualTo(3),
-                "Sector List does NOT match");
-
-        }
-        [Test]
-
-        public void Test_GetAll_ShouldReturnSectorList()
-        {
-            //Arrange
-            IRepository<Sector> repository = new SectorRepository(context);
-            
-           
-
-            //Act
-            var list = repository.GetAll();
-
-            //Assert
-            var actualCount = list.Count();
-            Console.WriteLine(actualCount);
-            Assert.That(actualCount,
-                Is.EqualTo(1),
+            Assert.That(s2.SectorName,
+                Is.EqualTo("Construction"),
                 "Sector List does NOT match");
 
         }
 
-        [Test]
-        public void Test_Get_ShouldReturnCompany()
-        {
-            //Arrange
-            IRepository<Sector> repository = new SectorRepository(context);
-            context.Company.Add(GetCompany());
 
-            //Act
-            var comp_ = repository.GetSingleCompany(GetCompany().Id);
-
-            //Assert
-            //var actualCount = list.Count();
-
-            Console.WriteLine(comp_.Id);
-            Assert.That(comp_.Id,
-                Is.EqualTo(GetCompany().Id),
-                "Company does NOT match");
-
-        }
-        [Test]
-        public void Test_Get_ShouldReturnSector()
-        {
-            //Arrange
-            IRepository<Sector> repository = new SectorRepository(context);
-           // repository.Add(GetSector());
-
-            //Act
-            var sec_ = repository.GetSingleSector(GetSector().Id);
-
-            //Assert
-            //var actualCount = list.Count();
-
-            Console.WriteLine(sec_.Id);
-            Assert.That(sec_.Id,
-                Is.EqualTo(GetSector().Id),
-                "Sector does NOT match");
-
-        }
-
-
-
-        [Test]
-        public void Test_Get_ShouldReturnCompanyList()
-        {
-            //Arrange
-            IRepository<Sector> repository = new SectorRepository(context);
-            //context.Company.Add(GetCompany());
-            //context.Sector.Add(GetSector());
-            Sector s = GetSector();
-
-            var list = repository.GetCompanyList(s.Id);
-
-            //Act
-           
-            // context.SaveChangesAsync();
-            //var list = repository.GetCompanyList(GetSector().Id);
-            // var list = GetSector().Companies;
-
-            //Assert
-            //var actualCount = list.Count();
-
-            Console.WriteLine(1);
-            Assert.That(list.Count(),
-                Is.EqualTo(1),
-                "Company list does NOT get updated");
-
-        }
-
-
-
-        [Test]
-        public void Test_Update_ShouldUpdateCompanyList()
-        {
-            //Arrange
-            IRepository<Sector> repository = new SectorRepository(context);
-            //context.Company.Add(GetCompany());
-            //context.Sector.Add(GetSector());
-            Sector s = GetSector();
-
-
-
-            //Act
-            bool p = repository.UpdateCompany(GetCompany(), s);
-            // context.SaveChangesAsync();
-            //var list = repository.GetCompanyList(GetSector().Id);
-            // var list = GetSector().Companies;
-
-            //Assert
-            //var actualCount = list.Count();
-
-            Console.WriteLine(1);
-            Assert.That(s.Companies.Count(),
-                Is.EqualTo(1),
-                "Company list does NOT get updated");
-
-        }
 
     }
+    
 }

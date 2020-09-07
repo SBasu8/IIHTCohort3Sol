@@ -82,6 +82,30 @@ namespace StockChartingApp.SectorMS.Controllers
            
 
         }
+        [HttpPut("updatesector/{id}")]
+        public IActionResult PutUpdateCompanyDetails(int id, SectorDto sec)
+        {
+            if (ModelState.IsValid)
+            {
+                if (id == sec.Id)
+                {
+                    (bool updated, int status) = repository.UpdateSectorDetails(sec);
+                    if (updated)
+                    {
+                        return Ok(sec);
+                    }
+                    else
+                    {
+                        if (status == 1)
+                        {
+                            return NotFound("Sector not found");
+                        }
+                    }
+                }
+            }
+            return BadRequest(ModelState);
+        }
+
 
 
         // DELETE api/<SectorController>/5
