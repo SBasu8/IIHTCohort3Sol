@@ -7,14 +7,16 @@ import { HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http'
 export class AuthInterceptorService implements HttpInterceptor{
 
   constructor() { }
-  interceptor(req: HttpRequest<any>, next: HttpHandler)
+  intercept(req: HttpRequest<any>, next: HttpHandler)
   {
     const authToken = localStorage.getItem("token");
+    console.log(authToken);
     req = req.clone(
       {
         setHeaders:{
           Authorization: "Bearer "+authToken
         }
-      })
+      });
+    return next.handle(req);
   }
 }

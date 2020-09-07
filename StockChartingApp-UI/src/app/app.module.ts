@@ -1,8 +1,9 @@
+import { AuthInterceptorService } from './auth-interceptor.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule} from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
 import { SignupComponent } from './Components/Common/signup/signup.component';
@@ -50,7 +51,11 @@ import { ManagesectorComponent } from './Components/Admin/managesector/managesec
     FormsModule,
     HttpClientModule
   ],
-  providers: [AccountService,CompanyService,SectorService,StockExchangeService,UploadExcelService],
+  providers: [AccountService,CompanyService,SectorService,StockExchangeService,UploadExcelService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

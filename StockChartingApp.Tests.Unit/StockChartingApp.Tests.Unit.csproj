@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\StockChartingApp.RoleMS\StockChartingApp.RoleMS.csproj" />
+    <ProjectReference Include="..\StockChartingApp.SectorMS\StockChartingApp.SectorMS.csproj" />
     <ProjectReference Include="..\StockChartingApp.StockExchangeMS\StockChartingApp.StockExchangeMS.csproj" />
   </ItemGroup>
 

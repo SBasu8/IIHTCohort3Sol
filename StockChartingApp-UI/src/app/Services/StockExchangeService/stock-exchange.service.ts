@@ -9,7 +9,7 @@ import { Stockexchange } from '../../Models/StockExchangeService/stockexchange';
 })
 export class StockExchangeService {
 
-  path : string = "https://localhost:44329/stockexchangeservice";
+  path:string = "https://localhost:44329/stockexchangeservice";
   constructor(private http: HttpClient) { }
 
   AddNewStockExchange(item: Stockexchange):Observable<any>
@@ -25,5 +25,10 @@ export class StockExchangeService {
   GetAllStockPrice():Observable<Stockprice[]>
   {
     return this.http.get<Stockprice[]>(this.path+"/getstockprices");
+  }
+
+  DeleteJoinCompanyStockExchange(c_id: number, se_id: string):Observable<any>
+  {
+    return this.http.delete(this.path+"/delete_C_SE/"+c_id+"/"+se_id);
   }
 }

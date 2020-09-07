@@ -108,7 +108,7 @@ namespace StockChartingApp.StockExchangeMS.Controllers
             {
                 var isAdded = sp_Service.Add(stockprice);
                 if (isAdded) return Created("StockExchange", stockprice);
-            }
+            }   
             return BadRequest(ModelState);
         }
 
