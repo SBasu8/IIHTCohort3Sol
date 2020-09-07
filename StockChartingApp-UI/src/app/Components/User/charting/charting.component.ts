@@ -12,52 +12,49 @@ import { CompanyService } from 'src/app/Services/CompanyService/company.service'
 export class ChartingComponent implements OnInit {
 
   stock_prices = new Array<Stockpricedto>();
+  public request_list:Stockpricerequestdto[];
+  dataList=[];
 
   constructor(private company_service:CompanyService) 
   {
-    
+    this.request_list = JSON.parse(localStorage.getItem("chart_request"));
   }
 
   ngOnInit(): void 
-  {    
-    let req = new Stockpricerequestdto();
-    req.companyId = 18;
-    req.stockExchangeId = "BSE";
-    req.from = "01-08-2020 09:00:00";
-    req.to = "01-08-2020 15:00:00";
-    req.periodicity = 1;
-    this.company_service.GetStockPrices(req).subscribe( res =>
-      {
-        this.stock_prices = res;
-        console.log(this.stock_prices);
-        let data = [];
-        this.stock_prices.forEach( sp => 
+  { 
+    let chart = new CanvasJS.Chart("chartContainer", {
+      zoomEnabled: true,
+      animationEnabled: true,
+      exportEnabled: true,
+      title: {
+        text: "Stock Price Plot"
+      },
+      subtitles:[{
+        text: "Stock Charting App"
+      }],
+      data: this.dataList
+    });    
+    
+    for(var i=0; i<this.request_list.length; i++)
+    {
+      let comp_name = this.request_list[i].companyName;
+      this.company_service.GetStockPrices(this.request_list[i]).subscribe( res =>
         {
-          data.push({y:sp.price, label:sp.date+" "+sp.time});
-        });
-
-        let chart = new CanvasJS.Chart("chartContainer", {
-          zoomEnabled: true,
-          animationEnabled: true,
-          exportEnabled: true,
-          title: {
-            text: "Stock Price @ "+req.stockExchangeId
-          },
-          subtitles:[{
-            text: "Try Zooming and Panning"
-          }],
-          data: [
+          this.stock_prices = res;
+          console.log(this.stock_prices);
+          let stockPrices = [];
+          this.stock_prices.forEach( sp => 
           {
-            type: "line",                
-            dataPoints: data
-          }]
-        });
-          
-        chart.render();
+            stockPrices.push({y:sp.price, label:sp.date+" "+sp.time});
+          });
+          this.dataList.push({type:"line", legendText:comp_name, showInLegend:true, dataPoints:stockPrices});  
+          chart.render();    
       }, (err) =>
       {
         console.log(err); alert(err["error"])
-      });
+      });     
+    }
+
   }
 
 }

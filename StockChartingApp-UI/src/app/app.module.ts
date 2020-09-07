@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule} from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { ReactiveFormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { SignupComponent } from './Components/Common/signup/signup.component';
@@ -49,7 +50,8 @@ import { ManagesectorComponent } from './Components/Admin/managesector/managesec
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [AccountService,CompanyService,SectorService,StockExchangeService,UploadExcelService, {
     provide: HTTP_INTERCEPTORS,

@@ -54,15 +54,4 @@ export class CompanyService
   {
     return this.client.post<Stockpricedto[]>(this.base_url+"/companyservice/companystockprices",stock_price_req);
   }
-
-  //TODO:remove these
-  public GetStockExchangeList():Observable<Stockexchangedto[]>
-  {
-    return this.client.get<Stockexchangedto[]>(this.base_url+"/stockexchangeservice")
-  }
-
-  public GetSectorList():Observable<Sectordto[]>
-  {
-    return this.client.get<Sectordto[]>(this.base_url+"/sectorservice");
-  }
 }

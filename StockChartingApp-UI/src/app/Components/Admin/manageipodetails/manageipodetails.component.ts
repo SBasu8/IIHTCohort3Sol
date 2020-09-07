@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Ipodto } from 'src/app/Models/CompanyService/ipodto';
 import { Stockexchangedto } from 'src/app/Models/CompanyService/stockexchangedto';
 import { CompanyService } from 'src/app/Services/CompanyService/company.service';
+import { StockExchangeService } from 'src/app/Services/StockExchangeService/stock-exchange.service';
+import { Stockexchange } from 'src/app/Models/StockExchangeService/stockexchange';
 
 @Component({
   selector: 'app-manageipodetails',
@@ -12,11 +14,11 @@ export class ManageipodetailsComponent implements OnInit {
 
   new_ipo = new Ipodto();
   existing_ipos:Ipodto[];
-  existing_ses:Stockexchangedto[];
+  existing_ses:Stockexchange[];
 
-  constructor(private company_service:CompanyService) 
+  constructor(private company_service:CompanyService, private se_service:StockExchangeService) 
   {
-    company_service.GetStockExchangeList().subscribe(res => 
+    se_service.GetAllStockExchange().subscribe(res => 
       {
         console.log(res);
         this.existing_ses = res;

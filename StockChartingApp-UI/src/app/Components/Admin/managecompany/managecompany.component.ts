@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CompanyService } from 'src/app/Services/CompanyService/company.service';
 import { Company } from 'src/app/Models/CompanyService/company';
-import { Stockexchangedto } from 'src/app/Models/CompanyService/stockexchangedto';
+import { Stockexchange } from 'src/app/Models/StockExchangeService/stockexchange';
 import { Sectordto } from "src/app/Models/CompanyService/sectordto";
 import { Ipodto } from "src/app/Models/CompanyService/ipodto";
 import { StockExchangeService } from 'src/app/Services/StockExchangeService/stock-exchange.service';
@@ -17,7 +17,7 @@ export class ManagecompanyComponent implements OnInit
   comp_list:Company[];
   new_company = new Company();
   new_ipo = new Ipodto();
-  existing_ses:Stockexchangedto[];
+  existing_ses:Stockexchange[];
   existing_sectors:Sectordto[];
   existing_sector_map = new Map();
 
@@ -27,7 +27,7 @@ export class ManagecompanyComponent implements OnInit
   update_form_state = false;
   origin_form_state = true;
 
-  constructor(private company_service:CompanyService) 
+  constructor(private company_service:CompanyService, private sector_service:SectorService, private se_service:StockExchangeService) 
   {    
     company_service.GetAllCompanies().subscribe(res =>
       {
@@ -38,7 +38,7 @@ export class ManagecompanyComponent implements OnInit
         console.log(err);
       });
     
-    company_service.GetStockExchangeList().subscribe(res => 
+    se_service.GetAllStockExchange().subscribe(res => 
     {
       console.log(res);
       this.existing_ses = res;
@@ -47,7 +47,7 @@ export class ManagecompanyComponent implements OnInit
       console.log(err);
     });
 
-    company_service.GetSectorList().subscribe(res => 
+    sector_service.GetAllSectors().subscribe(res => 
       {
         console.log(res);
         this.existing_sectors = res;

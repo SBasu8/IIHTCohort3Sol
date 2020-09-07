@@ -5,4 +5,5 @@ export class Stockpricerequestdto
     periodicity:number;
     companyId:number;
     stockExchangeId:string;
+    companyName:string;
 }
