@@ -15,20 +15,21 @@ import { ComparepriceComponent } from './Components/User/compareprice/comparepri
 import { HomepageComponent } from './Components/Common/homepage/homepage.component';
 import { IpodetailsComponent } from './Components/User/ipodetails/ipodetails.component';
 import { ManagesectorComponent } from "./Components/Admin/managesector/managesector.component";
+import { AuthguardGuard } from "./Services/Authorization/authguard.guard";
 
 const routes: Routes = [
   {path:"",component:HomepageComponent},
   {path:"signup", component:SignupComponent},
   {path:"userlogin", component:UserloginComponent},
   {path:"adminlogin", component:AdminloginComponent},
-  {path:"adminlanding", component:AdminlandingComponent, children:[
+  {path:"adminlanding", component:AdminlandingComponent, canActivate:[AuthguardGuard], children:[
     {path:"uploadexcel", component:UploadexcelComponent},
     {path:"manageexchange", component:ManageexchangeComponent},
     {path:"managecompany", component:ManagecompanyComponent},
     {path:"manageipodetails", component:ManageipodetailsComponent},
     {path:"managesectors", component:ManagesectorComponent}    
   ]},
-  {path:"userlanding", component:UserlandingComponent, children:[
+  {path:"userlanding", component:UserlandingComponent, canActivate:[AuthguardGuard], children:[
     {path:"charting", component:ChartingComponent},
     {path:"compareprice", component:ComparepriceComponent},
     {path:"ipodetails", component:IpodetailsComponent}
