@@ -4,9 +4,9 @@
     
             <div class="col-md-4 col-md-offset-5" *ngIf="origin_form_state">
                 <button type="submit" class="btn btn-primary" (click)="AddStockExchangeForm()"
-                style="font-size: medium; width: 70%;">Add New Stock Exchange</button> <br><br>
+                style="font-size: medium; width: 100%;">Add New Stock Exchange</button> <br><br>
                 <button type="submit" class="btn btn-primary" (click)="DeleteJoinCompanyStockExchangeForm()"
-                style="font-size: medium; width: 100%;">Delete Comapny - Stock Exchange</button><br><br>
+                style="font-size: medium; width: 100%;">Delete Comapny from Stock Exchange</button><br><br>
             </div>
     
             <div class="col-md-4 col-md-offset-4" *ngIf="se_form_state">            
@@ -50,12 +50,12 @@
                     <div class="form-group FormField">
                         <label for="">CompanyId *</label>
                         <input type="number" class="form-control" [(ngModel)]="del_c_id" name="comapny id"
-                        style="font-size: medium;" id="" placeholder="Enter Company Id to be deleted"/>
+                        style="font-size: medium;" id="" placeholder="Company Id to be deleted"/>
                     </div>
                     <div class="form-group FormField">
                         <label for="">Stock Exchange Id/Code *</label>
                         <input type="string" class="form-control" [(ngModel)]="del_se_id" name="stock exchange id"
-                        style="font-size: medium;" id="" placeholder="Enter Stock Exchange Id to be deleted"/>
+                        style="font-size: medium;" id="" placeholder="Stock Exchange Id"/>
                     </div>
                     <button type="submit" class="btn btn-primary" (click)="Origin()"
                     style="font-size: medium; float: left;">Back</button>
@@ -63,9 +63,9 @@
                     style="font-size: medium; float: right;">Delete</button>                
                 </form>
             </div>
-    
+            <br><br>
             <div>
-                    <table class="table table-bordered table-hover col-md-offset-3" *ngIf="se_table_display_state">
+                    <table class="table table-bordered table-hover" *ngIf="se_table_display_state">
                         <thead style="font-size: 20px;">
                           <tr>
                             <th>Stock Exchange ID</th><th>Stock Exchange Name</th><th>About</th><th>Address</th><th>Remarks</th>

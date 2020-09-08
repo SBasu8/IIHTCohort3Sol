@@ -1,9 +1,34 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-            <legend style="font-size: 30px;">Compare Stock Prices</legend>
-
-            <form [formGroup]="myForm" class="FormField" (ngSubmit)="onSubmit()" novalidate>            
+            <legend style="font-size: 30px;">Compare Stock Prices of Companies</legend>
+            <form [formGroup]="myForm" class="FormField" (ngSubmit)="onSubmit()" novalidate>
+                <div class="FormField">
+                    <label>From Date: &nbsp;</label>
+                    <input type="date" placeholder="From Date" 
+                    formControlName="From_Date">
+                </div>
+                <div class="FormField">
+                    <label>From Time: &nbsp;</label>
+                    <input type="time" placeholder="From Time" 
+                    formControlName="From_Time">
+                </div>
+                <div class="FormField">
+                    <label>To Date: &nbsp;</label>
+                    <input type="date" placeholder="To Date" 
+                    formControlName="To_Date">
+                </div>
+                <div class="FormField">
+                    <label>To Time: &nbsp;</label>
+                    <input type="time" placeholder="To Time" 
+                    formControlName="To_Time">
+                </div>
+                <div class="FormField">
+                    <label>Periodicity: &nbsp;</label>
+                    <input type="number" placeholder="Period gap" 
+                    formControlName="Period">
+                </div>
+                        
                 <div formArrayName="formArray">
                     <div *ngFor="let control of formData.controls; let i = index">
                         <br>
@@ -19,33 +44,18 @@
                             </div>
                             <div>
                                <label>Company Name: &nbsp;</label>
-                               <input type="text" placeholders="Search Company" list="comps" (change)="onChangeEvent($event)"
+                               <input type="text" placeholder="Search Company" list="comps" (change)="onChangeEvent($event)"
                                formControlName="CompanyName">
                                 <datalist id="comps">
                                 <option *ngFor="let c of comp_list" [value]="c.companyName" >{{c.companyName}}</option>
                                 </datalist>
-                            </div>
-                            <div>
-                                <label>From: &nbsp;</label>
-                                <input type="datetime" placeholders="From Date Time" 
-                                formControlName="From">
-                            </div>
-                            <div>
-                                <label>To: &nbsp;</label>
-                                <input type="datetime" placeholders="To Date Time" 
-                                formControlName="To">
-                             </div>
-                             <div>
-                                <label>Periodicity: &nbsp;</label>
-                                <input type="number" placeholders="Period gap" 
-                                formControlName="Period">
-                             </div>
+                            </div>                            
                         </div>
                     </div>
                 </div>
                 <button type="button" class="btn btn-primary" style="font-size: 15px; float: left;" (click)="addInput()">Add another Company</button>
                 <button type="submit" class="btn btn-primary" style="font-size: 15px; float: right;" [disabled]="!myForm.valid">Get Comparison Plot</button>
-            </form>            
+            </form>         
 
         </div>
     </div>

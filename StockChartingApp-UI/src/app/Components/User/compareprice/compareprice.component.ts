@@ -18,7 +18,7 @@ export class ComparepriceComponent implements OnInit {
 	comp_id_map = new Map();
   existing_ses:Stockexchange[];
 	request_list = new Array<Stockpricerequestdto>();
-
+	
 	myForm:FormGroup;
 
 	constructor(private company_service:CompanyService, private se_service:StockExchangeService, private fb:FormBuilder, private router:Router) 
@@ -49,16 +49,18 @@ export class ComparepriceComponent implements OnInit {
   ngOnInit(): void 
 	{
 		let newForm = this.fb.group({
+			From_Date: [''],
+			From_Time: [''],
+			To_Date: [''],
+			To_Time: [''],
+			Period: [''],
 			formArray: this.fb.array([])
 		});
 
 		const arrayControl = <FormArray>newForm.controls['formArray'];
 			let newGroup = this.fb.group({
 					StockExchange: [''],
-					CompanyName: [''],
-					From: [''],
-					To: [''],
-					Period: ['']
+					CompanyName: ['']					
 			});
 		arrayControl.push(newGroup);
 
@@ -70,10 +72,7 @@ export class ComparepriceComponent implements OnInit {
 			const arrayControl = <FormArray>this.myForm.controls['formArray'];
 			let newGroup = this.fb.group({
 					StockExchange: [''],
-					CompanyName: [''],
-					From: [''],
-					To: [''],
-					Period: ['']
+					CompanyName: ['']					
 			});
 			arrayControl.push(newGroup);
 		}
@@ -93,9 +92,9 @@ export class ComparepriceComponent implements OnInit {
 				let temp_req = new Stockpricerequestdto();
 				temp_req.companyId = this.comp_id_map.get(arrayControl.at(i).value.CompanyName);
 				temp_req.stockExchangeId = arrayControl.at(i).value.StockExchange;
-				temp_req.from = arrayControl.at(i).value.From;
-				temp_req.to = arrayControl.at(i).value.To;
-				temp_req.periodicity = arrayControl.at(i).value.Period;
+				temp_req.from = this.myForm.controls['From_Date'].value + " " + this.myForm.controls['From_Time'].value;
+				temp_req.to = this.myForm.controls['To_Date'].value + " " + this.myForm.controls['To_Time'].value;
+				temp_req.periodicity = this.myForm.controls['Period'].value;
 				temp_req.companyName = arrayControl.at(i).value.CompanyName;
 				this.request_list.push(temp_req);
 			}
