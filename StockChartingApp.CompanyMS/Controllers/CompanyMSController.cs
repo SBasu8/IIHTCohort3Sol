@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DtoLibraryStockChartingApp;
 using EntityLibraryStockChartingApp;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StockChartingApp.CompanyMS.Services;
 
@@ -29,6 +30,7 @@ namespace StockChartingApp.CompanyMS.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "ADMIN")]
         public string Get()
         {
             return "Company Microservice for Stock Charting App";
@@ -36,6 +38,7 @@ namespace StockChartingApp.CompanyMS.Controllers
 
         //Company specific request handles
         [HttpGet("getcompanydetails/{id}")]
+        [Authorize(Roles = "ADMIN")]
         public IActionResult GetCompanyDetails(int id)
         {
             var company = company_service.GetExistingCompany(id);
@@ -47,12 +50,14 @@ namespace StockChartingApp.CompanyMS.Controllers
         }
 
         [HttpGet("getallcompanies")]
+        [Authorize(Roles = "ADMIN, USER")]
         public IActionResult GetAllCompaniesDetails()
         {
             return Ok(company_service.GetAllCompanies());
         }
 
         [HttpPost("addnewcompany")]
+        [Authorize(Roles = "ADMIN")]
         public IActionResult PostAddNewCompany(Company company)
         {
             if (ModelState.IsValid)
@@ -67,6 +72,7 @@ namespace StockChartingApp.CompanyMS.Controllers
         }
 
         [HttpPut("updatecompany/{id}")]
+        [Authorize(Roles = "ADMIN")]
         public IActionResult PutUpdateCompanyDetails(int id, Company company)
         {
             if(ModelState.IsValid)
@@ -91,6 +97,7 @@ namespace StockChartingApp.CompanyMS.Controllers
         }
 
         [HttpDelete("removecompany/{id}")]
+        [Authorize(Roles = "ADMIN")]
         public IActionResult DeleteRemoveCompany(int id)
         {
             (bool deleted, int status) = company_service.DeleteCompany(id);
@@ -109,6 +116,7 @@ namespace StockChartingApp.CompanyMS.Controllers
 
         //Company IPO request handles
         [HttpPost("addcompanyipo")]
+        [Authorize(Roles = "ADMIN")]
         public IActionResult PostAddCompanyIPO(IPODetailsDto ipo_dto)
         {
             if (ModelState.IsValid)
@@ -133,6 +141,7 @@ namespace StockChartingApp.CompanyMS.Controllers
         }
 
         [HttpGet("getcompanyipo/{id}/{se_id}")]
+        [Authorize(Roles = "ADMIN")]
         public IActionResult GetCompanyIPOs(int id, string se_id)
         {
             var ipo = ipo_service.GetExistingIPO(id,se_id);
@@ -144,6 +153,7 @@ namespace StockChartingApp.CompanyMS.Controllers
         }
 
         [HttpGet("getallipos")]
+        [Authorize(Roles ="ADMIN, USER")]
         public IActionResult GetAllIPOs()
         {
             return Ok(ipo_service.GetAllExistingIPOs());
@@ -151,6 +161,7 @@ namespace StockChartingApp.CompanyMS.Controllers
 
         //Board Member relationship
         [HttpPost("addnewboardmember")]
+        [Authorize(Roles = "ADMIN")]
         public IActionResult PostAddNewBoardMamber(BoardMember member)
         {
             if(ModelState.IsValid)
@@ -165,6 +176,7 @@ namespace StockChartingApp.CompanyMS.Controllers
         }
 
         [HttpPut("addcompanybm/{bm_id}/{id}")]
+        [Authorize(Roles = "ADMIN")]
         public IActionResult PutAddBoardMemberRelationship(int bm_id,int id)
         {
             (bool isAdded, int status) = bm_service.AddRelationshipWithCompany(bm_id,id);
@@ -185,6 +197,7 @@ namespace StockChartingApp.CompanyMS.Controllers
         }
 
         [HttpDelete("removecompanybm/{bm_id}/{id}")]
+        [Authorize(Roles = "ADMIN")]
         public IActionResult DeleteRemoveBoardMemberRelationship(int bm_id, int id)
         {
             var deleted = bm_service.RemoveRelationshipWithCompany(bm_id,id);
@@ -197,12 +210,14 @@ namespace StockChartingApp.CompanyMS.Controllers
 
         //Feature request
         [HttpGet("matchingcompanies")] //partial_name is a paramater
+        [Authorize(Roles = "ADMIN")]
         public IActionResult GetMatchingCompanies(string partial_name)
         {
             return Ok(company_service.FetchMatchingCompanies(partial_name));
         }
 
         [HttpPost("companystockprices")]
+        [Authorize(Roles = "ADMIN, USER")]
         public IActionResult GetComapnyStockPrices(StockPriceRequestDto spq)
         {
             if (ModelState.IsValid)

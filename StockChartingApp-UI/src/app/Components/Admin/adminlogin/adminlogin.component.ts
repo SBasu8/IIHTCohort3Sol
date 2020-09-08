@@ -20,9 +20,10 @@ export class AdminloginComponent implements OnInit {
   }
 
   Login()
-  { console.log(this.inputDetails);
+  { 
     this.service.AdminLogin(this.inputDetails).subscribe(res=>{
-      if(res.token=="" || res.token==null) {this.errMssg="Invalid Creds";}
+      
+      if(res.token=="" || res.token==null) {alert("Invalid Creds"); window.location.reload();}
       else if(res.roleType!=1) {this.errMssg="You are not an Admin";}
       else
       {

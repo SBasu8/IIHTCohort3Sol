@@ -22,8 +22,8 @@ export class UserloginComponent implements OnInit {
   Login()
   { 
     this.service.UserLogin(this.inputDetails).subscribe(res=>{
-      console.log(res);
-      if(res.token=="" || res.token==null) {this.errMssg="Invalid Creds";}
+      
+      if(res.token=="" || res.token==null) {alert("Invalid Creds");window.location.reload();}
       else if(res.roleType!=2) {this.errMssg="You are not a User";}
       else{
         localStorage.setItem("token",res.token);

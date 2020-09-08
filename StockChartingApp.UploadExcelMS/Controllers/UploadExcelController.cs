@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StockChartingApp.UploadExcelMS.Models;
@@ -15,6 +16,7 @@ namespace StockChartingApp.UploadExcelMS.Controllers
 {
     [Route("api/uploadexcel")]
     [ApiController]
+    [Authorize(Roles ="ADMIN")]
     public class UploadExcelController : ControllerBase
     {
         private IUploadExcelRepository<AppDBContext> repository;

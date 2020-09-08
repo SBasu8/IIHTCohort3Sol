@@ -6,12 +6,14 @@ using EntityLibraryStockChartingApp;
 using Microsoft.AspNetCore.Mvc;
 using StockChartingApp.SectorMS.Repositories;
 using DtoLibraryStockChartingApp;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860 
 namespace StockChartingApp.SectorMS.Controllers
 {
     [Route("api/sectorms")]
     [ApiController]
+    [Authorize(Roles = "ADMIN")]
     public class SectorMSController : ControllerBase
     {
         private IRepository<Sector> repository;

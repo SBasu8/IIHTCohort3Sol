@@ -30,7 +30,7 @@ namespace StockChartingApp.RoleMS.Repositories
             try
             {
                 var roleholder = context.Role.FirstOrDefault(u => u.RoleName == uname && u.Password == pass && u.Confirmed && u.RoleType == RoleTypes.ADMIN);
-                if (roleholder == null) t = new Tuple<bool, TokenDetails>(false, null);
+                if (roleholder == null) t = new Tuple<bool, TokenDetails>(false, new TokenDetails() { Name = null,Token=null }); 
                 else
                 {
                     var token = GenerateJwtToken(roleholder);
@@ -47,7 +47,7 @@ namespace StockChartingApp.RoleMS.Repositories
             try
             {
                 var roleholder = context.Role.FirstOrDefault(u => u.RoleName == uname && u.Password == pass && u.Confirmed && u.RoleType==RoleTypes.USER);
-                if (roleholder == null) t = new Tuple<bool, TokenDetails>(false, null);
+                if (roleholder == null) t = new Tuple<bool, TokenDetails>(false, new TokenDetails() { Name = null, Token = null });
                 else
                 {
                     var token = GenerateJwtToken(roleholder);

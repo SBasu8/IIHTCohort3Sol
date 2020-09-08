@@ -16,7 +16,6 @@ namespace StockChartingApp.StockExchangeMS.Controllers
 
     [Route("api/stockexchangems")]
     [ApiController]
-    [Authorize(Roles = "ADMIN")]
     public class StockExchangeController : ControllerBase
     {
         private StockExchangeService se_service;
@@ -38,7 +37,7 @@ namespace StockChartingApp.StockExchangeMS.Controllers
         // GET: api/<StockExchangeController>
 
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize(Roles = "ADMIN,USER" )]
         public IEnumerable<StockExchange> Get()
         {
             return se_service.GetAll();
@@ -46,6 +45,7 @@ namespace StockChartingApp.StockExchangeMS.Controllers
 
         // GET api/<StockExchangeController>/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public StockExchange Get(string id)
         {
             return se_service.Get(id);
@@ -53,6 +53,7 @@ namespace StockChartingApp.StockExchangeMS.Controllers
 
         // POST api/<StockExchangeController>
         [HttpPost]
+        [Authorize(Roles = "ADMIN")]
         public IActionResult Post( StockExchange stockExchange)
         {
             if (ModelState.IsValid)
@@ -77,6 +78,7 @@ namespace StockChartingApp.StockExchangeMS.Controllers
 
         //------------------Get List of Companies-----------------------------------
         [HttpGet("GetCompany/{id}")]
+        [Authorize(Roles = "ADMIN")]
         public  IEnumerable<Company> GetCompanies(string id)
         {
             return g_service.GetAllCompaniesList(id);
@@ -88,6 +90,7 @@ namespace StockChartingApp.StockExchangeMS.Controllers
         
 
         [HttpDelete("delete_C_SE/{c_id}/{se_id}")]
+        [Authorize(Roles = "ADMIN")]
         public IActionResult DeleteJoinCompanyStockExchangeRelationship(int c_id, string se_id)
         {
             var jcse = j_c_se_Service.Get(c_id, se_id);
@@ -102,6 +105,7 @@ namespace StockChartingApp.StockExchangeMS.Controllers
         //----------------------CRUD Stock Price-------------------------------
         
         [HttpPost("StockPrice")]
+        [Authorize(Roles = "ADMIN")]
         public IActionResult Post( StockPrice stockprice)
         {
             if (ModelState.IsValid)
@@ -113,7 +117,7 @@ namespace StockChartingApp.StockExchangeMS.Controllers
         }
 
         [HttpGet("GetStockPrices")]
-        [AllowAnonymous]
+        [Authorize(Roles = "ADMIN")]
         public IEnumerable<StockPrice> GetStockPrices()
         {
             return sp_Service.GetAllStockPrice();

@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupComponent implements OnInit {
   item: Role;
-  errMssg: string="No Errors yet";
+  errMssg: string="";
   constructor(private service : AccountService, private router: Router) {this.item = new Role(); }
 
   ngOnInit(): void {
