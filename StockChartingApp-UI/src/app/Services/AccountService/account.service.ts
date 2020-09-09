@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 })
 export class AccountService {
 
-  path: string = "https://localhost:44329";
+  path: string = "http://localhost:8001";
   constructor(private http: HttpClient) { }
 
   AdminLogin(inputDetails): Observable<TokenDetails> 

@@ -13,7 +13,7 @@ import { Stockpricedto } from "src/app/Models/CompanyService/stockpricedto";
 })
 export class CompanyService 
 {
-  base_url:string = "https://localhost:44329";
+  base_url:string = "http://localhost:8001";
 
   constructor(private client:HttpClient) 
   {

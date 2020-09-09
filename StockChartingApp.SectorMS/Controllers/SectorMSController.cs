@@ -13,7 +13,6 @@ namespace StockChartingApp.SectorMS.Controllers
 {
     [Route("api/sectorms")]
     [ApiController]
-    [Authorize(Roles = "ADMIN")]
     public class SectorMSController : ControllerBase
     {
         private IRepository<Sector> repository;
@@ -23,8 +22,15 @@ namespace StockChartingApp.SectorMS.Controllers
             this.repository = repository;
         }
 
+        [HttpGet]
+        public string Get()
+        {
+            return "Sector Microservice for Stock Charting App";
+        }
+
         // GET: api/<SectorController>
         [HttpGet("getallsectors")]
+        [Authorize(Roles = "ADMIN,USER")]
         public List<SectorDto> GetAllSector()
         {
 
@@ -43,6 +49,7 @@ namespace StockChartingApp.SectorMS.Controllers
 
         // GET api/<SectorController>
         [HttpGet("getcompanylist/{id}")]
+        [Authorize(Roles = "ADMIN")]
         public List<string> GetSectorCompanyList(int id)
         {
 
@@ -53,6 +60,7 @@ namespace StockChartingApp.SectorMS.Controllers
 
         // POST api/<SectorController>
         [HttpPost("addnewsector")]
+        [Authorize(Roles = "ADMIN")]
         public IActionResult AddSector(SectorDto sector)
         {
             if (ModelState.IsValid)
@@ -70,6 +78,7 @@ namespace StockChartingApp.SectorMS.Controllers
 
         // PUT api/<SectorController>/5
         [HttpPut("updatecompany/{CompId}/{SecId}")]
+        [Authorize(Roles = "ADMIN")]
         public IActionResult UpdateSectorCompanyList(int CompId,int SecId)
         {
              if (ModelState.IsValid)
@@ -85,6 +94,7 @@ namespace StockChartingApp.SectorMS.Controllers
 
         }
         [HttpPut("updatesector/{id}")]
+        [Authorize(Roles = "ADMIN")]
         public IActionResult PutUpdateCompanyDetails(int id, SectorDto sec)
         {
             if (ModelState.IsValid)
@@ -112,6 +122,7 @@ namespace StockChartingApp.SectorMS.Controllers
 
         // DELETE api/<SectorController>/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public void Delete(int id)
         {
         }

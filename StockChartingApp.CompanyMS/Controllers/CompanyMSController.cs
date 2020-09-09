@@ -30,7 +30,7 @@ namespace StockChartingApp.CompanyMS.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "ADMIN")]
+        //[Authorize(Roles = "ADMIN")]
         public string Get()
         {
             return "Company Microservice for Stock Charting App";
@@ -53,7 +53,15 @@ namespace StockChartingApp.CompanyMS.Controllers
         [Authorize(Roles = "ADMIN, USER")]
         public IActionResult GetAllCompaniesDetails()
         {
-            return Ok(company_service.GetAllCompanies());
+            try
+            {
+                return Ok(company_service.GetAllCompanies());
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            
         }
 
         [HttpPost("addnewcompany")]

@@ -7,10 +7,10 @@ import { Observable } from 'rxjs';
 })
 export class UploadExcelService {
 
-  path: string = "https://localhost:44329/uploadexcelservice";
+  path: string = "http://localhost:8001";
   constructor(private http: HttpClient) { }
 
   Upload(fileInput: FormData){
-    return this.http.post(this.path+"/upload",fileInput);
+    return this.http.post(this.path+"/uploadexcelservice/upload",fileInput);
   }
 }

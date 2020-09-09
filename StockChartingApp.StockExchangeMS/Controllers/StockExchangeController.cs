@@ -34,11 +34,17 @@ namespace StockChartingApp.StockExchangeMS.Controllers
             this.sp_Service = sp_Service;
         }
 
+        [HttpGet]
+        public string Get()
+        {
+            return "Stock Exchange Microservice for Stock Charting App";
+        }
+
         // GET: api/<StockExchangeController>
 
-        [HttpGet]
+        [HttpGet("getallstockexchanges")]
         [Authorize(Roles = "ADMIN,USER" )]
-        public IEnumerable<StockExchange> Get()
+        public IEnumerable<StockExchange> GetAll()
         {
             return se_service.GetAll();
         }

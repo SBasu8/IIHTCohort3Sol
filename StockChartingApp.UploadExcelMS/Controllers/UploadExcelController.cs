@@ -16,7 +16,6 @@ namespace StockChartingApp.UploadExcelMS.Controllers
 {
     [Route("api/uploadexcel")]
     [ApiController]
-    [Authorize(Roles ="ADMIN")]
     public class UploadExcelController : ControllerBase
     {
         private IUploadExcelRepository<AppDBContext> repository;
@@ -28,16 +27,9 @@ namespace StockChartingApp.UploadExcelMS.Controllers
 
         // GET: api/<UploadExcelController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public string Get()
         {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<UploadExcelController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
+            return "Upload Excel Microservice for Stock Charting App";
         }
 
         // POST api/<UploadExcelController>
@@ -59,6 +51,7 @@ namespace StockChartingApp.UploadExcelMS.Controllers
         }
 
         [HttpPost("upload")]
+        [Authorize(Roles = "ADMIN")]
         public IActionResult Upload(IFormFile file1)
         {
             if (file1 == null)

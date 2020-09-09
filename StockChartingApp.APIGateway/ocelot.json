@@ -2,22 +2,22 @@
   "Routes": [
     {
       "DownstreamPathTemplate": "/api/companyms",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44370
+          "Port": 8002
         }
       ],
       "UpstreamPathTemplate": "/companyservice"
     },
     {
       "DownstreamPathTemplate": "/api/companyms/{url}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44370
+          "Port": 8002
         }
       ],
       "UpstreamPathTemplate": "/companyservice/{url}"
@@ -25,22 +25,22 @@
 
     {
       "DownstreamPathTemplate": "/api/rolems",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44397
+          "Port": 8003
         }
       ],
       "UpstreamPathTemplate": "/authservice"
     },
     {
       "DownstreamPathTemplate": "/api/rolems/{url}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44397
+          "Port": 8003
         }
       ],
       "UpstreamPathTemplate": "/authservice/{url}"
@@ -48,22 +48,22 @@
 
     {
       "DownstreamPathTemplate": "/api/sectorms",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44380
+          "Port": 8004
         }
       ],
       "UpstreamPathTemplate": "/sectorservice"
     },
     {
       "DownstreamPathTemplate": "/api/sectorms/{url}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44380
+          "Port": 8004
         }
       ],
       "UpstreamPathTemplate": "/sectorservice/{url}"
@@ -71,22 +71,22 @@
 
     {
       "DownstreamPathTemplate": "/api/stockexchangems",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44393
+          "Port": 8005
         }
       ],
       "UpstreamPathTemplate": "/stockexchangeservice"
     },
     {
       "DownstreamPathTemplate": "/api/stockexchangems/{url}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44393
+          "Port": 8005
         }
       ],
       "UpstreamPathTemplate": "/stockexchangeservice/{url}"
@@ -94,29 +94,29 @@
 
     {
       "DownstreamPathTemplate": "/api/uploadexcel",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44300
+          "Port": 8006
         }
       ],
       "UpstreamPathTemplate": "/uploadexcelservice"
     },
     {
       "DownstreamPathTemplate": "/api/uploadexcel/{url}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44300
+          "Port": 8006
         }
       ],
       "UpstreamPathTemplate": "/uploadexcelservice/{url}"
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "https://localhost:44392"
+    "BaseUrl": "http://localhost:8001"
   }
 }
   

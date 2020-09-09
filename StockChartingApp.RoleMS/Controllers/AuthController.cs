@@ -25,9 +25,9 @@ namespace StockChartingApp.RoleMS.Controllers
 
         // GET: api/<AuthController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public string Get()
         {
-            return new string[] { "value1", "value2" };
+            return "Authorization Microservice for Stock Charting App";
         }
 
         // GET api/<AuthController>/5
