@@ -44,7 +44,7 @@ namespace StockChartingApp.RoleMS.Controllers
 
                     return Ok(res.Item2);
                 }
-                catch (Exception) { return StatusCode(500, "Internal Server Error"); }
+                catch (Exception ex) { return StatusCode(500, ex.Message); }
             }
             else return BadRequest("Enter Both UserName & Password");
             
@@ -63,7 +63,7 @@ namespace StockChartingApp.RoleMS.Controllers
 
                     return Ok(res.Item2);
                 }
-                catch (Exception) { return StatusCode(500, "Internal Server Error"); }
+                catch (Exception ex) { return StatusCode(500, ex.Message); }
             }
             else return BadRequest("Enter Both UserName & Password");
 
