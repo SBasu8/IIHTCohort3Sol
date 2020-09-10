@@ -14,7 +14,7 @@ namespace StockChartingApp.APIGateway.Controllers
         [HttpGet]
         public string Get()
         {
-            return "Welcome to Stock Charting App !!!";
+            return "Welcome to Stock Charting App !!! - Build and deployed on IIS using Jenkins Automation";
         }
     }
 }
