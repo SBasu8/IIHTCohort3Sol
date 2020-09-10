@@ -2,7 +2,7 @@ import random as r
 #didnt use pandas as using it would create csv file not excel & back end parses excel not csv
 import xlsxwriter
 
-wkbk = xlsxwriter.Workbook('C:\\Python352\\Stock_Price.xlsx')
+wkbk = xlsxwriter.Workbook('Stock_Price.xlsx')
 wksht =wkbk.add_worksheet()
 print(wkbk)
 
@@ -20,8 +20,8 @@ lpar=[]
 while(True):
     l=[]
     
-    c_id = 18
-    if(c_id==18):  se_id="BSE"
+    c_id = 1
+    if(c_id==1):  se_id="BSE"
     price = r.randrange(340,370)
     
     if(mm==60):
@@ -62,8 +62,8 @@ mm=0
 while(True):
     l=[]
     
-    c_id = 19
-    if(c_id==19):  se_id="NSE"
+    c_id = 3
+    if(c_id==3):  se_id="NSE"
     price = r.randrange(340,370)
     
     if(mm==60):
