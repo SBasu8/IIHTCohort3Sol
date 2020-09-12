@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 })
 export class AccountService {
 
-  path: string = "http://localhost:8001";
+  path: string = "https://apigatewaysca.azurewebsites.net";
   constructor(private http: HttpClient) { }
 
   AdminLogin(inputDetails): Observable<TokenDetails> 

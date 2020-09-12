@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UploadExcelService {
 
-  path: string = "http://localhost:8001";
+  path: string = "https://apigatewaysca.azurewebsites.net";
   constructor(private http: HttpClient) { }
 
   Upload(fileInput: FormData){

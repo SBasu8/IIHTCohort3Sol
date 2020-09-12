@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/cleoexplore/databases/StockChartingAppDB",
+      "type": "mssql.azure",
+      "connectionId": "SqlConnectionString",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}

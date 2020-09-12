@@ -9,7 +9,7 @@ import { Stockexchange } from '../../Models/StockExchangeService/stockexchange';
 })
 export class StockExchangeService {
 
-  path:string = "http://localhost:8001";
+  path:string = "https://apigatewaysca.azurewebsites.net";
   constructor(private http: HttpClient) { }
 
   AddNewStockExchange(item: Stockexchange):Observable<any>

@@ -2,22 +2,22 @@
   "Routes": [
     {
       "DownstreamPathTemplate": "/api/companyms",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8002
+          "Host": "companyms.azurewebsites.net"
+          //"Port": 8002
         }
       ],
       "UpstreamPathTemplate": "/companyservice"
     },
     {
       "DownstreamPathTemplate": "/api/companyms/{url}",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8002
+          "Host": "companyms.azurewebsites.net"
+          //"Port": 8002
         }
       ],
       "UpstreamPathTemplate": "/companyservice/{url}"
@@ -25,22 +25,22 @@
 
     {
       "DownstreamPathTemplate": "/api/rolems",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8003
+          "Host": "rolems.azurewebsites.net"
+          //"Port": 8003
         }
       ],
       "UpstreamPathTemplate": "/authservice"
     },
     {
       "DownstreamPathTemplate": "/api/rolems/{url}",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8003
+          "Host": "rolems.azurewebsites.net"
+          //"Port": 8003
         }
       ],
       "UpstreamPathTemplate": "/authservice/{url}"
@@ -48,22 +48,22 @@
 
     {
       "DownstreamPathTemplate": "/api/sectorms",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8004
+          "Host": "sectorms.azurewebsites.net"
+          //"Port": 8004
         }
       ],
       "UpstreamPathTemplate": "/sectorservice"
     },
     {
       "DownstreamPathTemplate": "/api/sectorms/{url}",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8004
+          "Host": "sectorms.azurewebsites.net"
+          //"Port": 8004
         }
       ],
       "UpstreamPathTemplate": "/sectorservice/{url}"
@@ -71,22 +71,22 @@
 
     {
       "DownstreamPathTemplate": "/api/stockexchangems",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8005
+          "Host": "stockexchangems.azurewebsites.net"
+          //"Port": 8005
         }
       ],
       "UpstreamPathTemplate": "/stockexchangeservice"
     },
     {
       "DownstreamPathTemplate": "/api/stockexchangems/{url}",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8005
+          "Host": "stockexchangems.azurewebsites.net"
+          //"Port": 8005
         }
       ],
       "UpstreamPathTemplate": "/stockexchangeservice/{url}"
@@ -94,29 +94,28 @@
 
     {
       "DownstreamPathTemplate": "/api/uploadexcel",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8006
+          "Host": "uploadexcelms.azurewebsites.net"
+          //"Port": 8006
         }
       ],
       "UpstreamPathTemplate": "/uploadexcelservice"
     },
     {
       "DownstreamPathTemplate": "/api/uploadexcel/{url}",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8006
+          "Host": "uploadexcelms.azurewebsites.net"
+          //"Port": 8006
         }
       ],
       "UpstreamPathTemplate": "/uploadexcelservice/{url}"
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:8001"
+    "BaseUrl": "https://apigatewaysca.azurewebsites.net"
   }
 }
-  

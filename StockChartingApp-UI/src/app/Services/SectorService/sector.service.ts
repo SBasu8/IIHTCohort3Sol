@@ -10,7 +10,7 @@ import { Sectordto } from 'src/app/Models/CompanyService/sectordto';
 })
 export class SectorService 
 {
-  base_url:string = "http://localhost:8001";
+  base_url:string = "https://apigatewaysca.azurewebsites.net";
   constructor(private client:HttpClient)                                                                                                                                                                                                                                              
   {
   }
