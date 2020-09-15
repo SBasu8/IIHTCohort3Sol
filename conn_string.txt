@@ -1,0 +1,1 @@
+"SqlConnectionString": "Data Source=C2DNET28;Initial Catalog=StockChartingAppDB;User ID=sa;Password=pass@word1;MultipleActiveResultSets=true",
